@@ -3,6 +3,12 @@
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
+# Android SDK home
+export ANDROID_HOME=/home/tnegri/android-sdk-linux
+
+# Java home
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+
 # 256 colors terminal
 export TERM=xterm-256color
 
