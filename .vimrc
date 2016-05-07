@@ -42,6 +42,9 @@ set lazyredraw
 inoremap <C-s> <esc>:w<cr>
 nnoremap <C-s> :w<cr>
 
+" Ctrl-V to paste content from clipboard
+" inoremap <C-v> <esc>:set paste<cr>i<C-r>*<esc>:set nopaste<cr>i
+
 " Auto indent
 set smartindent
 set autoindent
@@ -58,4 +61,7 @@ let g:rubycomplete_rails = 1
 
 " Backspace
 set bs=2
+
+" Show line and column number at bottom right corner
+set ruler
 
