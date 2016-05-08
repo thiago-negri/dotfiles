@@ -20,6 +20,9 @@ Plugin 'tpope/vim-bundler'
 " Rename files
 Plugin 'Rename2'
 
+" NERDTree
+Plugin 'nerdtree'
+
 call vundle#end()
 filetype plugin indent on
 " VUNDLE END
@@ -64,4 +67,7 @@ set bs=2
 
 " Show line and column number at bottom right corner
 set ruler
+
+" Ctrl-N to toggle NERDTree
+map <C-n> :NERDTreeToggle<CR>
 
