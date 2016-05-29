@@ -77,3 +77,8 @@ set ruler
 " Ctrl-N to toggle NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
+" Ctrl-V to paste in insert mode
+imap <C-v> <esc>:set paste<cr>"+p<esc>:set nopaste<cr>a
+
+" Ctrl-C do copy to system clipboard in visual mode
+vnoremap <C-c> "+y
