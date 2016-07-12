@@ -39,6 +39,9 @@ Plugin 'mattn/emmet-vim'
 " Syntastic
 Plugin 'scrooloose/syntastic'
 
+" surround.vim
+Plugin 'tpope/vim-surround'
+
 call vundle#end()
 filetype plugin indent on
 " VUNDLE END
