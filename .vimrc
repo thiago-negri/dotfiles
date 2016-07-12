@@ -56,6 +56,9 @@ Plugin 'tpope/vim-endwise'
 " auto delimit quotes
 Plugin 'raimondi/delimitmate'
 
+" show indentation-level guides -- activate with `\ig`
+Plugin 'nathanaelkane/vim-indent-guides'
+
 call vundle#end()
 filetype plugin indent on
 " VUNDLE END
