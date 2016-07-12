@@ -29,6 +29,10 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 
+" Vim airline
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
 call vundle#end()
 filetype plugin indent on
 " VUNDLE END
@@ -82,3 +86,7 @@ imap <C-v> <esc>:set paste<cr>"+p<esc>:set nopaste<cr>a
 
 " Ctrl-C do copy to system clipboard in visual mode
 vnoremap <C-c> "+y
+
+" Always show VIM Airline
+set laststatus=2
+
