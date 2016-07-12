@@ -10,7 +10,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Solarized colors
 Plugin 'altercation/vim-colors-solarized'
 
-" CtrlP - Fuzzy file finder
+" CtrlP - Fuzzy file finder -- active with <C-p>
 Plugin 'ctrlpvim/ctrlp.vim'
 
 " Vim Rails
@@ -20,27 +20,34 @@ Plugin 'tpope/vim-bundler'
 " Rename files
 Plugin 'Rename2'
 
-" NERDTree
+" NERDTree -- show file tree, <C-n> to activate
 Plugin 'nerdtree'
 
-" Snipmate
+" Snipmate -- active on tab on insert mode, e.g. `def<tab>` to create a new
+" Ruby method
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 
-" Vim airline
+" Vim airline -- beautiful status line
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
-" emmet.io
+" emmet.io -- html expansion, activated by `<c-y>,`
 Plugin 'mattn/emmet-vim'
 
-" Syntastic
+" Syntastic -- show syntax errors on save
 Plugin 'scrooloose/syntastic'
 
-" surround.vim
+" surround.vim -- work with surroundings, use 's' for surroundings, e.g.
+" `cs"'` to change surrounding double quotes to single quotes; `ysiw[` to put
+" square brackets surrounding a word
 Plugin 'tpope/vim-surround'
+
+" easymotion -- press \\<motion> to highligh alternatives, e.g. \\s (for
+" searching a single char)
+Plugin 'easymotion/vim-easymotion'
 
 call vundle#end()
 filetype plugin indent on
