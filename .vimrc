@@ -36,6 +36,9 @@ Plugin 'vim-airline/vim-airline-themes'
 " emmet.io
 Plugin 'mattn/emmet-vim'
 
+" Syntastic
+Plugin 'scrooloose/syntastic'
+
 call vundle#end()
 filetype plugin indent on
 " VUNDLE END
