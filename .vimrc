@@ -53,6 +53,9 @@ Plugin 'easymotion/vim-easymotion'
 " 'end' after 'def' or 'if' in Ruby
 Plugin 'tpope/vim-endwise'
 
+" auto delimit quotes
+Plugin 'raimondi/delimitmate'
+
 call vundle#end()
 filetype plugin indent on
 " VUNDLE END
