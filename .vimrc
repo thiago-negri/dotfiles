@@ -33,6 +33,9 @@ Plugin 'honza/vim-snippets'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
+" emmet.io
+Plugin 'mattn/emmet-vim'
+
 call vundle#end()
 filetype plugin indent on
 " VUNDLE END
