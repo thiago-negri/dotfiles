@@ -49,6 +49,10 @@ Plugin 'tpope/vim-surround'
 " searching a single char)
 Plugin 'easymotion/vim-easymotion'
 
+" endwise.vim -- auto add ending keyword to common structures, e.g. auto add
+" 'end' after 'def' or 'if' in Ruby
+Plugin 'tpope/vim-endwise'
+
 call vundle#end()
 filetype plugin indent on
 " VUNDLE END
