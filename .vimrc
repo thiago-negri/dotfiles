@@ -21,7 +21,7 @@ Plugin 'tpope/vim-bundler'
 Plugin 'Rename2'
 
 " NERDTree -- show file tree, <C-n> to activate
-Plugin 'nerdtree'
+Plugin 'scrooloose/nerdtree'
 
 " Snipmate -- active on tab on insert mode, e.g. `def<tab>` to create a new
 " Ruby method
