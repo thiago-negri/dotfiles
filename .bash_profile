@@ -16,4 +16,6 @@ stty -ixon
 # Add Cargo binaries to PATH
 export PATH="$HOME/.cargo/bin:$PATH"
 
+eval `dircolors ~/.dir_colors/dircolors`
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
