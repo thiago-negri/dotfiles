@@ -89,10 +89,13 @@ set smartindent
 set autoindent
 filetype indent on
 
-" Do not use tabs
+" Do not use tabs, default to 2 spaces for tabstop
 set expandtab
 set softtabstop=2
 set shiftwidth=2
+
+" Use 4 spaces for tabstop for C files
+autocmd FileType c setl sw=4 sts=4
 
 " Rails autocomplete
 let g:rubycomplete_buffer_loading = 1
