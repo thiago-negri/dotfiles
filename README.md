@@ -1,4 +1,13 @@
-# Install VIM
+# Install Vundle
+
+First clone Vundle.
+
+    $ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    
+Then open VIM and run `:PluginInstall`.
+
+
+# Install VIM (deprecated)
 
 Get the compile-dependencies of vim, with X11 support.
 
