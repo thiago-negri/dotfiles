@@ -6,6 +6,7 @@ First clone Vundle.
     
 Then open VIM and run `:PluginInstall`.
 
+
 # How I roll
 
 Run:
@@ -13,6 +14,11 @@ Run:
     $ cd ~
     $ git clone <this repo>
     $ ln -s dot-files/.vimrc .vimrc
+
+
+# Install terminal colors
+
+See https://github.com/Anthony25/gnome-terminal-colors-solarized
 
 
 # Install VIM (deprecated)
