@@ -8,8 +8,10 @@ Then open VIM and run `:PluginInstall`.
 
 # How I roll
 
-    $ cd ~
-    $ git clone <this repo>
+Run:
+
+    $ cd ~
+    $ git clone <this repo>
     $ ln -s dot-files/.vimrc .vimrc
 
 
