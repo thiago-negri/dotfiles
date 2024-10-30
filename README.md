@@ -50,7 +50,7 @@ Compile it
 	--enable-gnome-check \
 	--with-features=huge \
 	--with-x \
-	--with-compiledby="Thiago B. Negri <evohunz@gmail.com>" \
+	--with-compiledby="Thiago Negri <evohunz@gmail.com>" \
 	--with-python-config-dir=/usr/lib/python2.7/config
 
     make && make install
