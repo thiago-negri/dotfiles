@@ -1,18 +1,18 @@
 " Set VIM localization to English
 language en_US.utf8
 
-" Force bash
-set shell=bash
+" vim plz
+set nocompatible
 
 " Add ~/.vim to runtime path (rtp)
 set rtp+=~/.vim
+set rtp+=~/.fzf
 
 call plug#begin('~/.vim/plugged')
     " Colorscheme
     Plug 'tek256/simple-dark'
     " FZF
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
+    Plug 'thiago-negri/fzf.vim'
     " LSP
     Plug 'prabirshrestha/vim-lsp'
     Plug 'mattn/vim-lsp-settings'
@@ -20,6 +20,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'machakann/vim-highlightedyank'
     " File browser
     Plug 'tpope/vim-vinegar'
+    " Comment commands
+    Plug 'tpope/vim-commentary'
+    " Easy Motion
+    Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 " Colorscheme
@@ -28,7 +32,6 @@ set background=dark
 colorscheme simple-dark
 
 " Sane backspace
-set nocompatible
 set backspace=indent,eol,start
 
 " Highlight search term
@@ -67,7 +70,7 @@ set listchars-=eol:$
 " Always use block cursor
 set guicursor=a:block-nCursor
 
-" Set leader as <SPACE>
+" Set leader as space
 let mapleader = ' '
 
 " FZF
@@ -75,7 +78,7 @@ nnoremap <leader>ff :FZF<cr>
 nnoremap <leader>fb :Buffers<cr>
 nnoremap <leader>fg :Rg<cr>
 let g:fzf_vim = {}
-let g:fzf_vim.preview_bash = '/c/Program Files/Git/git-bash.exe'
+let g:fzf_vim.preview_bash = 'bash'
 let g:fzf_preview_window = []
 let g:fzf_layout = { 'down' : '35%' }
 
@@ -103,8 +106,6 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
     nmap <buffer> K <plug>(lsp-hover)
-    nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
-    nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
     let g:lsp_format_sync_timeout = 1000
     autocmd! BufWritePre *.rs,*.go,*.zig call execute('LspDocumentFormatSync')
@@ -112,6 +113,18 @@ endfunction
 
 augroup lsp_install
     au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
+
+" Navigation
+nnoremap <c-u> <c-u>zz
+nnoremap <c-d> <c-d>zz
+nnoremap G Gzz
+
+" Duplicate and comment
+nnoremap yc yy<cmd>normal gcc<cr>p
+
+" Easy Motion
+map <leader>j <plug>(easymotion-j)
+map <leader>k <plug>(easymotion-k)
+
