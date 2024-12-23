@@ -73,9 +73,9 @@ set guicursor=a:block-nCursor
 let mapleader = ' '
 
 " FZF
-nnoremap <leader>ff :FZF<cr>
-nnoremap <leader>fb :Buffers<cr>
-nnoremap <leader>fg :Rg<cr>
+nnoremap <silent> <leader>ff :FZF<cr>
+nnoremap <silent> <leader>fb :Buffers<cr>
+nnoremap <silent> <leader>fg :Rg<cr>
 let g:fzf_vim = {}
 let g:fzf_vim.preview_bash = 'bash'
 let g:fzf_preview_window = []
