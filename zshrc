@@ -1,3 +1,5 @@
+export PATH=$PATH:$HOME/.fzf/bin
+
 # Set prompt
 export PS1=$'\n'"%F{green}%n%f %F{blue}@%f %F{red}%/%f"$'\n'"> "
 
