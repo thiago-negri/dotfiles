@@ -1,5 +1,4 @@
-" Set VIM localization to English
-language en_US.utf8
+" language is set by install.sh
 
 " vim plz
 set nocompatible
@@ -38,7 +37,7 @@ set backspace=indent,eol,start
 set hlsearch
 nnoremap <esc><esc> :nohlsearch<cr>
 
-" Highlight yanked tex
+" Highlight yanked tex
 let g:highlightedyank_highlight_duration = 100
 
 " Disable bell sounds
