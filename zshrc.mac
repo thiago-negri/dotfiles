@@ -1,0 +1,16 @@
+export set DEV_HOME=/usr/local
+export set M2_HOME=/usr/local/mvn
+export set PATH="$M2_HOME/bin:$PATH"
+export set ANT_HOME=/usr/local/ant
+export set PATH="$ANT_HOME/bin:$PATH"
+export set GROOVY_HOME=/usr/local/groovy
+export set PATH="$GROOVY_HOME/bin:$PATH"
+export set GRAILS_HOME=/usr/local/grails
+export set PATH="$GRAILS_HOME/bin:$PATH"
+export set PHANTOMJS_HOME=/usr/local/phantomjs
+export set PATH="$PHANTOMJS_HOME/bin:$PATH"
+export set PATH=$PATH:/usr/local/mysql/bin:/usr/local/groovy/bin:/usr/local/tomcat/bin:/usr/local/phantomjs/bin:/usr/local/ant/bin:/usr/local/mvn/bin:/usr/local/bin:/usr/bin
+export set PATH="/usr/local/opt/mysql-client/bin:$PATH"
+export set PATH=$PATH:/usr/local/sbin
+export set PATH=$PATH:$HOME/.docker/bin
+export set JAVA_HOME=/Library/Java/JavaVirtualMachines/openlogic-openjdk-8.jdk/Contents/Home/

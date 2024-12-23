@@ -20,18 +20,12 @@ if [ ! -f "$HOME/.vim/autoload/plug.vim" ]; then
 fi
 
 # Setup .zshrc
-# TODO: Preprocess files so they don't need to if/else on OS
-cp zshrc ~/.zshrc
+[[ "$os" = "mac" ]] && cat zshrc.mac > ~/.zshrc
+[[ "$os" = "win" ]] && cat zshrc.win > ~/.zshrc
+cat zshrc >> ~/.zshrc
 
 # Setup .vimrc
-if [[ "$os" -eq "mac" ]]; then
-    echo "language en_US.UTF-8" > ~/.vimrc
-fi
-
-if [[ "$os" -eq "win" ]]; then
-    echo "language en_US.utf8" > ~/.vimrc
-fi
-echo "" > ~/.vimrc
-
+[[ "$os" = "mac" ]] && cat vimrc.mac > ~/.vimrc
+[[ "$os" = "win" ]] && cat vimrc.win > ~/.vimrc
 cat vimrc >> ~/.vimrc
 
