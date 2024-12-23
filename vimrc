@@ -2,8 +2,21 @@
 
 " vim plz
 set nocompatible
+set encoding=utf-8
 
-" Add ~/.vim to runtime path (rtp)
+" Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
+" delays and poor user experience
+set updatetime=300
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved
+set signcolumn=yes
+
+" Use new regular expression engine, required for faster syntax highlight
+" for TypeScript
+set re=0
+
+" Add folders to runtime path (rtp)
 set rtp+=~/.vim
 set rtp+=~/.fzf
 
@@ -12,9 +25,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'tek256/simple-dark'
     " FZF
     Plug 'thiago-negri/fzf.vim'
-    " LSP
-    Plug 'prabirshrestha/vim-lsp'
-    Plug 'mattn/vim-lsp-settings'
+    " COC (LSP)
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Highlight Yanked text
     Plug 'machakann/vim-highlightedyank'
     " File browser
@@ -23,6 +35,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-commentary'
     " Easy Motion
     Plug 'easymotion/vim-easymotion'
+    " Auto detect tabstop
+    Plug 'tpope/vim-sleuth'
 call plug#end()
 
 " Colorscheme
@@ -81,39 +95,30 @@ let g:fzf_vim.preview_bash = 'bash'
 let g:fzf_preview_window = []
 let g:fzf_layout = { 'down' : '35%' }
 
-" LSP
-if executable('zls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'zls',
-        \ 'cmd': {server_info->['zls']},
-        \ 'allowlist': ['zig'],
-        \ })
-endif
-
-function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    setlocal signcolumn=yes
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> <leader>ca <plug>(lsp-code-action)
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> gs <plug>(lsp-document-symbol-search)
-    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
-    nmap <buffer> gr <plug>(lsp-references)
-    nmap <buffer> gi <plug>(lsp-implementation)
-    nmap <buffer> gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>rn <plug>(lsp-rename)
-    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
-    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
-    nmap <buffer> K <plug>(lsp-hover)
-
-    let g:lsp_format_sync_timeout = 1000
-    autocmd! BufWritePre *.rs,*.go,*.zig call execute('LspDocumentFormatSync')
+" COC
+inoremap <silent><expr> <c-n> coc#pum#visible() ? coc#pum#next(1) : coc#refresh()
+inoremap <expr><c-p> coc#pum#visible() ? coc#pum#prev(1) : "\<c-p>"
+inoremap <silent><expr> <c-y> coc#pum#visible() ? coc#pum#confirm() : "\<c-y>"
+inoremap <silent><expr> <c-@> coc#refresh()
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>q :CocDiagnostics<cr>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> K :call ShowDocumentation()<CR>
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
 endfunction
-
-augroup lsp_install
-    au!
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
+nmap <leader>rn <Plug>(coc-rename)
+xmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>ca <Plug>(coc-codeaction-cursor)
 
 " Navigation
 nnoremap <c-u> <c-u>zz

@@ -40,7 +40,7 @@ if [[ "$os" -eq "mac" ]]; then
 fi
 
 # Set prompt
-export PS1="%/ > "
+export PS1=$'\n'"%F{green}%n%f %F{blue}@%f %F{red}%/%f"$'\n'"> "
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
