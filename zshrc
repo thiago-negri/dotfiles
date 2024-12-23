@@ -46,7 +46,7 @@ export PS1="%/ > "
 source <(fzf --zsh)
 
 # Make sure wezterm knows what the cwd is
-wezterm set-working-directory
+which wezterm 1>/dev/null 2>/dev/null && wezterm set-working-directory
 
 # Aliases
 alias l="ls --color -lha"
