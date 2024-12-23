@@ -9,6 +9,7 @@ esac
 # Load Windows PATH
 if [[ "$os" -eq "win" ]]; then
     export PATH=$PATH:/usr/bin
+    export PATH=$PATH:~/.fzf/bin
     export PATH=$PATH:/c/Projetos/zig/zls/zig-out/bin # ZLS master
     export PATH=$PATH:/c/windows-binaries
     export PATH=$PATH:/c/windows-binaries/vim91 # VIM can't symlink because it loads DLL from same folder
