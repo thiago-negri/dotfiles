@@ -37,10 +37,6 @@ if [[ "$os" -eq "mac" ]]; then
     export set PATH=$PATH:/usr/local/sbin
     export set PATH=$PATH:$HOME/.docker/bin
     export set JAVA_HOME=/Library/Java/JavaVirtualMachines/openlogic-openjdk-8.jdk/Contents/Home/
-
-    # NVM
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 fi
 
 # Set prompt
@@ -54,4 +50,11 @@ wezterm set-working-directory
 
 # Aliases
 alias l="ls --color -lha"
+
+# Functions
+# NVM is too slow to load at startup
+nvm_load() {
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+}
 
