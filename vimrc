@@ -35,7 +35,7 @@ set backspace=indent,eol,start
 
 " Highlight search term
 set hlsearch
-nnoremap <esc><esc> :nohlsearch<cr>
+nnoremap <c-l> :nohlsearch<cr><c-l>
 
 " Highlight yanked tex
 let g:highlightedyank_highlight_duration = 100
