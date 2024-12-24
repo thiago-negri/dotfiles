@@ -1,13 +1,15 @@
 " packages
 set packpath=~/.vim
-packadd! simple-dark
 packadd! fzf.vim
 packadd! lsp
-packadd! vim-highlightedyank
-packadd! vim-vinegar
+packadd! simple-dark
 packadd! vim-commentary
 packadd! vim-easymotion
+packadd! vim-fugitive
+packadd! vim-graphql
+packadd! vim-highlightedyank
 packadd! vim-sleuth
+packadd! vim-vinegar
 
 "
 set nocompatible
@@ -64,7 +66,7 @@ set nobackup
 
 " Show whitespace
 set list
-set listchars+="tab:» "
+set listchars+=tab:»\ 
 set listchars+=trail:·
 set listchars+=nbsp:␣
 set listchars-=eol:$

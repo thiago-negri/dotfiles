@@ -21,14 +21,18 @@ cat zshrc > ~/.zshrc
 
 # Setup .vimrc
 [ ! -d "$HOME/.vim/pack" ] && mkdir -p $HOME/.vim/pack/downloads/{start,opt}
-[ ! -d "$HOME/.vim/pack/downloads/opt/simple-dark" ] && git -C "$HOME/.vim/pack/downloads/opt" clone --depth 1 git@github.com:tek256/simple-dark.git
-[ ! -d "$HOME/.vim/pack/downloads/opt/fzf.vim" ] && git -C "$HOME/.vim/pack/downloads/opt" clone --depth 1 git@github.com:thiago-negri/fzf.vim.git
-[ ! -d "$HOME/.vim/pack/downloads/opt/lsp" ] && git -C "$HOME/.vim/pack/downloads/opt" clone --depth 1 git@github.com:yegappan/lsp.git
-[ ! -d "$HOME/.vim/pack/downloads/opt/vim-highlightedyank" ] && git -C "$HOME/.vim/pack/downloads/opt" clone --depth 1 git@github.com:machakann/vim-highlightedyank.git
-[ ! -d "$HOME/.vim/pack/downloads/opt/vim-vinegar" ] && git -C "$HOME/.vim/pack/downloads/opt" clone --depth 1 git@github.com:tpope/vim-vinegar.git
-[ ! -d "$HOME/.vim/pack/downloads/opt/vim-commentary" ] && git -C "$HOME/.vim/pack/downloads/opt" clone --depth 1 git@github.com:tpope/vim-commentary.git
-[ ! -d "$HOME/.vim/pack/downloads/opt/vim-easymotion" ] && git -C "$HOME/.vim/pack/downloads/opt" clone --depth 1 git@github.com:easymotion/vim-easymotion.git
-[ ! -d "$HOME/.vim/pack/downloads/opt/vim-sleuth" ] && git -C "$HOME/.vim/pack/downloads/opt" clone --depth 1 git@github.com:tpope/vim-sleuth.git
+cd "$HOME/.vim/pack/downloads/opt"
+[ ! -d "./fzf.vim" ]             && git clone --depth 1 git@github.com:thiago-negri/fzf.vim.git
+[ ! -d "./lsp" ]                 && git clone --depth 1 git@github.com:yegappan/lsp.git
+[ ! -d "./simple-dark" ]         && git clone --depth 1 git@github.com:tek256/simple-dark.git
+[ ! -d "./vim-commentary" ]      && git clone --depth 1 git@github.com:tpope/vim-commentary.git
+[ ! -d "./vim-easymotion" ]      && git clone --depth 1 git@github.com:easymotion/vim-easymotion.git
+[ ! -d "./vim-fugitive" ]        && git clone --depth 1 git@github.com:tpope/vim-fugitive.git
+[ ! -d "./vim-graphql" ]         && git clone --depth 1 git@github.com:jparise/vim-graphql.git
+[ ! -d "./vim-highlightedyank" ] && git clone --depth 1 git@github.com:machakann/vim-highlightedyank.git
+[ ! -d "./vim-sleuth" ]          && git clone --depth 1 git@github.com:tpope/vim-sleuth.git
+[ ! -d "./vim-vinegar" ]         && git clone --depth 1 git@github.com:tpope/vim-vinegar.git
+cd - >/dev/null
 cat vimrc >> ~/.vimrc
 [[ "$os" = "mac" ]] && cat vimrc_mac >> ~/.vimrc
 [[ "$os" = "win" ]] && cat vimrc_win >> ~/.vimrc
@@ -36,5 +40,6 @@ cat vimrc >> ~/.vimrc
 # Install LSPs
 [ ! -d "$HOME/.vim/lsps" ] && mkdir -p $HOME/.vim/lsps
 cd $HOME/.vim/lsps
-[ ! -d "$HOME/.vim/lsps/node_modules/typescript-language-server" ] && npm i typescript-language-server
+[ ! -d "./node_modules/typescript-language-server" ] && npm i typescript-language-server
+cd - >/dev/null
 

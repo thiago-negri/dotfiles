@@ -12,7 +12,7 @@ source <(fzf --zsh)
 which wezterm 1>/dev/null 2>/dev/null && wezterm set-working-directory
 
 # Aliases
-alias l="ls --color -lha"
+alias l="ls --color -lhAF"
 
 # Functions
 # NVM is too slow to load at startup
