@@ -1,21 +1,23 @@
+" packages
+set packpath=~/.vim
+packadd! simple-dark
+packadd! fzf.vim
+packadd! lsp
+packadd! vim-highlightedyank
+packadd! vim-vinegar
+packadd! vim-commentary
+packadd! vim-easymotion
+packadd! vim-sleuth
+
+"
 set nocompatible
 set encoding=utf-8
+filetype plugin on
+syntax on
 
 " Add folders to runtime path (rtp)
-set rtp+=~/.vim
+"set rtp+=~/.vim
 set rtp+=~/.fzf
-
-" Plugins
-call plug#begin('~/.vim/plugged')
-    Plug 'tek256/simple-dark' " Colorscheme
-    Plug 'thiago-negri/fzf.vim' " Fuzzy finder
-    Plug 'neoclide/coc.nvim', {'branch': 'release'} " COC (LSP)
-    Plug 'machakann/vim-highlightedyank' " Quick highlight yanked text
-    Plug 'tpope/vim-vinegar' " File browser
-    Plug 'tpope/vim-commentary' " Comment commands
-    Plug 'easymotion/vim-easymotion' " <leader>j and <leader>k
-    Plug 'tpope/vim-sleuth' " Auto detect tabstop
-call plug#end()
 
 " Having longer updatetime (default is 4000 ms = 4s) leads to noticeable delays and poor user experience
 set updatetime=300
@@ -82,30 +84,25 @@ let g:fzf_vim.preview_bash = 'bash'
 let g:fzf_preview_window = []
 let g:fzf_layout = { 'down' : '35%' }
 
-" COC
-inoremap <silent><expr> <c-n> coc#pum#visible() ? coc#pum#next(1) : coc#refresh()
-inoremap <expr><c-p> coc#pum#visible() ? coc#pum#prev(1) : "\<c-p>"
-inoremap <silent><expr> <c-y> coc#pum#visible() ? coc#pum#confirm() : "\<c-y>"
-inoremap <silent><expr> <c-@> coc#refresh()
-nmap <silent> [g <plug>(coc-diagnostic-prev)
-nmap <silent> ]g <plug>(coc-diagnostic-next)
-nmap <silent> <leader>q :CocDiagnostics<cr>
-nmap <silent> gd <plug>(coc-definition)
-nmap <silent> gy <plug>(coc-type-definition)
-nmap <silent> gi <plug>(coc-implementation)
-nmap <silent> gr <plug>(coc-references)
-nnoremap <silent> K :call ShowDocumentation()<cr>
-function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
-endfunction
-nmap <leader>rn <plug>(coc-rename)
-xmap <leader>f <plug>(coc-format-selected)
-nmap <leader>f <plug>(coc-format-selected)
-nmap <leader>ca <plug>(coc-codeaction-cursor)
+" LSP
+let lspOpts = #{autoHighlightDiags: v:true}
+autocmd User LspSetup call LspOptionsSet(lspOpts)
+" inoremap <silent><expr> <c-n> coc#pum#visible() ? coc#pum#next(1) : coc#refresh()
+" inoremap <expr><c-p> coc#pum#visible() ? coc#pum#prev(1) : "\<c-p>"
+" inoremap <silent><expr> <c-y> coc#pum#visible() ? coc#pum#confirm() : "\<c-y>"
+" inoremap <silent><expr> <c-@> coc#refresh()
+nmap <silent> [g :LspDiag prev<cr>
+nmap <silent> ]g :LspDiag next<cr>
+nmap <silent> <leader>q :LspDiag show<cr>
+nmap <silent> gd :LspGotoDefinition<cr>
+nmap <silent> gy :LspGotoDefinition<cr>
+nmap <silent> gi :LspGotoImpl<cr>
+nmap <silent> gr :LspShowReferences<cr>
+nnoremap <silent> K :LspHover<cr>
+nmap <leader>rn :LspRename<cr>
+xmap <leader>f :LspFormat<cr>
+nmap <leader>f :LspFormat<cr>
+nmap <leader>ca :LspCodeAction<cr>
 
 " Navigation
 nnoremap <c-u> <c-u>zz

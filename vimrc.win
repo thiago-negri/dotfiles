@@ -1,2 +1,16 @@
 language en_US.utf8
 
+" LSP
+let lspServers = [#{
+\  name: 'typescript',
+\  filetype: ['typescript', 'javascript'],
+\  path: 'c:/msys64/home/Thiago/.vim/lsps/node_modules/.bin/typescript-language-server.cmd',
+\  args: ['--stdio']
+\ },#{
+\  name: 'zig',
+\  filetype: ['zig'],
+\  path: 'c:/Projetos/zig/zls/zig-out/bin/zls',
+\  args: []
+\ }]
+autocmd User LspSetup call LspAddServer(lspServers)
+

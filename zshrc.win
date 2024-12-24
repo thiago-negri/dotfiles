@@ -8,4 +8,5 @@ export PATH=$PATH:"/c/Program Files/Git"
 export PATH=$PATH:"/c/Program Files/Git/bin"
 export PATH=$PATH:"/c/Program Files/Git/usr/bin"
 export PATH=$PATH:"/c/Program Files/WezTerm"
+export PATH=$PATH:"/c/Program Files/nodejs"
 
