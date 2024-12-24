@@ -47,7 +47,7 @@ let g:highlightedyank_highlight_duration = 100
 set belloff=all
 
 " Number of lines to keep above/below cursor while scrolling
-set scrolloff=15
+set scrolloff=10
 
 " Show actual tabs as 8 spaces
 set tabstop=8
@@ -85,36 +85,39 @@ let g:fzf_preview_window = []
 let g:fzf_layout = { 'down' : '35%' }
 
 " LSP
+" LSP Servers are configured on vimrc.win / vimrc.mac
 let lspOpts = #{autoHighlightDiags: v:true}
 autocmd User LspSetup call LspOptionsSet(lspOpts)
-" inoremap <silent><expr> <c-n> coc#pum#visible() ? coc#pum#next(1) : coc#refresh()
-" inoremap <expr><c-p> coc#pum#visible() ? coc#pum#prev(1) : "\<c-p>"
-" inoremap <silent><expr> <c-y> coc#pum#visible() ? coc#pum#confirm() : "\<c-y>"
-" inoremap <silent><expr> <c-@> coc#refresh()
-nmap <silent> [g :LspDiag prev<cr>
-nmap <silent> ]g :LspDiag next<cr>
-nmap <silent> <leader>q :LspDiag show<cr>
-nmap <silent> gd :LspGotoDefinition<cr>
-nmap <silent> gy :LspGotoDefinition<cr>
-nmap <silent> gi :LspGotoImpl<cr>
-nmap <silent> gr :LspShowReferences<cr>
+nnoremap <silent> [g :LspDiag prev<cr>
+nnoremap <silent> ]g :LspDiag next<cr>
+nnoremap <silent> <leader>q :LspDiag show<cr>
+nnoremap <silent> gd :LspGotoDefinition<cr>
+nnoremap <silent> gy :LspGotoDefinition<cr>
+nnoremap <silent> gi :LspGotoImpl<cr>
+nnoremap <silent> gr :LspShowReferences<cr>
 nnoremap <silent> K :LspHover<cr>
-nmap <leader>rn :LspRename<cr>
-xmap <leader>f :LspFormat<cr>
-nmap <leader>f :LspFormat<cr>
-nmap <leader>ca :LspCodeAction<cr>
+nnoremap <leader>rn :LspRename<cr>
+xnoremap <leader>f :LspFormat<cr>
+nnoremap <leader>f :LspFormat<cr>
+nnoremap <leader>ca :LspCodeAction<cr>
 
 " Navigation
+nnoremap H ^
+nnoremap L $
 nnoremap <c-u> <c-u>zz
 nnoremap <c-d> <c-d>zz
 nnoremap G Gzz
-nnoremap H ^
-nnoremap L $
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
 
 " Duplicate and comment
 nnoremap yc yy<cmd>normal gcc<cr>p
 
 " Easy Motion
-map <leader>j <plug>(easymotion-j)
-map <leader>k <plug>(easymotion-k)
+nnoremap <c-j> <plug>(easymotion-j)
+nnoremap <c-k> <plug>(easymotion-k)
 
