@@ -108,6 +108,8 @@ nmap <leader>ca :LspCodeAction<cr>
 nnoremap <c-u> <c-u>zz
 nnoremap <c-d> <c-d>zz
 nnoremap G Gzz
+nnoremap H ^
+nnoremap L $
 
 " Duplicate and comment
 nnoremap yc yy<cmd>normal gcc<cr>p
