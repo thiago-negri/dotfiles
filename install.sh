@@ -15,9 +15,9 @@ fi
 
 # Setup .zshrc
 [ ! -d "$HOME/.tmp" ] && mkdir $HOME/.tmp
-[[ "$os" = "mac" ]] && cat zshrc.mac > ~/.zshrc
-[[ "$os" = "win" ]] && cat zshrc.win > ~/.zshrc
-cat zshrc >> ~/.zshrc
+cat zshrc > ~/.zshrc
+[[ "$os" = "mac" ]] && cat zshrc_mac >> ~/.zshrc
+[[ "$os" = "win" ]] && cat zshrc_win >> ~/.zshrc
 
 # Setup .vimrc
 [ ! -d "$HOME/.vim/pack" ] && mkdir -p $HOME/.vim/pack/downloads/{start,opt}
@@ -29,9 +29,9 @@ cat zshrc >> ~/.zshrc
 [ ! -d "$HOME/.vim/pack/downloads/opt/vim-commentary" ] && git -C "$HOME/.vim/pack/downloads/opt" clone --depth 1 git@github.com:tpope/vim-commentary.git
 [ ! -d "$HOME/.vim/pack/downloads/opt/vim-easymotion" ] && git -C "$HOME/.vim/pack/downloads/opt" clone --depth 1 git@github.com:easymotion/vim-easymotion.git
 [ ! -d "$HOME/.vim/pack/downloads/opt/vim-sleuth" ] && git -C "$HOME/.vim/pack/downloads/opt" clone --depth 1 git@github.com:tpope/vim-sleuth.git
-[[ "$os" = "mac" ]] && cat vimrc.mac > ~/.vimrc
-[[ "$os" = "win" ]] && cat vimrc.win > ~/.vimrc
 cat vimrc >> ~/.vimrc
+[[ "$os" = "mac" ]] && cat vimrc_mac >> ~/.vimrc
+[[ "$os" = "win" ]] && cat vimrc_win >> ~/.vimrc
 
 # Install LSPs
 [ ! -d "$HOME/.vim/lsps" ] && mkdir -p $HOME/.vim/lsps

@@ -1,0 +1,11 @@
+language en_US.UTF-8
+
+" LSP
+let lspServers = [#{
+\  name: 'typescript',
+\  filetype: ['typescript', 'javascript'],
+\  path: '/Users/thiago.negri/.vim/lsps/node_modules/.bin/typescript-language-server',
+\  args: ['--stdio']
+\ }]
+autocmd User LspSetup call LspAddServer(lspServers)
+
