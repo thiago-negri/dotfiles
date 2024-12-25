@@ -2,8 +2,8 @@
 set packpath=~/.vim
 packadd! fzf.vim
 packadd! lsp
-packadd! simple-dark
 packadd! vim-commentary
+packadd! vim-dark
 packadd! vim-easymotion
 packadd! vim-fugitive
 packadd! vim-graphql
@@ -14,11 +14,11 @@ packadd! vim-vinegar
 "
 set nocompatible
 set encoding=utf-8
+set cursorline
 filetype plugin on
 syntax on
 
 " Add folders to runtime path (rtp)
-"set rtp+=~/.vim
 set rtp+=~/.fzf
 
 " Having longer updatetime (default is 4000 ms = 4s) leads to noticeable delays and poor user experience
@@ -33,7 +33,7 @@ set re=0
 " Colorscheme
 set termguicolors
 set background=dark
-colorscheme simple-dark
+colorscheme vim-dark
 
 " Sane backspace
 set backspace=indent,eol,start
@@ -93,7 +93,7 @@ autocmd User LspSetup call LspOptionsSet(lspOpts)
 nnoremap <silent> [g :LspDiag prev<cr>
 nnoremap <silent> ]g :LspDiag next<cr>
 nnoremap <silent> <leader>q :LspDiag show<cr>
-nnoremap <silent> gd :LspGotoDefinition<cr>
+nnoremap <silent> gd :LspGotoDefinition<cr>zz
 nnoremap <silent> gy :LspGotoDefinition<cr>
 nnoremap <silent> gi :LspGotoImpl<cr>
 nnoremap <silent> gr :LspShowReferences<cr>

@@ -24,7 +24,7 @@ cat zshrc > ~/.zshrc
 cd "$HOME/.vim/pack/downloads/opt"
 [ ! -d "./fzf.vim" ]             && git clone --depth 1 git@github.com:thiago-negri/fzf.vim.git
 [ ! -d "./lsp" ]                 && git clone --depth 1 git@github.com:yegappan/lsp.git
-[ ! -d "./simple-dark" ]         && git clone --depth 1 git@github.com:tek256/simple-dark.git
+[ ! -d "./vim-dark" ]            && git clone --depth 1 git@github.com:thiago-negri/vim-dark.git
 [ ! -d "./vim-commentary" ]      && git clone --depth 1 git@github.com:tpope/vim-commentary.git
 [ ! -d "./vim-easymotion" ]      && git clone --depth 1 git@github.com:easymotion/vim-easymotion.git
 [ ! -d "./vim-fugitive" ]        && git clone --depth 1 git@github.com:tpope/vim-fugitive.git
