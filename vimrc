@@ -42,7 +42,7 @@ set backspace=indent,eol,start
 set hlsearch
 nnoremap <c-l> :nohlsearch<cr><c-l>
 
-" Highlight yanked tex
+" Highlight yanked text
 let g:highlightedyank_highlight_duration = 100
 
 " Disable bell sounds
