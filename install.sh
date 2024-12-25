@@ -33,7 +33,7 @@ cd "$HOME/.vim/pack/downloads/opt"
 [ ! -d "./vim-sleuth" ]          && git clone --depth 1 git@github.com:tpope/vim-sleuth.git
 [ ! -d "./vim-vinegar" ]         && git clone --depth 1 git@github.com:tpope/vim-vinegar.git
 cd - >/dev/null
-cat vimrc >> ~/.vimrc
+cat vimrc > ~/.vimrc
 [[ "$os" = "mac" ]] && cat vimrc_mac >> ~/.vimrc
 [[ "$os" = "win" ]] && cat vimrc_win >> ~/.vimrc
 
