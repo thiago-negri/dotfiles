@@ -127,5 +127,5 @@ nnoremap <c-k> <plug>(easymotion-k)
 " Copy current file path to system's clipboard (bc = buffer copy)
 nnoremap <leader>bc <cmd>let @*=@%<cr><cmd>echo "Copied file path: " . @%<cr>
 
-" Ctrl-i will show the highlight group of word under cursor
-nnoremap <c-i> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") ."> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
+" Alt-i will show the highlight group of word under cursor
+nnoremap <m-i> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") ."> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
