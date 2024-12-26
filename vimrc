@@ -78,7 +78,7 @@ set guicursor=a:block-nCursor
 let mapleader = ' '
 
 " FZF
-nnoremap <silent> <leader>ff :FZF<cr>
+nnoremap <silent> <leader>ff :GFiles<cr>
 nnoremap <silent> <leader>fb :Buffers<cr>
 nnoremap <silent> <leader>fg :Rg<cr>
 let g:fzf_vim = {}
@@ -123,5 +123,5 @@ nnoremap yc yy<cmd>normal gcc<cr>p
 nnoremap <c-j> <plug>(easymotion-j)
 nnoremap <c-k> <plug>(easymotion-k)
 
-" Alt-i will show the highlight group of word under cursor
-nnoremap <m-i> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") ."> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
+" Ctrl-i will show the highlight group of word under cursor
+nnoremap <c-i> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") ."> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
