@@ -9,6 +9,7 @@ packadd! vim-fugitive
 packadd! vim-graphql
 packadd! vim-highlightedyank
 packadd! vim-sleuth
+packadd! vim-surround
 packadd! vim-vinegar
 
 "
@@ -87,7 +88,7 @@ let g:fzf_preview_window = []
 let g:fzf_layout = { 'down' : '35%' }
 
 " LSP
-" LSP Servers are configured on vimrc.win / vimrc.mac
+" LSP Servers are configured on vimrc_win / vimrc_mac
 let lspOpts = #{autoHighlightDiags: v:true}
 autocmd User LspSetup call LspOptionsSet(lspOpts)
 nnoremap <silent> [g :LspDiag prev<cr>
@@ -122,6 +123,9 @@ nnoremap yc yy<cmd>normal gcc<cr>p
 " Easy Motion
 nnoremap <c-j> <plug>(easymotion-j)
 nnoremap <c-k> <plug>(easymotion-k)
+
+" Copy current file path to system's clipboard (bc = buffer copy)
+nnoremap <leader>bc <cmd>let @*=@%<cr><cmd>echo "Copied file path: " . @%<cr>
 
 " Ctrl-i will show the highlight group of word under cursor
 nnoremap <c-i> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") ."> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>

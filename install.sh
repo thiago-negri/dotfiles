@@ -24,13 +24,14 @@ cat zshrc > ~/.zshrc
 cd "$HOME/.vim/pack/downloads/opt"
 [ ! -d "./fzf.vim" ]             && git clone --depth 1 git@github.com:thiago-negri/fzf.vim.git
 [ ! -d "./lsp" ]                 && git clone --depth 1 git@github.com:yegappan/lsp.git
-[ ! -d "./vim-dark" ]            && git clone --depth 1 git@github.com:thiago-negri/vim-dark.git
 [ ! -d "./vim-commentary" ]      && git clone --depth 1 git@github.com:tpope/vim-commentary.git
+[ ! -d "./vim-dark" ]            && git clone --depth 1 git@github.com:thiago-negri/vim-dark.git
 [ ! -d "./vim-easymotion" ]      && git clone --depth 1 git@github.com:easymotion/vim-easymotion.git
 [ ! -d "./vim-fugitive" ]        && git clone --depth 1 git@github.com:tpope/vim-fugitive.git
 [ ! -d "./vim-graphql" ]         && git clone --depth 1 git@github.com:jparise/vim-graphql.git
 [ ! -d "./vim-highlightedyank" ] && git clone --depth 1 git@github.com:machakann/vim-highlightedyank.git
 [ ! -d "./vim-sleuth" ]          && git clone --depth 1 git@github.com:tpope/vim-sleuth.git
+[ ! -d "./vim-surround" ]        && git clone --depth 1 git@github.com:tpope/vim-surround.git
 [ ! -d "./vim-vinegar" ]         && git clone --depth 1 git@github.com:tpope/vim-vinegar.git
 cd - >/dev/null
 cat vimrc > ~/.vimrc
