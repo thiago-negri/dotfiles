@@ -125,7 +125,13 @@ nnoremap <c-j> <plug>(easymotion-j)
 nnoremap <c-k> <plug>(easymotion-k)
 
 " Copy current file path to system's clipboard (bc = buffer copy)
-nnoremap <leader>bc <cmd>let @*=@%<cr><cmd>echo "Copied file path: " . @%<cr>
+nnoremap <leader>bc <cmd>let @*=@%<cr><cmd>echo 'Copied file path: ' . @%<cr>
 
-" Alt-i will show the highlight group of word under cursor
-nnoremap <m-i> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") ."> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
+" F4 will show the highlight group of word under cursor
+nnoremap <F4> :echo 'hi<' . synIDattr(synID(line('.'), col('.'), 1), 'name') . '> ' .
+            \       'trans<' . synIDattr(synID(line('.'), col('.'), 0),'name') . '> ' .
+            \       'lo<' . synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name') . '>'<cr>
+
+" F5 reloads vimrc
+nnoremap <F5> :so $MYVIMRC<cr>
+
