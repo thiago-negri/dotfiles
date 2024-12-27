@@ -81,11 +81,15 @@ let mapleader = ' '
 " FZF
 nnoremap <silent> <leader>ff :GFiles<cr>
 nnoremap <silent> <leader>fb :Buffers<cr>
-nnoremap <silent> <leader>fg :Rg<cr>
+nnoremap <silent> <leader>fg :GGrep<cr>
 let g:fzf_vim = {}
 let g:fzf_vim.preview_bash = 'bash'
 let g:fzf_preview_window = []
 let g:fzf_layout = { 'down' : '35%' }
+command! -bang -nargs=* GGrep
+\ call fzf#vim#grep(
+\   'git grep --line-number -- '.fzf#shellescape(<q-args>),
+\   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
 " LSP
 " LSP Servers are configured on vimrc_win / vimrc_mac
