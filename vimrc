@@ -107,6 +107,8 @@ nnoremap <leader>ca :LspCodeAction<cr>
 " Navigation
 nnoremap H ^
 nnoremap L $
+vnoremap H ^
+vnoremap L $
 nnoremap <c-u> <c-u>zz
 nnoremap <c-d> <c-d>zz
 nnoremap G Gzz
