@@ -79,9 +79,11 @@ set guicursor=a:block-nCursor
 let mapleader = ' '
 
 " FZF
-nnoremap <silent> <leader>ff :GFiles<cr>
-nnoremap <silent> <leader>fb :Buffers<cr>
-nnoremap <silent> <leader>fg :GGrep<cr>
+nnoremap <silent> <leader>ff <cmd>GFiles<cr>
+nnoremap <silent> <leader>fg <cmd>execute 'GGrep ' input('Search: ')<cr>
+nnoremap <silent> <leader>fw <cmd>execute 'GGrep ' expand('<cword>')<cr>
+" TODO: Add a <leader>fn or <leader>f. to repeat last GGrep
+nnoremap <silent> <leader>fb <cmd>Buffers<cr>
 let g:fzf_vim = {}
 let g:fzf_vim.preview_bash = 'bash'
 let g:fzf_preview_window = []
@@ -138,4 +140,9 @@ nnoremap <F4> :echo 'hi<' . synIDattr(synID(line('.'), col('.'), 1), 'name') . '
 
 " F5 reloads vimrc
 nnoremap <F5> :so $MYVIMRC<cr>
+
+" Detect file types
+augroup filetypedetect
+au BufNewFile,BufRead *.git/COMMIT_EDITMSG setf gitcommit
+augroup END
 
