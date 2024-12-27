@@ -7,13 +7,14 @@ case "${unameOut}" in
     *)          os=linux;;
 esac
 
+
 #
 # fzf
 #
 
 if [ ! -d "$HOME/.fzf" ]; then
-    git clone --depth 1 git@github.com:junegunn/fzf.git ~/.fzf
-    ~/.fzf/install --key-bindings --completion --no-update-rc
+    git clone --depth 1 git@github.com:thiago-negri/fzf.git $HOME/.fzf
+    $HOME/.fzf/install --key-bindings --completion --no-update-rc
 fi
 
 
@@ -22,9 +23,9 @@ fi
 #
 
 [ ! -d "$HOME/.tmp" ] && mkdir $HOME/.tmp
-cat zshrc > ~/.zshrc
-[[ "$os" = "mac" ]] && cat zshrc_mac >> ~/.zshrc
-[[ "$os" = "win" ]] && cat zshrc_win >> ~/.zshrc
+cat zshrc > $HOME/.zshrc
+[[ "$os" = "mac" ]] && cat zshrc_mac >> $HOME/.zshrc
+[[ "$os" = "win" ]] && cat zshrc_win >> $HOME/.zshrc
 
 
 #
@@ -48,9 +49,9 @@ cd "$HOME/.vim/pack/downloads/opt"
 cd - >/dev/null
 
 # vimrc
-cat vimrc > ~/.vimrc
-[[ "$os" = "mac" ]] && cat vimrc_mac >> ~/.vimrc
-[[ "$os" = "win" ]] && cat vimrc_win >> ~/.vimrc
+cat vimrc > $HOME/.vimrc
+[[ "$os" = "mac" ]] && cat vimrc_mac >> $HOME/.vimrc
+[[ "$os" = "win" ]] && cat vimrc_win >> $HOME/.vimrc
 
 # vim filetypes
 mkdir -p $HOME/.vim/ftplugin

@@ -31,6 +31,9 @@ set signcolumn=yes
 " Use new regular expression engine, required for faster syntax highlight for TypeScript
 set re=0
 
+" Do not try to be smart about TypeScript names
+let g:typescript_host_keyword = 0
+
 " Colorscheme
 set termguicolors
 set background=dark
@@ -79,7 +82,17 @@ set guicursor=a:block-nCursor
 let mapleader = ' '
 
 " FZF
-nnoremap <silent> <leader>ff <cmd>GFiles<cr>
+function! GFilesFallback()
+  let output = system('git rev-parse --show-toplevel') " Is there a faster way?
+  let prefix = get(g:, 'fzf_command_prefix', '')
+  if v:shell_error == 0
+    exec "normal :" . prefix . "GFiles\<cr>"
+  else
+    exec "normal :" . prefix . "Files\<cr>"
+  endif
+  return 0
+endfunction
+nnoremap <silent> <leader>ff <cmd>call GFilesFallback()<cr>
 nnoremap <silent> <leader>fg <cmd>execute 'GGrep ' input('Search: ')<cr>
 nnoremap <silent> <leader>fw <cmd>execute 'GGrep ' expand('<cword>')<cr>
 " TODO: Add a <leader>fn or <leader>f. to repeat last GGrep
