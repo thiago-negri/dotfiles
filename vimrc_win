@@ -11,6 +11,11 @@ let lspServers = [#{
 \  filetype: ['zig'],
 \  path: 'c:/Projetos/zig/zls/zig-out/bin/zls',
 \  args: []
+\ },#{
+\  name: 'c',
+\  filetype: ['c'],
+\  path: 'c:/Program Files/LLVM/bin/clangd',
+\  args: ['--background-index', '--clang-tidy']
 \ }]
 autocmd User LspSetup call LspAddServer(lspServers)
 
