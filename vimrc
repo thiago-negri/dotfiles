@@ -94,9 +94,7 @@ autocmd User LspSetup call LspOptionsSet(lspOpts)
 nnoremap <silent> [g :LspDiag prev<cr>
 nnoremap <silent> ]g :LspDiag next<cr>
 nnoremap <silent> <leader>q :LspDiag show<cr>
-nnoremap <silent> gd :LspGotoDefinition<cr>zz
-nnoremap <silent> gy :LspGotoDefinition<cr>
-nnoremap <silent> gi :LspGotoImpl<cr>
+nnoremap <silent> gd :LspGotoDefinition<cr>zt
 nnoremap <silent> gr :LspShowReferences<cr>
 nnoremap <silent> K :LspHover<cr>
 nnoremap <leader>rn :LspRename<cr>
