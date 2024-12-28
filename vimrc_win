@@ -1,5 +1,8 @@
 language en_US.utf8
 
+" Force use '/' as path separator, because we're running vim inside msys
+set shellslash
+
 " LSP
 let lspServers = [#{
 \  name: 'typescript',

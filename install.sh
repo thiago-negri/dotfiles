@@ -14,6 +14,7 @@ esac
 
 if [ ! -d "$HOME/.fzf" ]; then
     git clone --depth 1 git@github.com:thiago-negri/fzf.git $HOME/.fzf
+    # git clone --depth 1 git@github.com:junegunn/fzf.git $HOME/.fzf
     $HOME/.fzf/install --key-bindings --completion --no-update-rc
 fi
 
@@ -35,7 +36,8 @@ cat zshrc > $HOME/.zshrc
 # vim packages
 [ ! -d "$HOME/.vim/pack" ] && mkdir -p $HOME/.vim/pack/downloads/{start,opt}
 cd "$HOME/.vim/pack/downloads/opt"
-[ ! -d "./fzf.vim" ]             && git clone --depth 1 git@github.com:thiago-negri/fzf.vim.git
+# [ ! -d "./fzf.vim" ]             && git clone --depth 1 git@github.com:thiago-negri/fzf.vim.git
+[ ! -d "./fzf.vim" ]             && git clone --depth 1 git@github.com:junegunn/fzf.vim.git
 [ ! -d "./lsp" ]                 && git clone --depth 1 git@github.com:yegappan/lsp.git
 [ ! -d "./vim-commentary" ]      && git clone --depth 1 git@github.com:tpope/vim-commentary.git
 [ ! -d "./vim-dark" ]            && git clone --depth 1 git@github.com:thiago-negri/vim-dark.git
