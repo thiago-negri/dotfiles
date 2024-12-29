@@ -7,14 +7,21 @@ case "${unameOut}" in
     *)          os=linux;;
 esac
 
+#
+# Emacs
+#
+# if [ ! -d "$HOME/.config/emacs" ]; then
+#     git clone --depth 1 git@github.com:doomemacs/doomemacs $HOME/.config/emacs
+#     $HOME/.config/emacs/bin/doom install
+# fi
 
 #
 # fzf
 #
 
 if [ ! -d "$HOME/.fzf" ]; then
-    git clone --depth 1 git@github.com:thiago-negri/fzf.git $HOME/.fzf
-    # git clone --depth 1 git@github.com:junegunn/fzf.git $HOME/.fzf
+    # git clone --depth 1 git@github.com:thiago-negri/fzf.git $HOME/.fzf
+    git clone --depth 1 git@github.com:junegunn/fzf.git $HOME/.fzf
     $HOME/.fzf/install --key-bindings --completion --no-update-rc
 fi
 
