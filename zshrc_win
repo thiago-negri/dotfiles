@@ -17,5 +17,9 @@ export PATH=$PATH:"/c/Projetos/zig/zvenc/zig-out/bin"
 export PATH=$PATH:/c/Users/Thiago/AppData/Local/Microsoft/WinGet/Links
 
 alias zvenc="zvenc ~/.zvenc.db"
-zvenc
+
+# run 'zvenc' if obs is not running
+if ! tasklist | grep obs >/dev/null; then
+    zvenc
+fi
 
