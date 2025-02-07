@@ -14,3 +14,4 @@ export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:$HOME/.docker/bin
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/openlogic-openjdk-8.jdk/Contents/Home/
+export PATH=$PATH:$HOME/.dotnet/tools
