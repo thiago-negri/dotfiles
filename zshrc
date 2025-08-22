@@ -15,7 +15,7 @@ which wezterm 1>/dev/null 2>/dev/null && wezterm set-working-directory
 
 # Aliases
 alias l="ls --color -lhAF"
-alias vim="nvim" # sadge
+# alias vim="nvim" # sadge
 
 # Functions
 # NVM is too slow to load at startup
@@ -24,3 +24,6 @@ nvm_load() {
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 }
 
+docker_killall() {
+    docker ps -q | xargs docker kill
+}

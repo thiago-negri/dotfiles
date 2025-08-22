@@ -13,5 +13,16 @@ export PATH=$PATH:/usr/local/mysql/bin:/usr/local/groovy/bin:/usr/local/tomcat/b
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:$HOME/.docker/bin
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/openlogic-openjdk-8.jdk/Contents/Home/
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/openlogic-openjdk-8.jdk/Contents/Home/
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
 export PATH=$PATH:$HOME/.dotnet/tools
+
+# Functions
+jvm_8() {
+    export JAVA_HOME=/Library/Java/JavaVirtualMachines/openlogic-openjdk-8.jdk/Contents/Home/
+}
+
+jvm_21() {
+    export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
+}
+
