@@ -5,3 +5,5 @@ export PATH=$HOME/.elixir-install/installs/elixir/1.18.4-otp-27/bin:$PATH
 # pipx
 export PATH=$HOME/.local/bin:$PATH
 
+# rust
+. "$HOME/.cargo/env"

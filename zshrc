@@ -1,3 +1,6 @@
+# fossil
+export FOSSIL_USER=tnegri
+
 export PATH=$PATH:$HOME/.fzf/bin
 # export PATH=$PATH:$HOME/.config/emacs/bin
 export TMP=$HOME/.tmp
