@@ -7,39 +7,73 @@ case "${unameOut}" in
     *)          os=linux;;
 esac
 
+ensure-dir() {
+    local dst="$1"
+    [ ! -d "$dst" ] && mkdir -p "$dir"
+}
+
+ensure-download() {
+    local dst="$1"
+    local src="$2"
+    local dir=$(dirname "$dst")
+    if [ -f "$dst" ]; then
+        return 0
+    fi
+    ensure-dir "$dir"
+    if command -v curl &> /dev/null; then
+        curl -fLo "$dst" "$src"
+        return 0
+    fi
+    if command -v wget &> /dev/null; then
+        wget "$src" -O "$dst"
+        return 0
+    fi
+    echo "ERROR wget|curl not found"
+    return 1
+}
+
 # fzf
 if [ ! -d "$HOME/.fzf" ]; then
-    git clone --depth 1 git@github.com:junegunn/fzf.git $HOME/.fzf
-    $HOME/.fzf/install --key-bindings --completion --no-update-rc
+    printf "... Installing FZF ...\n\n"
+    git clone --depth 1 git@github.com:junegunn/fzf.git "$HOME/.fzf"
+    "$HOME/.fzf/install" --key-bindings --completion --no-update-rc
+    printf "\n"
+else
+    printf "... Updating FZF ..."
+    git_result=$(git -C "$HOME/.fzf" pullf)
+    if [[ "Already up to date." = "$git_result" ]]; then
+        printf " It's up to date.\n"
+    else
+        printf " Found update, running install script ...\n\n"
+        "$HOME/.fzf/install" --key-bindings --completion --no-update-rc
+        printf "\n"
+    fi
 fi
 
-
 # zsh
-[ ! -d "$HOME/.tmp" ] && mkdir "$HOME/.tmp"
-cat zshrc > $HOME/.zshrc
-[[ "$os" = "mac" ]]   && cat zshrc_mac   >> "$HOME/.zshrc"
-[[ "$os" = "win" ]]   && cat zshrc_win   >> "$HOME/.zshrc"
-[[ "$os" = "linux" ]] && cat zshrc_linux >> "$HOME/.zshrc"
+echo "... Creating .zshrc ..."
+ensure-dir "$HOME/.tmp"
+cat "zshrc"      > "$HOME/.zshrc"
+cat "zshrc_$os" >> "$HOME/.zshrc"
 
 
 # vim
-[ ! -d "$HOME/.vim/colors" ] && mkdir -p "$HOME/.vim/colors"
-[ ! -f "$HOME/.vim/colors/nord.vim" ] && \
-    wget "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/colors/nord.vim" \
-    -O "$HOME/.vim/colors/nord.vim"
-[ ! -d "$HOME/.vim/autoload/lightline/colorscheme" ] && mkdir -p "$HOME/.vim/autoload/lightline/colorscheme"
-[ ! -f "$HOME/.vim/autoload/lightline/colorscheme/nord.vim" ] && \
-    wget "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/autoload/lightline/colorscheme/nord.vim" \
-    -O "$HOME/.vim/autoload/lightline/colorscheme/nord.vim"
+echo "... Ensure we have vim colors ..."
+ensure-download "$HOME/.vim/colors/nord.vim" \
+    "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/colors/nord.vim"
+ensure-download "$HOME/.vim/autoload/lightline/colorscheme/nord.vim" \
+    "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/autoload/lightline/colorscheme/nord.vim"
 
 # vimrc
-cat vimrc_0_plugins                         > "$HOME/.vimrc"
-cat vimrc_1_options                        >> "$HOME/.vimrc"
-[[ "$os" = "mac" ]]   && cat vimrc_2_mac   >> "$HOME/.vimrc"
-[[ "$os" = "win" ]]   && cat vimrc_2_win   >> "$HOME/.vimrc"
-[[ "$os" = "linux" ]] && cat vimrc_2_linux >> "$HOME/.vimrc"
+echo "... Creating .vimrc ..."
+cat "vimrc_0_plugins"  > "$HOME/.vimrc"
+cat "vimrc_1_options" >> "$HOME/.vimrc"
+cat "vimrc_2_$os"     >> "$HOME/.vimrc"
 
 # vim filetypes
-[ ! -d "$HOME/.vim/ftplugin" ] && mkdir -p "$HOME/.vim/ftplugin"
+echo "... Creating vim ftplugin files ..."
+ensure-dir "$HOME/.vim/ftplugin"
 cp vimrc_ftplugin_gitcommit "$HOME/.vim/ftplugin/gitcommit.vim"
+
+echo "DONE"
 
