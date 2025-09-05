@@ -60,6 +60,7 @@ set noshowmode                                  " We're using statusline, no nee
 let mapleader = ' '                             " Set leader to space
 let g:typescript_host_keyword = 0               " Do not try to be smart about TypeScript names
 let g:highlightedyank_highlight_duration = 100  " Highlight yanked text
+let g:c_syntax_for_h = 1                        " Detect .h files as C, not C++
 
 " Remove search highlight on <c-l>
 nnoremap <c-l> :nohlsearch<cr><c-l>
