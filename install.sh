@@ -9,7 +9,7 @@ esac
 
 ensure-dir() {
     local dst="$1"
-    [ ! -d "$dst" ] && mkdir -p "$dir"
+    [ ! -d "$dst" ] && mkdir -p "$dst"
 }
 
 ensure-download() {
@@ -81,5 +81,11 @@ echo "... Creating vim ftplugin files ..."
 ensure-dir "$HOME/.vim/ftplugin"
 cp vimrc_ftplugin_gitcommit "$HOME/.vim/ftplugin/gitcommit.vim"
 
-echo "DONE"
+# vim LSPs
+echo "... Ensure LSPs for Vim ..."
+ensure-dir "$HOME/.vim/lsps"
+cd "$HOME/.vim/lsps"
+[ ! -d "./node_modules/typescript-language-server" ] && npm i typescript-language-server
+cd - >/dev/null
 
+echo "DONE"
