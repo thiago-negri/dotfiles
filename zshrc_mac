@@ -17,6 +17,9 @@ export PATH=$PATH:$HOME/.docker/bin
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
 export PATH=$PATH:$HOME/.dotnet/tools
 
+# homebrew install stuff to /usr/local, make sure it goes before /usr/bin to override system defaults (e.g. vim)
+export PATH=/usr/local/bin:$PATH
+
 # Functions
 jvm_8() {
     export JAVA_HOME=/Library/Java/JavaVirtualMachines/openlogic-openjdk-8.jdk/Contents/Home/

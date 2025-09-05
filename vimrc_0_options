@@ -54,6 +54,7 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 nnoremap <leader>P "+P
 vnoremap <leader>P "+P
+nnoremap Y y$
 
 " Navigation
 nnoremap H ^

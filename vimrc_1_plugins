@@ -15,6 +15,7 @@ call plug#end()
 
 let g:lightline = { 'colorscheme': 'nord' }         " Nord colorscheme for statusline
 let g:highlightedyank_highlight_duration = 100      " Highlight yanked text for 100ms
+let NERDTreeQuitOnOpen=1                            " Close NERDTree after selecting a file
 
 " Fuzzy file finder -- fzf
 nnoremap <leader>sf :Files<cr>
