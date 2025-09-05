@@ -50,6 +50,7 @@ else
     fi
 fi
 
+
 # zsh
 echo "... Creating .zshrc ..."
 ensure-dir "$HOME/.tmp"
@@ -64,10 +65,15 @@ ensure-download "$HOME/.vim/colors/nord.vim" \
 ensure-download "$HOME/.vim/autoload/lightline/colorscheme/nord.vim" \
     "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/autoload/lightline/colorscheme/nord.vim"
 
+# vim-plug
+echo "... Ensure we have vim-plug ..."
+ensure-download "$HOME/.vim/autoload/plug.vim" \
+    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+
 # vimrc
 echo "... Creating .vimrc ..."
-cat "vimrc_0_plugins"  > "$HOME/.vimrc"
-cat "vimrc_1_options" >> "$HOME/.vimrc"
+cat "vimrc_0_options"  > "$HOME/.vimrc"
+cat "vimrc_1_plugins" >> "$HOME/.vimrc" # Plugins go after options to make sure we have <leader> set
 cat "vimrc_2_$os"     >> "$HOME/.vimrc"
 
 # vim filetypes

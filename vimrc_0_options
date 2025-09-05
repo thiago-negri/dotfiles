@@ -10,7 +10,7 @@ set cc=120                         " Vertical line at column 120
 set updatetime=300                 " Having longer updatetime (default is 4000 ms) leads to noticeable delays
 set timeout                        " Timeout on mappings and key codes
 set timeoutlen=3000                " Timeout on key mappings after 3 seconds
-set ttimeoutlen=100                " Timeout on key codes after 100 milliseconds, e.g. after pressing ESC
+set ttimeoutlen=300                " Timeout on key codes after 100 milliseconds, e.g. after pressing ESC
 set signcolumn=yes                 " Always show signcolumn, otherwise it will shift the text when diagnostics appear
 set re=0                           " Use new regex engine, required for faster syntax highlight for TypeScript
 set backspace=indent,eol,start     " Sane backspace
@@ -34,6 +34,7 @@ set number                         " Line numbers
 set relativenumber                 " Relative line numbers
 set laststatus=2                   " Enable lightline
 set noshowmode                     " We're using statusline, no need to show mode
+set mouse=a                        " Let resize splits with mouse
 let mapleader = ' '                " Set leader to space
 let g:typescript_host_keyword = 0  " Do not try to be smart about TypeScript names
 let g:c_syntax_for_h = 1           " Detect .h files as C, not C++
