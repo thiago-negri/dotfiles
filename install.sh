@@ -24,7 +24,12 @@ cat zshrc > $HOME/.zshrc
 
 # vim
 [ ! -d "$HOME/.vim/colors" ] && mkdir -p "$HOME/.vim/colors"
-wget "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/colors/nord.vim" -O "$HOME/.vim/colors/nord.vim"
+[ ! -f "$HOME/.vim/colors/nord.vim" ] && \
+    wget "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/colors/nord.vim" -O "$HOME/.vim/colors/nord.vim"
+[ ! -d "$HOME/.vim/autoload/lightline/colorscheme" ] && mkdir -p "$HOME/.vim/autoload/lightline/colorscheme"
+[ ! -f "$HOME/.vim/autoload/lightline/colorscheme/nord.vim" ] && \
+    wget "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/autoload/lightline/colorscheme/nord.vim" \
+    -O "$HOME/.vim/autoload/lightline/colorscheme/nord.vim"
 
 # vimrc
 cat vimrc > "$HOME/.vimrc"

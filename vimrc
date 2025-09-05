@@ -8,6 +8,7 @@ endif
 " Load plugins
 call plug#begin()
 Plug 'easymotion/vim-easymotion'                    " <c-j> / <c-k>
+Plug 'itchyny/lightline.vim'                        " statusline
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fzf
 Plug 'junegunn/fzf.vim'                             " fzf commands
 Plug 'machakann/vim-highlightedyank'                " highlight yanked text
@@ -27,8 +28,12 @@ syntax on                                       " Enable syntax highlight
 set termguicolors                               " Our terminal supports 24 bit colors
 set background=dark                             " We use dark background
 colorscheme nord                                " Colorscheme: nord
+let g:lightline = { 'colorscheme': 'nord' }     " Nord colorscheme for statusline
 set cc=120                                      " Vertical line at column 120
 set updatetime=300                              " Having longer updatetime (default is 4000 ms) leads to noticeable delays
+set timeout                                     " Timeout on mappings and key codes
+set timeoutlen=3000                             " Timeout on key mappings after 3 seconds
+set ttimeoutlen=100                             " Timeout on key codes after 100 milliseconds, e.g. after pressing ESC
 set signcolumn=yes                              " Always show signcolumn, otherwise it will shift the text when diagnostics appear
 set re=0                                        " Use new regex engine, required for faster syntax highlight for TypeScript
 set backspace=indent,eol,start                  " Sane backspace
@@ -50,6 +55,8 @@ set noswapfile                                  " Do not create swap files
 set nobackup                                    " Do not create backup files
 set number                                      " Line numbers
 set relativenumber                              " Relative line numbers
+set laststatus=2                                " Enable lightline
+set noshowmode                                  " We're using statusline, no need to show mode
 let mapleader = ' '                             " Set leader to space
 let g:typescript_host_keyword = 0               " Do not try to be smart about TypeScript names
 let g:highlightedyank_highlight_duration = 100  " Highlight yanked text
