@@ -1,11 +1,8 @@
-# fossil
-export FOSSIL_USER=tnegri
-
 export PATH=$PATH:$HOME/.fzf/bin
 # export PATH=$PATH:$HOME/.config/emacs/bin
 export TMP=$HOME/.tmp
 export TEMP=$HOME/.tmp
-export EDITOR=nvim
+export EDITOR=vim
 
 # Set prompt
 export PS1=$'\n'"%F{green}%n%f %F{blue}@%f %F{red}%/%f"$'\n'"> "
@@ -30,3 +27,7 @@ nvm_load() {
 docker_killall() {
     docker ps -q | xargs docker kill
 }
+
+# fossil
+export FOSSIL_USER=tnegri
+alias fossildiff="fossil changes | awk '{print \$2}' | fzf --preview 'fossil diff {}'"
