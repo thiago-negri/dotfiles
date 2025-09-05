@@ -9,6 +9,9 @@ export PS1=$'\n'"%F{green}%n%f %F{black}@%f %F{blue}%/%f"$'\n'"> "
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
+# Set up theme in bat
+export BAT_THEME="Nord"
+
 # Make sure wezterm knows what the cwd is
 which wezterm 1>/dev/null 2>/dev/null && wezterm set-working-directory
 
