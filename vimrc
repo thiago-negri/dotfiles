@@ -12,11 +12,11 @@ Plug 'itchyny/lightline.vim'                        " statusline
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fzf
 Plug 'junegunn/fzf.vim'                             " fzf commands
 Plug 'machakann/vim-highlightedyank'                " highlight yanked text
+Plug 'preservim/nerdtree'                           " file browser
 Plug 'tpope/vim-commentary'                         " motions related to comments, e.g. gcc
 Plug 'tpope/vim-fugitive'                           " git commands
 Plug 'tpope/vim-sleuth'                             " figure shiftwidth/expandtab from context / .editorconfig
 Plug 'tpope/vim-surround'                           " motions related to surrounding, e.g. cs'`
-Plug 'tpope/vim-vinegar'                            " better netrw
 Plug 'yegappan/lsp'                                 " lsp
 call plug#end()
 
@@ -91,6 +91,7 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 nnoremap <leader>P "+P
 vnoremap <leader>P "+P
+nnoremap - :NERDTreeFocus<cr>
 
 " Navigation
 nnoremap H ^
