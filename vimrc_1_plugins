@@ -17,8 +17,11 @@ let g:lightline = { 'colorscheme': 'nord' }         " Nord colorscheme for statu
 let g:highlightedyank_highlight_duration = 100      " Highlight yanked text for 100ms
 let NERDTreeQuitOnOpen=1                            " Close NERDTree after selecting a file
 
-" Fuzzy file finder -- fzf
+" Fuzzy finder -- fzf
 nnoremap <leader>sf :Files<cr>
+nnoremap <leader><leader> :Buffers<cr>
+nnoremap <leader>sg :Rg<cr>
+nnoremap <leader>sw :Rg <c-r><c-w><cr>
 
 " File browser -- NERDTree
 nnoremap - :NERDTreeFocus<cr>
