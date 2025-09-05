@@ -1,0 +1,80 @@
+set nocompatible                   " Use VIM defaults, not VI
+set encoding=utf-8                 " Use UTF-8
+set cursorline                     " Highlight current line
+filetype plugin on                 " Detect filetypes and apply configs for filetype
+syntax on                          " Enable syntax highlight
+set termguicolors                  " Our terminal supports 24 bit colors
+set background=dark                " We use dark background
+colorscheme nord                   " Colorscheme: nord
+set cc=120                         " Vertical line at column 120
+set updatetime=300                 " Having longer updatetime (default is 4000 ms) leads to noticeable delays
+set timeout                        " Timeout on mappings and key codes
+set timeoutlen=3000                " Timeout on key mappings after 3 seconds
+set ttimeoutlen=100                " Timeout on key codes after 100 milliseconds, e.g. after pressing ESC
+set signcolumn=yes                 " Always show signcolumn, otherwise it will shift the text when diagnostics appear
+set re=0                           " Use new regex engine, required for faster syntax highlight for TypeScript
+set backspace=indent,eol,start     " Sane backspace
+set hlsearch                       " Highlight search term
+set belloff=all                    " Disable bell sounds
+set scrolloff=10                   " Number of lines to keep above/below cursor while scrolling
+set tabstop=8                      " Show actual tabs as 8 spaces
+set softtabstop=4                  " Use 4 spaces when typing <TAB> by default
+set shiftwidth=4                   " Default indentation level is 4 columns
+set expandtab                      " Insert spaces instead of tabs when indenting
+set list                           " Show whitespace
+set listchars+=tab:»\              " How to display tabs
+set listchars+=trail:·             " How to display trailing spaces
+set listchars+=nbsp:␣              " How to display NBSP
+set listchars-=eol:$               " Do not display EOL
+set guicursor=a:block-nCursor      " Always use block cursor
+set noundofile                     " Do not persist undo history
+set noswapfile                     " Do not create swap files
+set nobackup                       " Do not create backup files
+set number                         " Line numbers
+set relativenumber                 " Relative line numbers
+set laststatus=2                   " Enable lightline
+set noshowmode                     " We're using statusline, no need to show mode
+let mapleader = ' '                " Set leader to space
+let g:typescript_host_keyword = 0  " Do not try to be smart about TypeScript names
+let g:c_syntax_for_h = 1           " Detect .h files as C, not C++
+
+" Remove search highlight on <c-l>
+nnoremap <c-l> :nohlsearch<cr><c-l>
+
+vnoremap <leader>y "+y
+nnoremap <leader>y "+y
+vnoremap <leader>Y "+Y
+vnoremap <leader>Y "+Y
+nnoremap <leader>Y "+Y
+vnoremap <leader>y "+y
+vnoremap <leader>p "+p
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+nnoremap <leader>P "+P
+vnoremap <leader>P "+P
+
+" Navigation
+nnoremap H ^
+nnoremap L $
+vnoremap H ^
+vnoremap L $
+nnoremap G Gzz
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+
+" Copy current file path to system's clipboard (bc = buffer copy)
+nnoremap <leader>bc <cmd>let @+=@%<cr><cmd>echo 'Copied file path: ' . @%<cr>
+
+" F5 reloads vimrc
+nnoremap <F5> :so $MYVIMRC<cr>
+
+" Detect file types
+augroup filetypedetect
+au BufNewFile,BufRead *.git/COMMIT_EDITMSG setf gitcommit
+augroup END
+

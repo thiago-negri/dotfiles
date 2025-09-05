@@ -25,19 +25,21 @@ cat zshrc > $HOME/.zshrc
 # vim
 [ ! -d "$HOME/.vim/colors" ] && mkdir -p "$HOME/.vim/colors"
 [ ! -f "$HOME/.vim/colors/nord.vim" ] && \
-    wget "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/colors/nord.vim" -O "$HOME/.vim/colors/nord.vim"
+    wget "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/colors/nord.vim" \
+    -O "$HOME/.vim/colors/nord.vim"
 [ ! -d "$HOME/.vim/autoload/lightline/colorscheme" ] && mkdir -p "$HOME/.vim/autoload/lightline/colorscheme"
 [ ! -f "$HOME/.vim/autoload/lightline/colorscheme/nord.vim" ] && \
     wget "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/autoload/lightline/colorscheme/nord.vim" \
     -O "$HOME/.vim/autoload/lightline/colorscheme/nord.vim"
 
 # vimrc
-cat vimrc > "$HOME/.vimrc"
-[[ "$os" = "mac" ]]   && cat vimrc_mac   >> "$HOME/.vimrc"
-[[ "$os" = "win" ]]   && cat vimrc_win   >> "$HOME/.vimrc"
-[[ "$os" = "linux" ]] && cat vimrc_linux >> "$HOME/.vimrc"
+cat vimrc_0_plugins                         > "$HOME/.vimrc"
+cat vimrc_1_options                        >> "$HOME/.vimrc"
+[[ "$os" = "mac" ]]   && cat vimrc_2_mac   >> "$HOME/.vimrc"
+[[ "$os" = "win" ]]   && cat vimrc_2_win   >> "$HOME/.vimrc"
+[[ "$os" = "linux" ]] && cat vimrc_2_linux >> "$HOME/.vimrc"
 
 # vim filetypes
 [ ! -d "$HOME/.vim/ftplugin" ] && mkdir -p "$HOME/.vim/ftplugin"
-cp vimrc_gitcommit "$HOME/.vim/ftplugin/gitcommit.vim"
+cp vimrc_ftplugin_gitcommit "$HOME/.vim/ftplugin/gitcommit.vim"
 
