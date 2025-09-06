@@ -9,8 +9,11 @@ export PATH=$HOME/.local/bin:$PATH
 . "$HOME/.cargo/env"
 
 # keep in sync with wezterm's sessionizer
-GIT_FOLDERS=(
+GG_FOLDERS=(
     "/home/hunz/projects"
     "/home/hunz/.config"
 )
+gg-find() {
+    find $GG_FOLDERS -maxdepth 2 -mindepth 2 -type d -name .git | xargs dirname
+}
 
