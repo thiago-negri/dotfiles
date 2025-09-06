@@ -6,6 +6,11 @@ case "${unameOut}" in
     MINGW*)     os=win;;
     *)          os=linux;;
 esac
+case "${unameOut}" in
+    Darwin*)    vimfiles=$HOME/.vim;;
+    MINGW*)     vimfiles=$HOME/vimfiles;; # Windows
+    *)          vimfiles=$HOME/.vim;;
+esac
 
 ensure-dir() {
     local dst="$1"
@@ -60,14 +65,14 @@ cat "zshrc_$os" >> "$HOME/.zshrc"
 
 # vim
 echo "... Ensure we have vim colors ..."
-ensure-download "$HOME/.vim/colors/nord.vim" \
+ensure-download "$vimfiles/colors/nord.vim" \
     "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/colors/nord.vim"
-ensure-download "$HOME/.vim/autoload/lightline/colorscheme/nord.vim" \
+ensure-download "$vimfiles/autoload/lightline/colorscheme/nord.vim" \
     "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/autoload/lightline/colorscheme/nord.vim"
 
 # vim-plug
 echo "... Ensure we have vim-plug ..."
-ensure-download "$HOME/.vim/autoload/plug.vim" \
+ensure-download "$vimfiles/autoload/plug.vim" \
     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 
 # vimrc
@@ -78,7 +83,7 @@ cat "vimrc_2_$os"     >> "$HOME/.vimrc"
 
 # vim filetypes
 echo "... Creating vim ftplugin files ..."
-ensure-dir "$HOME/.vim/ftplugin"
-cp vimrc_ftplugin_gitcommit "$HOME/.vim/ftplugin/gitcommit.vim"
+ensure-dir "$vimfiles/ftplugin"
+cp vimrc_ftplugin_gitcommit "$vimfiles/ftplugin/gitcommit.vim"
 
 echo "DONE"

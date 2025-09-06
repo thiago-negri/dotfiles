@@ -7,8 +7,8 @@ set shellslash
 let lspServers = [#{
 \  name: 'typescript',
 \  filetype: ['typescript', 'javascript'],
-\  path: 'c:/msys64/home/Thiago/.vim/lsps/node_modules/.bin/typescript-language-server.cmd',
-\  args: ['--stdio']
+\  path: 'c:/Program Files/nodejs/npx',
+\  args: ['typescript-language-server', '--stdio']
 \ },#{
 \  name: 'zig',
 \  filetype: ['zig'],
