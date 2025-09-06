@@ -30,13 +30,12 @@ jvm_21() {
 }
 
 # keep in sync with wezterm's sessionizer
-GG_FOLDERS=(
-    "/Users/thiago.negri/projects"
-    "/Users/thiago.negri/.config"
-    "/Users/thiago.negri/.vim/pack/downloads/opt"
-    "/Users/thiago.negri/.vim/pack/downloads/start"
-)
 gg-find() {
-    find $GG_FOLDERS -maxdepth 2 -mindepth 2 -type d -name .git | xargs dirname
+    local folders=(
+        "/Users/thiago.negri/projects"
+        "/Users/thiago.negri/.config"
+        "/Users/thiago.negri/.vim/pack/downloads/opt"
+        "/Users/thiago.negri/.vim/pack/downloads/start"
+    )
+    find "${folders[@]}" -maxdepth 2 -mindepth 0 -type d -name .git -exec dirname '{}' \; | sort -u
 }
-

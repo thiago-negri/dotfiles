@@ -26,14 +26,13 @@ if ! tasklist | grep obs >/dev/null; then
 fi
 
 # keep in sync with wezterm's sessionizer
-GG_FOLDERS=(
-    "c:\\Projetos"
-    "c:\\Users\\Thiago\\AppData\\Local\\nvim"
-    "c:\\Users\\Thiago\\.config"
-    "c:\\msys64\\home\\Thiago\\.vim\\pack\\downloads\\opt"
-    "c:\\msys64\\home\\Thiago\\.vim\\pack\\downloads\\start"
-)
 gg-find() {
-    find $GG_FOLDERS -maxdepth 2 -mindepth 2 -type d -name .git | xargs dirname
+    local folders=(
+        "c:\\Projetos"
+        "c:\\Users\\Thiago\\AppData\\Local\\nvim"
+        "c:\\Users\\Thiago\\.config"
+        "c:\\msys64\\home\\Thiago\\.vim\\pack\\downloads\\opt"
+        "c:\\msys64\\home\\Thiago\\.vim\\pack\\downloads\\start"
+    )
+    find "${folders[@]}" -maxdepth 3 -mindepth 1 -type d -name .git -exec dirname '{}' \; | sort -u
 }
-

@@ -37,6 +37,14 @@ ensure-download() {
     return 1
 }
 
+
+# gg
+echo "... Ensure we have GG ..."
+if [[ ! -d "$HOME/.gg" ]]; then
+    git clone git@github.com:thiago-negri/gg.git "$HOME/.gg"
+fi
+
+
 # fzf
 if [[ ! -d "$HOME/.fzf" ]]; then
     printf "... Installing FZF ...\n\n"
