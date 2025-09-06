@@ -1,0 +1,47 @@
+gg-ls() {
+    find $GIT_FOLDERS -maxdepth 2 -mindepth 2 -type d -name .git | xargs dirname
+}
+
+gg-state() {
+    local is_dirty
+    for dir in $(gg-ls); do
+        is_dirty=$(git -C $dir status -s | wc -l)
+        if [[ $is_dirty -ne 0 ]]; then
+            echo "\e[34m$dir\e[0m: dirty"
+        fi
+    done
+}
+
+gg-exec() {
+    echo ""
+    for dir in $(gg-ls); do
+        echo "\e[34m$dir\e[0m: \e[32mgit $@\e[0m"
+        git -C $dir $@
+        echo ""
+    done
+}
+
+gg() {
+    if [[ "ls" == "$1" ]]; then
+        shift
+        gg-ls
+        return
+    fi
+    if [[ "state" == "$1" ]]; then
+        shift
+        gg-state
+        return
+    fi
+    if [[ "sync" == "$1" ]]; then
+        shift
+        gg-exec sync
+        return
+    fi
+    if [[ "all" == "$1" ]]; then
+        shift
+        gg-exec $@
+        return
+    fi
+    echo "unknown command $1"
+}
+

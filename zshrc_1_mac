@@ -29,3 +29,11 @@ jvm_21() {
     export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
 }
 
+# keep in sync with wezterm's sessionizer
+GIT_FOLDERS=(
+    "/Users/thiago.negri/projects"
+    "/Users/thiago.negri/.config"
+    "/Users/thiago.negri/.vim/pack/downloads/opt"
+    "/Users/thiago.negri/.vim/pack/downloads/start"
+)
+

@@ -7,3 +7,10 @@ export PATH=$HOME/.local/bin:$PATH
 
 # rust
 . "$HOME/.cargo/env"
+
+# keep in sync with wezterm's sessionizer
+GIT_FOLDERS=(
+    "/home/hunz/projects"
+    "/home/hunz/.config"
+)
+

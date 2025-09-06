@@ -14,14 +14,14 @@ esac
 
 ensure-dir() {
     local dst="$1"
-    [ ! -d "$dst" ] && mkdir -p "$dst"
+    [[ ! -d "$dst" ]] && mkdir -p "$dst"
 }
 
 ensure-download() {
     local dst="$1"
     local src="$2"
     local dir=$(dirname "$dst")
-    if [ -f "$dst" ]; then
+    if [[ -f "$dst" ]]; then
         return 0
     fi
     ensure-dir "$dir"
@@ -38,7 +38,7 @@ ensure-download() {
 }
 
 # fzf
-if [ ! -d "$HOME/.fzf" ]; then
+if [[ ! -d "$HOME/.fzf" ]]; then
     printf "... Installing FZF ...\n\n"
     git clone --depth 1 git@github.com:junegunn/fzf.git "$HOME/.fzf"
     "$HOME/.fzf/install" --key-bindings --completion --no-update-rc
@@ -59,8 +59,9 @@ fi
 # zsh
 echo "... Creating .zshrc ..."
 ensure-dir "$HOME/.tmp"
-cat "zshrc"      > "$HOME/.zshrc"
-cat "zshrc_$os" >> "$HOME/.zshrc"
+cat "zshrc_0"      > "$HOME/.zshrc"
+cat "zshrc_1_$os" >> "$HOME/.zshrc"
+cat "zshrc_2_git" >> "$HOME/.zshrc"
 
 
 # vim

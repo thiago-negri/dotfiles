@@ -25,3 +25,12 @@ if ! tasklist | grep obs >/dev/null; then
     zvenc
 fi
 
+# keep in sync with wezterm's sessionizer
+GIT_FOLDERS=(
+    "c:\\Projetos"
+    "c:\\Users\\Thiago\\AppData\\Local\\nvim"
+    "c:\\Users\\Thiago\\.config"
+    "c:\\msys64\\home\\Thiago\\.vim\\pack\\downloads\\opt"
+    "c:\\msys64\\home\\Thiago\\.vim\\pack\\downloads\\start"
+)
+

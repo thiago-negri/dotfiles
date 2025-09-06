@@ -35,6 +35,7 @@ set relativenumber                 " Relative line numbers
 set laststatus=2                   " Enable lightline
 set noshowmode                     " We're using statusline, no need to show mode
 set mouse=a                        " Let resize splits with mouse
+set formatoptions+=j               " Delete comment character when joining lines
 let mapleader = ' '                " Set leader to space
 let g:typescript_host_keyword = 0  " Do not try to be smart about TypeScript names
 let g:c_syntax_for_h = 1           " Detect .h files as C, not C++

@@ -33,3 +33,4 @@ docker_killall() {
 # fossil stuff
 export FOSSIL_USER=tnegri
 alias fossildiff="fossil changes | awk '{print \$2}' | fzf --preview 'fossil diff {}'"
+
