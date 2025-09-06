@@ -4,6 +4,8 @@ export PATH=$PATH:/c/windows-binaries
 export PATH=$PATH:/c/windows-binaries/vim91 # VIM can't symlink because it loads DLL from same folder
 export PATH=$PATH:"/c/Program Files/LLVM/bin"
 export PATH=$PATH:"/c/Program Files/Neovim/bin"
+export PATH=$PATH:"/c/Program Files (x86)/Steam/steamapps/common/Aseprite"
+export PATH=$PATH:"/c/Program Files/dotnet"
 
 # Git binaries doesn't know about MSYS2 paths,
 # use `pacman -S git`
