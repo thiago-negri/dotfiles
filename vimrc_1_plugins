@@ -1,7 +1,7 @@
 " Load plugins
 call plug#begin()
 Plug 'easymotion/vim-easymotion'                    " <c-j> / <c-k>
-Plug 'itchyny/lightline.vim'                        " statusline
+" Plug 'itchyny/lightline.vim'                        " statusline
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fzf
 Plug 'junegunn/fzf.vim'                             " fzf commands
 Plug 'machakann/vim-highlightedyank'                " highlight yanked text
@@ -13,7 +13,7 @@ Plug 'tpope/vim-surround'                           " motions related to surroun
 Plug 'yegappan/lsp'                                 " lsp
 call plug#end()
 
-let g:lightline = { 'colorscheme': 'nord' }         " Nord colorscheme for statusline
+" let g:lightline = { 'colorscheme': 'nord' }         " Nord colorscheme for statusline
 let g:highlightedyank_highlight_duration = 100      " Highlight yanked text for 100ms
 let NERDTreeQuitOnOpen=1                            " Close NERDTree after selecting a file
 

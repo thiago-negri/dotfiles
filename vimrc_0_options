@@ -5,7 +5,7 @@ filetype plugin on                 " Detect filetypes and apply configs for file
 syntax on                          " Enable syntax highlight
 set termguicolors                  " Our terminal supports 24 bit colors
 set background=dark                " We use dark background
-colorscheme nord                   " Colorscheme: nord
+colorscheme vim-dark               " Colorscheme: vim-dark
 set cc=120                         " Vertical line at column 120
 set updatetime=300                 " Having longer updatetime (default is 4000 ms) leads to noticeable delays
 set timeout                        " Timeout on mappings and key codes
@@ -15,6 +15,9 @@ set signcolumn=yes                 " Always show signcolumn, otherwise it will s
 set re=0                           " Use new regex engine, required for faster syntax highlight for TypeScript
 set backspace=indent,eol,start     " Sane backspace
 set hlsearch                       " Highlight search term
+set incsearch                      " Show search results as I'm typing (incremental search)
+set ignorecase                     " Ignore letter cases when searching
+set smartcase                      " Unless there's at least one capital letter or \C, then consider case
 set belloff=all                    " Disable bell sounds
 set scrolloff=10                   " Number of lines to keep above/below cursor while scrolling
 set tabstop=8                      " Show actual tabs as 8 spaces
@@ -39,6 +42,43 @@ set formatoptions+=j               " Delete comment character when joining lines
 let mapleader = ' '                " Set leader to space
 let g:typescript_host_keyword = 0  " Do not try to be smart about TypeScript names
 let g:c_syntax_for_h = 1           " Detect .h files as C, not C++
+
+" N filename.txt TXT 12,34 34% [+]
+function! MyStatusline()
+  let mode_color = ''
+  let mode_text = ''
+  let current_mode = mode()
+  if current_mode ==# 'n'
+    let mode_text = 'N'
+    let mode_color = 'StatuslineModeNormal'
+  elseif current_mode ==# 'i'
+    let mode_text = 'I'
+    let mode_color = 'StatuslineModeInsert'
+  elseif current_mode ==# 'c'
+    let mode_text = 'C'
+    let mode_color = 'StatuslineModeCommand'
+  elseif current_mode ==# 'v' || current_mode ==# 'V' || current_mode ==# "\<c-v>"
+    let mode_text = 'V'
+    let mode_color = 'StatuslineModeVisual'
+  elseif current_mode ==# 'R'
+    let mode_text = 'REPLACE'
+    let mode_color = 'StatuslineModeReplace'
+  elseif current_mode ==# 'r'
+    let mode_text = 'PROMPT'
+    let mode_color = 'StatuslineModeOther'
+  elseif current_mode ==# '!'
+    let mode_text = 'SHELL'
+    let mode_color = 'StatuslineModeOther'
+  elseif current_mode ==# 't'
+    let mode_text = 'TERMINAL'
+    let mode_color = 'StatuslineModeOther'
+  else
+    let mode_text = 'OTHER'
+    let mode_color = 'StatuslineModeOther'
+  endif
+  return '%#' . mode_color . '# ' . mode_text . ' %#StatuslineFile# %f %Y %l,%c %p%% %m '
+endfunction
+set statusline=%!MyStatusline()
 
 " Remove search highlight on <c-l>
 nnoremap <c-l> :nohlsearch<cr><c-l>

@@ -13,20 +13,30 @@ case "${unameOut}" in
 esac
 
 ensure-dir() {
-    local dst="$1"
+    local dst
+    dst="$1"
     [[ ! -d "$dst" ]] && mkdir -p "$dst"
 }
 
 ensure-download() {
-    local dst="$1"
-    local src="$2"
-    local dir=$(dirname "$dst")
+    local dst src dir etag
+    dst="$1"
+    src="$2"
+    dir=$(dirname "$dst")
     if [[ -f "$dst" ]]; then
+        if [[ -f "$dst.etag" ]]; then
+            etag=$(cat "$dst.etag")
+            curl -D headers.txt -H "If-None-Match: $etag" -fsLo "$dst" "$src"
+            grep -i ETag headers.txt | awk '{print $2}' | tr -d '\r' > "$dst.etag"
+            rm headers.txt
+        fi
         return 0
     fi
     ensure-dir "$dir"
     if command -v curl &> /dev/null; then
-        curl -fLo "$dst" "$src"
+        curl -D headers.txt -fsLo "$dst" "$src"
+        grep -i ETag headers.txt | awk '{print $2}' | tr -d '\r' > "$dst.etag"
+        rm headers.txt
         return 0
     fi
     if command -v wget &> /dev/null; then
@@ -78,6 +88,8 @@ ensure-download "$vimfiles/colors/nord.vim" \
     "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/colors/nord.vim"
 ensure-download "$vimfiles/autoload/lightline/colorscheme/nord.vim" \
     "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/autoload/lightline/colorscheme/nord.vim"
+ensure-download "$vimfiles/colors/vim-dark.vim" \
+    "https://raw.githubusercontent.com/thiago-negri/vim-dark/refs/heads/main/colors/vim-dark.vim"
 
 # vim-plug
 echo "... Ensure we have vim-plug ..."
