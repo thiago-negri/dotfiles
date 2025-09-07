@@ -13,7 +13,12 @@ source <(fzf --zsh)
 export BAT_THEME="Nord"
 
 # Make sure wezterm knows what the cwd is
-which wezterm 1>/dev/null 2>/dev/null && wezterm set-working-directory
+# This defines the cwd when we switch the wez session, so new panels created on a session
+# will start at the correct directory
+if command -v wezterm &>/dev/null; then
+    ww() { wezterm set-working-directory }
+    ww
+fi
 
 # Aliases
 alias l="ls --color -lhAF"
