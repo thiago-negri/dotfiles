@@ -47,6 +47,9 @@ let g:netrw_liststyle = 1          " Show size and last modified date in netrw
 let g:netrw_banner = 0             " Hide netrw banner
 let g:netrw_altfile = 1            " Don't put netrw on the alternate buffer
 
+" Do not select any autocomplete automatically and do not show the preview window
+set completeopt=menuone,noselect,popup
+
 " N filename.txt TXT 12,34 34% [+]
 function! MyStatusline()
   let mode_color = ''
@@ -146,3 +149,9 @@ if has('patch-9.1.0375')
   " Duplicate and comment
   nnoremap yc yy<cmd>normal gcc<cr>p
 endif
+
+" F4 will show the highlight group of word under cursor
+nnoremap <F4> :echo 'hi<' . synIDattr(synID(line('.'), col('.'), 1), 'name') . '> ' .
+            \       'trans<' . synIDattr(synID(line('.'), col('.'), 0),'name') . '> ' .
+            \       'lo<' . synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name') . '>'<cr>
+
