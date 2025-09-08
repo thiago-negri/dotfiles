@@ -43,6 +43,9 @@ set formatoptions+=j               " Delete comment character when joining lines
 let mapleader = ' '                " Set leader to space
 let g:typescript_host_keyword = 0  " Do not try to be smart about TypeScript names
 let g:c_syntax_for_h = 1           " Detect .h files as C, not C++
+let g:netrw_liststyle = 1          " Show size and last modified date in netrw
+let g:netrw_banner = 0             " Hide netrw banner
+let g:netrw_altfile = 1            " Don't put netrw on the alternate buffer
 
 " N filename.txt TXT 12,34 34% [+]
 function! MyStatusline()
@@ -83,11 +86,11 @@ set statusline=%!MyStatusline()
 
 " F2 Toggle Zen mode
 function! Zen()
-    if &laststatus == 0
-        set number relativenumber laststatus=2 cc=120
-    else
-        set nonumber norelativenumber laststatus=0 cc=0
-    endif
+  if &laststatus == 0
+    set number relativenumber laststatus=2 cc=120
+  else
+    set nonumber norelativenumber laststatus=0 cc=0
+  endif
 endfunction
 command! Zen call Zen()
 nnoremap <F2> :Zen<cr>
@@ -122,6 +125,9 @@ nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
 
+
+nnoremap - :Explore<cr>
+
 " Copy current file path to system's clipboard (bc = buffer copy)
 nnoremap <leader>bc <cmd>let @+=@%<cr><cmd>echo 'Copied file path: ' . @%<cr>
 
@@ -133,3 +139,10 @@ augroup filetypedetect
 au BufNewFile,BufRead *.git/COMMIT_EDITMSG setf gitcommit
 augroup END
 
+" Bultin 'comment' package added in 9.1.0375
+if has('patch-9.1.0375')
+  packadd! comment
+
+  " Duplicate and comment
+  nnoremap yc yy<cmd>normal gcc<cr>p
+endif

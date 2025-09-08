@@ -1,12 +1,9 @@
 " Load plugins
 call plug#begin()
 Plug 'easymotion/vim-easymotion'                    " <c-j> / <c-k>
-" Plug 'itchyny/lightline.vim'                        " statusline
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fzf
 Plug 'junegunn/fzf.vim'                             " fzf commands
 Plug 'machakann/vim-highlightedyank'                " highlight yanked text
-Plug 'preservim/nerdtree'                           " file browser
-Plug 'tpope/vim-commentary'                         " motions related to comments, e.g. gcc
 Plug 'tpope/vim-fugitive'                           " git commands
 Plug 'tpope/vim-sleuth'                             " figure shiftwidth/expandtab from context / .editorconfig
 Plug 'tpope/vim-surround'                           " motions related to surrounding, e.g. cs'`
@@ -15,19 +12,13 @@ call plug#end()
 
 " let g:lightline = { 'colorscheme': 'nord' }         " Nord colorscheme for statusline
 let g:highlightedyank_highlight_duration = 100      " Highlight yanked text for 100ms
-let NERDTreeQuitOnOpen=1                            " Close NERDTree after selecting a file
+" let NERDTreeQuitOnOpen=1                            " Close NERDTree after selecting a file
 
 " Fuzzy finder -- fzf
 nnoremap <leader>sf :Files<cr>
-nnoremap <leader><leader> :Buffers<cr>
+nnoremap <leader>sb :Buffers<cr>
 nnoremap <leader>sg :Rg<cr>
 nnoremap <leader>sw :Rg <c-r><c-w><cr>
-
-" File browser -- NERDTree
-nnoremap - :NERDTreeFocus<cr>
-
-" Duplicate and comment (gcc comes from vim-commentary)
-nnoremap yc yy<cmd>normal gcc<cr>p
 
 " Jump to line -- Easy Motion
 nnoremap <c-j> <plug>(easymotion-j)
