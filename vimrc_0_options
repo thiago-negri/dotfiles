@@ -6,7 +6,8 @@ syntax on                          " Enable syntax highlight
 set termguicolors                  " Our terminal supports 24 bit colors
 set background=dark                " We use dark background
 colorscheme vim-dark               " Colorscheme: vim-dark
-set cc=120                         " Vertical line at column 120
+set tw=0                           " Do not auto wrap anything
+set cc=120                         " Vertical line at column 120 (check Zen function below)
 set updatetime=300                 " Having longer updatetime (default is 4000 ms) leads to noticeable delays
 set timeout                        " Timeout on mappings and key codes
 set timeoutlen=3000                " Timeout on key mappings after 3 seconds
@@ -33,9 +34,9 @@ set guicursor=a:block-nCursor      " Always use block cursor
 set noundofile                     " Do not persist undo history
 set noswapfile                     " Do not create swap files
 set nobackup                       " Do not create backup files
-set number                         " Line numbers
-set relativenumber                 " Relative line numbers
-set laststatus=2                   " Enable lightline
+set number                         " Line numbers (check Zen function below)
+set relativenumber                 " Relative line numbers (check Zen function below)
+set laststatus=2                   " Enable statusline (check Zen function below)
 set noshowmode                     " We're using statusline, no need to show mode
 set mouse=a                        " Let resize splits with mouse
 set formatoptions+=j               " Delete comment character when joining lines
@@ -79,6 +80,17 @@ function! MyStatusline()
   return '%#' . mode_color . '# ' . mode_text . ' %#StatuslineFile# %f %Y %l,%c %p%% %m '
 endfunction
 set statusline=%!MyStatusline()
+
+" F2 Toggle Zen mode
+function! Zen()
+    if &laststatus == 0
+        set number relativenumber laststatus=2 cc=120
+    else
+        set nonumber norelativenumber laststatus=0 cc=0
+    endif
+endfunction
+command! Zen call Zen()
+nnoremap <F2> :Zen<cr>
 
 " Remove search highlight on <c-l>
 nnoremap <c-l> :nohlsearch<cr><c-l>
