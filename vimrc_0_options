@@ -1,11 +1,8 @@
 set nocompatible                   " Use VIM defaults, not VI
 set encoding=utf-8                 " Use UTF-8
 set cursorline                     " Highlight current line
-filetype plugin on                 " Detect filetypes and apply configs for filetype
-syntax on                          " Enable syntax highlight
 set termguicolors                  " Our terminal supports 24 bit colors
 set background=dark                " We use dark background
-colorscheme vim-dark               " Colorscheme: vim-dark
 set tw=0                           " Do not auto wrap anything
 set cc=120                         " Vertical line at column 120 (check Zen function below)
 set updatetime=300                 " Having longer updatetime (default is 4000 ms) leads to noticeable delays
@@ -40,17 +37,36 @@ set laststatus=2                   " Enable statusline (check Zen function below
 set noshowmode                     " We're using statusline, no need to show mode
 set mouse=a                        " Let resize splits with mouse
 set formatoptions+=j               " Delete comment character when joining lines
-let mapleader = ' '                " Set leader to space
-let g:typescript_host_keyword = 0  " Do not try to be smart about TypeScript names
-let g:c_syntax_for_h = 1           " Detect .h files as C, not C++
-let g:netrw_liststyle = 1          " Show size and last modified date in netrw
-let g:netrw_banner = 0             " Hide netrw banner
-let g:netrw_altfile = 1            " Don't put netrw on the alternate buffer
+
+" Set leader to space
+let mapleader = ' '
+
+" Do not try to be smart about TypeScript names
+let g:typescript_host_keyword = 0
+
+" Detect .h files as C, not C++
+let g:c_syntax_for_h = 1
+
+" Show size and last modified date in netrw
+let g:netrw_liststyle = 1
+
+" Hide netrw banner
+let g:netrw_banner = 0
+
+" Don't put netrw on the alternate buffer
+let g:netrw_altfile = 1
+
+" Detect filetypes and apply configs for filetype
+filetype plugin on
+
+" Enable syntax highlight
+syntax on
+colorscheme vim-dark
 
 " Do not select any autocomplete automatically and do not show the preview window
 set completeopt=menuone,noselect,popup
 
-" N filename.txt TXT 12,34 34% [+]
+" Statusline       N filename.txt TXT 12,34 34% [+]
 function! MyStatusline()
   let mode_color = ''
   let mode_text = ''
@@ -101,6 +117,7 @@ nnoremap <F2> :Zen<cr>
 " Remove search highlight on <c-l>
 nnoremap <c-l> :nohlsearch<cr><c-l>
 
+" <leader>y/<leader>p for system clipboard
 vnoremap <leader>y "+y
 nnoremap <leader>y "+y
 vnoremap <leader>Y "+Y
@@ -113,9 +130,10 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 nnoremap <leader>P "+P
 vnoremap <leader>P "+P
+
+" <S-y> yank until end of line
 nnoremap Y y$
 
-" Navigation
 nnoremap H ^
 nnoremap L $
 vnoremap H ^
@@ -145,7 +163,6 @@ augroup END
 " Bultin 'comment' package added in 9.1.0375
 if has('patch-9.1.0375')
   packadd! comment
-
   " Duplicate and comment
   nnoremap yc yy<cmd>normal gcc<cr>p
 endif

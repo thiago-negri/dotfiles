@@ -1,18 +1,16 @@
 " Load plugins
 call plug#begin()
-Plug 'easymotion/vim-easymotion'                    " <c-j> / <c-k>
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fzf
-Plug 'junegunn/fzf.vim'                             " fzf commands
-Plug 'machakann/vim-highlightedyank'                " highlight yanked text
-Plug 'tpope/vim-fugitive'                           " git commands
-Plug 'tpope/vim-sleuth'                             " figure shiftwidth/expandtab from context / .editorconfig
-Plug 'tpope/vim-surround'                           " motions related to surrounding, e.g. cs'`
-Plug 'yegappan/lsp'                                 " lsp
+Plug 'easymotion/vim-easymotion'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
+Plug 'yegappan/lsp'
 call plug#end()
 
-" let g:lightline = { 'colorscheme': 'nord' }         " Nord colorscheme for statusline
-let g:highlightedyank_highlight_duration = 100      " Highlight yanked text for 100ms
-" let NERDTreeQuitOnOpen=1                            " Close NERDTree after selecting a file
+let g:highlightedyank_highlight_duration = 100
 
 " Fuzzy finder -- fzf
 nnoremap <leader>sf :Files<cr>
