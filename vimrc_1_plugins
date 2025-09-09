@@ -24,7 +24,7 @@ nnoremap <c-k> <plug>(easymotion-k)
 
 " LSP
 " LSP Servers are configured on vimrc_win / vimrc_mac / vimrc_linux
-let lspOpts = #{autoComplete: v:false, omniComplete: v:true, semanticHighlight: v:true, showSignature: v:false}
+let lspOpts = #{autoComplete: v:false, omniComplete: v:true, semanticHighlight: v:false, showSignature: v:false}
 autocmd User LspSetup call LspOptionsSet(lspOpts)
 nnoremap <silent> [d :LspDiag prev<cr>
 nnoremap <silent> ]d :LspDiag next<cr>
