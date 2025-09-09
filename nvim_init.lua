@@ -123,6 +123,8 @@ vim.call("plug#begin")
 Plug("stevearc/oil.nvim")
 Plug("kylechui/nvim-surround")
 Plug("nvim-mini/mini.nvim")
+Plug("stevearc/conform.nvim")
+Plug("smoka7/hop.nvim")
 Plug("nvim-treesitter/nvim-treesitter", {
 	["do"] = function()
 		vim.cmd("TSUpdate")
@@ -136,7 +138,6 @@ Plug("WhoIsSethDaniel/mason-tool-installer.nvim")
 Plug("j-hui/fidget.nvim")
 Plug("saghen/blink.cmp", { ["tag"] = "v1.*" })
 -- }}}
-Plug("stevearc/conform.nvim")
 vim.call("plug#end")
 
 -- Plugin options
@@ -151,6 +152,8 @@ local setup_plugins = function()
 	require("mini.ai").setup({ n_lines = 500 })
 	require("mini.surround").setup()
 	require("mini.pick").setup()
+	require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
+	vim.keymap.set("n", "<c-j>", "<cmd>HopChar1<cr>")
 	require("nvim-treesitter.configs").setup({
 		ensure_installed = {
 			"bash",
