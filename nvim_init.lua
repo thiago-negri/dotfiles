@@ -140,7 +140,7 @@ Plug("stevearc/conform.nvim")
 vim.call("plug#end")
 
 -- Plugin options
-function setup_plugins()
+local setup_plugins = function()
 	require("oil").setup({
 		default_file_explorer = true,
 		view_options = { show_hidden = true },
@@ -152,7 +152,6 @@ function setup_plugins()
 	require("mini.surround").setup()
 	require("mini.pick").setup()
 	require("nvim-treesitter.configs").setup({
-		highlight = { enabled = true },
 		ensure_installed = {
 			"bash",
 			"c",
@@ -277,16 +276,16 @@ function setup_plugins()
 	blink.setup({
 		completion = {
 			menu = { auto_show = false },
-			keymap = { preset = "default", ["<c-j>"] = {
-				function(cmp)
-					cmp.show()
-				end,
-			} },
-			appearance = { nerd_font_variant = "mono" },
-			sources = { default = { "lsp", "path" } },
-			fuzzy = { implementation = "lua" },
-			signature = { enabled = true },
 		},
+		keymap = { preset = "default", ["<c-j>"] = {
+			function(cmp)
+				cmp.show()
+			end,
+		} },
+		appearance = { nerd_font_variant = "mono" },
+		sources = { default = { "lsp", "path" } },
+		fuzzy = { implementation = "lua" },
+		signature = { enabled = true },
 	})
 end
 vim.api.nvim_create_autocmd("VimEnter", {
