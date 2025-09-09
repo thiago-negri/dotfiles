@@ -6,11 +6,13 @@ case "${unameOut}" in
     MINGW*)     os=win;;
     *)          os=linux;;
 esac
+
+vimfiles=$HOME/.vim
 case "${unameOut}" in
-    Darwin*)    vimfiles=$HOME/.vim;;
     MINGW*)     vimfiles=$HOME/vimfiles;; # Windows
-    *)          vimfiles=$HOME/.vim;;
 esac
+
+nvimfiles=$HOME/.config/nvim
 
 ensure-dir() {
     local dst
@@ -86,21 +88,30 @@ cat "zshrc_2_git" >> "$HOME/.zshrc"
 echo "... Ensure we have vim colors ..."
 ensure-download "$vimfiles/colors/nord.vim" \
     "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/colors/nord.vim"
-ensure-download "$vimfiles/autoload/lightline/colorscheme/nord.vim" \
-    "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/autoload/lightline/colorscheme/nord.vim"
 ensure-download "$vimfiles/colors/vim-dark.vim" \
+    "https://raw.githubusercontent.com/thiago-negri/vim-dark/refs/heads/main/colors/vim-dark.vim"
+echo "... Ensure we have nvim colors ..."
+ensure-download "$nvimfiles/colors/nord.vim" \
+    "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/colors/nord.vim"
+ensure-download "$nvimfiles/colors/vim-dark.vim" \
     "https://raw.githubusercontent.com/thiago-negri/vim-dark/refs/heads/main/colors/vim-dark.vim"
 
 # vim-plug
-echo "... Ensure we have vim-plug ..."
+echo "... Ensure we have vim-plug in vim ..."
 ensure-download "$vimfiles/autoload/plug.vim" \
+    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+echo "... Ensure we have vim-plug in nvim ..."
+ensure-download "$nvimfiles/autoload/plug.vim" \
     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 
 # vimrc
 echo "... Creating .vimrc ..."
-cat "vimrc_0_options"  > "$HOME/.vimrc"
-cat "vimrc_1_plugins" >> "$HOME/.vimrc" # Plugins go after options to make sure we have <leader> set
-cat "vimrc_2_$os"     >> "$HOME/.vimrc"
+cat "vimrc_0_options"  > "$vimfiles/.vimrc"
+cat "vimrc_1_plugins" >> "$vimfiles/.vimrc" # Plugins go after options to make sure we have <leader> set
+cat "vimrc_2_$os"     >> "$vimfiles/.vimrc"
+# nvim init.lua
+echo "... Creating nvim/init.lua ..."
+cat "nvim_init.lua"  > "$nvimfiles/init.lua"
 
 # vim filetypes
 echo "... Creating vim ftplugin files ..."
