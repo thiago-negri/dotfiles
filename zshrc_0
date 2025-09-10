@@ -1,7 +1,7 @@
 export PATH=$PATH:$HOME/.fzf/bin
 export TMP=$HOME/.tmp
 export TEMP=$HOME/.tmp
-export EDITOR=vim
+export EDITOR=nvim
 
 # Set prompt
 export PS1=$'\n'"%F{green}%n%f %F{black}@%f %F{blue}%/%f"$'\n'"> "
