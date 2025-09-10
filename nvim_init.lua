@@ -1,5 +1,5 @@
-local vim = vim
-local colorcolumn = "120"
+local vim = vim -- Undefined global `vim`.
+local colorcolumn = "120" -- Declares as variable as it's used when toggling zen mode off as well.
 
 vim.o.cursorline = true
 vim.o.colorcolumn = colorcolumn
@@ -80,28 +80,28 @@ My_Statusline = function()
 	return mode_text .. " %#StatuslineFile# %f %m%=%Y %l,%c %p%% "
 end
 
-vim.keymap.set("n", "<F2>", zen_mode)
-vim.keymap.set("n", "<F3>", "<cmd>make!<cr>")
-vim.keymap.set("n", "<F5>", "<cmd>so $MYVIMRC<cr>")
-vim.keymap.set({ "v", "n" }, "<leader>y", '"+y')
-vim.keymap.set({ "v", "n" }, "<leader>Y", '"+Y')
-vim.keymap.set({ "v", "n" }, "<leader>p", '"+p')
-vim.keymap.set({ "v", "n" }, "<leader>P", '"+P')
-vim.keymap.set({ "v", "n" }, "H", "^")
-vim.keymap.set({ "v", "n" }, "L", "$")
+vim.keymap.set({ "v", "n" }, "<leader>y", '"+y') -- System clipboard y
+vim.keymap.set({ "v", "n" }, "<leader>Y", '"+Y') -- System clipboard Y
+vim.keymap.set({ "v", "n" }, "<leader>p", '"+p') -- System clipboard p
+vim.keymap.set({ "v", "n" }, "<leader>P", '"+P') -- System clipboard P
+vim.keymap.set({ "v", "n" }, "H", "^") -- Start of line
+vim.keymap.set({ "v", "n" }, "L", "$") -- End of line
+vim.keymap.set("n", "<F2>", zen_mode) -- Toggle zen mode
+vim.keymap.set("n", "<F3>", "<cmd>make!<cr>") -- Build
+vim.keymap.set("n", "<F5>", "<cmd>so $MYVIMRC<cr>") -- Reload Nvim config
 vim.keymap.set("n", "yc", "yy<cmd>normal gcc<cr>p") -- Dup and comment
-vim.keymap.set("n", "<leader>bc", "<cmd>let @+=@%<cr><cmd>echo 'Copied file path: ' . @%<cr>")
-vim.keymap.set("n", "<leader>tw", "<cmd>set wrap!<cr>")
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
-vim.keymap.set("n", "-", "<cmd>Oil<cr>")
+vim.keymap.set("n", "<leader>bc", "<cmd>let @+=@%<cr><cmd>echo 'Copied file path: ' . @%<cr>") -- Copy buffer file path
+vim.keymap.set("n", "<leader>tw", "<cmd>set wrap!<cr>") -- Toggle Wrap
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist) -- Open diagnostics in quickfix
+vim.keymap.set("n", "-", "<cmd>Oil<cr>") -- Explore
 vim.keymap.set("n", "<A-,>", "<cmd>cp<cr>zz") -- Previous Quickfix
 vim.keymap.set("n", "<A-.>", "<cmd>cn<cr>zz") -- Next Quickfix
 vim.keymap.set("n", "<A-/>", "<cmd>ccl<cr>") -- Close Quickfix
 vim.keymap.set("n", "<A-?>", "<cmd>cope<cr>") -- Open Quickfix
-vim.keymap.set("n", "<leader>sf", ":Pick files<cr>")
-vim.keymap.set("n", "<leader>sb", ":Pick buffers<cr>")
-vim.keymap.set("n", "<leader>sg", ":Pick grep_live<cr>")
-vim.keymap.set("n", "<leader>sw", ":Pick grep<cr><c-r><c-w><cr>")
+vim.keymap.set("n", "<leader>sf", ":Pick files<cr>") -- Search Files
+vim.keymap.set("n", "<leader>sb", ":Pick buffers<cr>") -- Search Buffers
+vim.keymap.set("n", "<leader>sg", ":Pick grep_live<cr>") -- Search Grep
+vim.keymap.set("n", "<leader>sw", ":Pick grep<cr><c-r><c-w><cr>") -- Search Word
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	group = vim.api.nvim_create_augroup("filetype-gitcommit", { clear = true }),
@@ -148,12 +148,16 @@ local setup_plugins = function()
 		columns = { "permissions", "mtime", "size" },
 		constrain_cursor = "name",
 	})
+
 	require("nvim-surround").setup()
+
 	require("mini.ai").setup({ n_lines = 500 })
 	require("mini.surround").setup()
 	require("mini.pick").setup()
+
 	require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
 	vim.keymap.set("n", "<c-j>", "<cmd>HopChar1<cr>")
+
 	require("nvim-treesitter.configs").setup({
 		ensure_installed = {
 			"bash",
@@ -231,24 +235,14 @@ local setup_plugins = function()
 		},
 	})
 
-	local capabilities = require("blink.cmp").get_lsp_capabilities()
+	require("mason-tool-installer").setup({ ensure_installed = { "clangd", "ts_ls", "lua_ls", "stylua" } })
 
+	local capabilities = require("blink.cmp").get_lsp_capabilities()
 	local servers = {
 		clangd = {},
 		ts_ls = {},
-		lua_ls = {
-			settings = {
-				Lua = {
-					completion = {
-						callSnippet = "Replace",
-					},
-				},
-			},
-		},
+		lua_ls = {},
 	}
-
-	require("mason-tool-installer").setup({ ensure_installed = { "clangd", "ts_ls", "lua_ls", "stylua" } })
-
 	require("mason-lspconfig").setup({
 		ensure_installed = {},
 		automatic_installation = false,
@@ -260,20 +254,6 @@ local setup_plugins = function()
 			end,
 		},
 	})
-	-- LSP }}}
-
-	local conform = require("conform")
-	conform.setup({
-		notify_on_error = false,
-		formatters_by_ft = {
-			lua = { "stylua" },
-			javascript = { "prettierd", "prettier", stop_after_first = true },
-			typescript = { "prettierd", "prettier", stop_after_first = true },
-		},
-	})
-	vim.keymap.set("n", "<leader>f", function()
-		conform.format({ async = true, lsp_format = "fallback" })
-	end)
 
 	local blink = require("blink.cmp")
 	blink.setup({
@@ -290,6 +270,21 @@ local setup_plugins = function()
 		fuzzy = { implementation = "lua" },
 		signature = { enabled = true },
 	})
+	-- LSP }}}
+
+	-- Code formatter
+	local conform = require("conform")
+	conform.setup({
+		notify_on_error = false,
+		formatters_by_ft = {
+			lua = { "stylua" },
+			javascript = { "prettierd", "prettier", stop_after_first = true },
+			typescript = { "prettierd", "prettier", stop_after_first = true },
+		},
+	})
+	vim.keymap.set("n", "<leader>f", function()
+		conform.format({ async = true, lsp_format = "fallback" })
+	end)
 end
 vim.api.nvim_create_autocmd("VimEnter", {
 	group = vim.api.nvim_create_augroup("plugins-setup", { clear = true }),
