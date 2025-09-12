@@ -56,28 +56,32 @@ end
 
 -- Custom statusline
 My_Statusline = function()
-	local mode_text = ""
-	local current_mode = vim.fn.mode()
-	if current_mode == "n" then
-		mode_text = "%#StatuslineModeNormal# N"
-	elseif current_mode == "i" then
-		mode_text = "%#StatuslineModeInsert# I"
-	elseif current_mode == "c" then
-		mode_text = "%#StatuslineModeCommand# C"
-	elseif current_mode == "v" or current_mode == "V" or current_mode == "\22" then
-		mode_text = "%#StatuslineModeVisual# V"
-	elseif current_mode == "R" then
-		mode_text = "%#StatuslineModeReplace# R"
-	elseif current_mode == "r" then
-		mode_text = "%#StatuslineModeOther# P"
-	elseif current_mode == "!" then
-		mode_text = "%#StatuslineModeOther# S"
-	elseif current_mode == "t" then
-		mode_text = "%#StatuslineModeOther# T"
-	else
-		mode_text = "%#StatuslineModeOther# O"
+	local mode_text = "  "
+	local position_text = ""
+	if vim.g.statusline_winid == vim.fn.win_getid() then
+		position_text = "%l,%c %#StatuslineFiletype#%y "
+		local current_mode = vim.fn.mode()
+		if current_mode == "n" then
+			mode_text = "%#StatuslineModeNormal# N"
+		elseif current_mode == "i" then
+			mode_text = "%#StatuslineModeInsert# I"
+		elseif current_mode == "c" then
+			mode_text = "%#StatuslineModeCommand# C"
+		elseif current_mode == "v" or current_mode == "V" or current_mode == "\22" then
+			mode_text = "%#StatuslineModeVisual# V"
+		elseif current_mode == "R" then
+			mode_text = "%#StatuslineModeReplace# R"
+		elseif current_mode == "r" then
+			mode_text = "%#StatuslineModeOther# P"
+		elseif current_mode == "!" then
+			mode_text = "%#StatuslineModeOther# S"
+		elseif current_mode == "t" then
+			mode_text = "%#StatuslineModeOther# T"
+		else
+			mode_text = "%#StatuslineModeOther# O"
+		end
 	end
-	return mode_text .. " %#StatuslineFile# %f %m%=%Y %l,%c %p%% "
+	return mode_text .. " %#StatuslineFile# %f %m%=" .. position_text .. "%#StatuslineFilePos#%p%% "
 end
 
 vim.keymap.set({ "v", "n" }, "<leader>y", '"+y') -- System clipboard y
@@ -117,6 +121,50 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+-- Disable relative line numbers when out of focus
+vim.api.nvim_create_autocmd("FocusLost", {
+	group = vim.api.nvim_create_augroup("zen-focus-lost", { clear = true }),
+	callback = function()
+		if vim.o.laststatus == 2 then
+			vim.opt.relativenumber = false
+			vim.o.colorcolumn = "0"
+		end
+	end,
+})
+vim.api.nvim_create_autocmd("FocusGained", {
+	desc = "Enable relative line numbers when in focus",
+	group = vim.api.nvim_create_augroup("zen-focus-gained", { clear = true }),
+	callback = function()
+		if vim.o.laststatus == 2 then
+			vim.opt.relativenumber = true
+			vim.o.colorcolumn = colorcolumn
+		end
+	end,
+})
+
+-- Disable line numbers when not main window
+vim.api.nvim_create_autocmd("WinLeave", {
+	group = vim.api.nvim_create_augroup("zen-win-leave", { clear = true }),
+	callback = function()
+		if vim.o.laststatus == 2 then
+			vim.o.number = false
+			vim.o.relativenumber = false
+			vim.o.colorcolumn = "0"
+		end
+	end,
+})
+vim.api.nvim_create_autocmd("WinEnter", {
+	desc = "Enable relative line numbers when in focus",
+	group = vim.api.nvim_create_augroup("zen-win-enter", { clear = true }),
+	callback = function()
+		if vim.o.laststatus == 2 then
+			vim.o.number = true
+			vim.o.relativenumber = true
+			vim.o.colorcolumn = colorcolumn
+		end
+	end,
+})
+
 -- Plugins
 local Plug = vim.fn["plug#"]
 vim.call("plug#begin")
@@ -124,6 +172,7 @@ Plug("stevearc/oil.nvim")
 Plug("kylechui/nvim-surround")
 Plug("nvim-mini/mini.nvim")
 Plug("stevearc/conform.nvim")
+Plug("tpope/vim-sleuth")
 Plug("smoka7/hop.nvim")
 Plug("nvim-treesitter/nvim-treesitter", {
 	["do"] = function()
