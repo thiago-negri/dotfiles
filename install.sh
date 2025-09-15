@@ -90,11 +90,15 @@ ensure-download "$vimfiles/colors/nord.vim" \
     "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/colors/nord.vim"
 ensure-download "$vimfiles/colors/vim-dark.vim" \
     "https://raw.githubusercontent.com/thiago-negri/vim-dark/refs/heads/main/colors/vim-dark.vim"
+ensure-download "$vimfiles/colors/vim-code-dark.vim" \
+    "https://raw.githubusercontent.com/tomasiser/vim-code-dark/refs/heads/master/colors/codedark.vim"
 echo "... Ensure we have nvim colors ..."
 ensure-download "$nvimfiles/colors/nord.vim" \
     "https://raw.githubusercontent.com/nordtheme/vim/refs/heads/main/colors/nord.vim"
 ensure-download "$nvimfiles/colors/vim-dark.vim" \
     "https://raw.githubusercontent.com/thiago-negri/vim-dark/refs/heads/main/colors/vim-dark.vim"
+ensure-download "$nvimfiles/colors/vim-code-dark.vim" \
+    "https://raw.githubusercontent.com/tomasiser/vim-code-dark/refs/heads/master/colors/codedark.vim"
 
 # vim-plug
 echo "... Ensure we have vim-plug in vim ..."

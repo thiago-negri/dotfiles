@@ -54,6 +54,18 @@ local zen_mode = function()
 	end
 end
 
+-- Toggle vscode mode
+local vscode_mode = function()
+	local colors = vim.g.colors_name
+	if colors == "vim-dark" then
+		vim.cmd.colorscheme("vim-code-dark")
+		vim.o.relativenumber = false
+	else
+		vim.cmd.colorscheme("vim-dark")
+		vim.o.relativenumber = true
+	end
+end
+
 -- Custom statusline
 My_Statusline = function()
 	local mode_text = "  "
@@ -91,6 +103,7 @@ vim.keymap.set({ "v", "n" }, "<leader>P", '"+P') -- System clipboard P
 vim.keymap.set({ "v", "n" }, "H", "^") -- Start of line
 vim.keymap.set({ "v", "n" }, "L", "$") -- End of line
 vim.keymap.set("n", "<F2>", zen_mode) -- Toggle zen mode
+vim.keymap.set("n", "<F8>", vscode_mode) -- Toggle vscode mode
 vim.keymap.set("n", "<F3>", "<cmd>make!<cr>") -- Build
 vim.keymap.set("n", "<F5>", "<cmd>so $MYVIMRC<cr>") -- Reload Nvim config
 vim.keymap.set("n", "yc", "yy<cmd>normal gcc<cr>p") -- Dup and comment
