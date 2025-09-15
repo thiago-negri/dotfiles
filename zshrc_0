@@ -1,42 +1,31 @@
-export PATH=$PATH:$HOME/.fzf/bin
-export TMP=$HOME/.tmp
-export TEMP=$HOME/.tmp
-export EDITOR=nvim
+PATH=$PATH:$HOME/.fzf/bin
+export PATH
+
+TMP=$HOME/.tmp
+export TMP
+
+TEMP=$HOME/.tmp
+export TEMP
+
+EDITOR=nvim
+export EDITOR
 
 # Set prompt
-export PS1=$'\n'"%F{green}%n%f %F{black}@%f %F{blue}%/%f"$'\n'"> "
+PS1=$'\n'"%F{green}%n%f %F{black}@%f %F{blue}%/%f"$'\n'"> "
+export PS1
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
 # Set up theme in bat
-export BAT_THEME="Nord"
-
-# Make sure wezterm knows what the cwd is
-# This defines the cwd when we switch the wez session, so new panels created on a session
-# will start at the correct directory
-if command -v wezterm &>/dev/null; then
-    ww() { wezterm set-working-directory }
-    ww
-fi
+BAT_THEME="Nord"
+export BAT_THEME
 
 # Aliases
 alias l="ls --color -lhAF"
 
-# Functions
-# NVM is too slow to load at startup
-nvm_load() {
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    [[ -f "./.nvmrc" ]] && nvm use $(head -n 1 ./.nvmrc)
-}
-
-# kill all docker containers
-docker_killall() {
-    docker ps -q | xargs docker kill
-}
-
 # fossil stuff
-export FOSSIL_USER=tnegri
+FOSSIL_USER=tnegri
+export FOSSIL_USER
 alias fossildiff="fossil changes | awk '{print \$2}' | fzf --preview 'fossil diff {}'"
 

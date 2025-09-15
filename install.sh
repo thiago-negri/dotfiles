@@ -81,7 +81,7 @@ echo "... Creating .zshrc ..."
 ensure-dir "$HOME/.tmp"
 cat "zshrc_0"      > "$HOME/.zshrc"
 cat "zshrc_1_$os" >> "$HOME/.zshrc"
-cat "zshrc_2_git" >> "$HOME/.zshrc"
+cat "zshrc_2_fns" >> "$HOME/.zshrc"  # Custom functions must come after OS specific file for PATH to be setup
 
 
 # vim

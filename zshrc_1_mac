@@ -1,32 +1,51 @@
-export DEV_HOME=/usr/local
-export M2_HOME=/usr/local/mvn
-export PATH="$M2_HOME/bin:$PATH"
-export ANT_HOME=/usr/local/ant
-export PATH="$ANT_HOME/bin:$PATH"
-export GROOVY_HOME=/usr/local/groovy
-export PATH="$GROOVY_HOME/bin:$PATH"
-export GRAILS_HOME=/usr/local/grails
-export PATH="$GRAILS_HOME/bin:$PATH"
-export PHANTOMJS_HOME=/usr/local/phantomjs
-export PATH="$PHANTOMJS_HOME/bin:$PATH"
-export PATH=$PATH:/usr/local/mysql/bin:/usr/local/groovy/bin:/usr/local/tomcat/bin:/usr/local/phantomjs/bin:/usr/local/ant/bin:/usr/local/mvn/bin:/usr/local/bin:/usr/bin
-export PATH="/usr/local/opt/mysql-client/bin:$PATH"
-export PATH=$PATH:/usr/local/sbin
-export PATH=$PATH:$HOME/.docker/bin
+DEV_HOME=/usr/local
+export DEV_HOME
+
+M2_HOME=/usr/local/mvn
+export M2_HOME
+
+ANT_HOME=/usr/local/ant
+export ANT_HOME
+
+GROOVY_HOME=/usr/local/groovy
+export GROOVY_HOME
+
+GRAILS_HOME=/usr/local/grails
+export GRAILS_HOME
+
+PHANTOMJS_HOME=/usr/local/phantomjs
+export PHANTOMJS_HOME
+
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/openlogic-openjdk-8.jdk/Contents/Home/
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
-export PATH=$PATH:$HOME/.dotnet/tools
+JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
+export JAVA_HOME
+
+PATH="$M2_HOME/bin:$PATH"
+PATH="$ANT_HOME/bin:$PATH"
+PATH="$GROOVY_HOME/bin:$PATH"
+PATH="$GRAILS_HOME/bin:$PATH"
+PATH="$PHANTOMJS_HOME/bin:$PATH"
+PATH=$PATH:/usr/local/mysql/bin:/usr/local/groovy/bin:/usr/local/tomcat/bin:/usr/local/phantomjs/bin:/usr/local/ant/bin:/usr/local/mvn/bin:/usr/local/bin:/usr/bin
+PATH="/usr/local/opt/mysql-client/bin:$PATH"
+PATH=$PATH:/usr/local/sbin
+PATH=$PATH:$HOME/.docker/bin
+PATH=$PATH:$HOME/.dotnet/tools
+PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 
 # homebrew install stuff to /usr/local, make sure it goes before /usr/bin to override system defaults (e.g. vim)
-export PATH=/usr/local/bin:$PATH
+PATH=/usr/local/bin:$PATH
+
+export PATH
 
 # Functions
 jvm_8() {
-    export JAVA_HOME=/Library/Java/JavaVirtualMachines/openlogic-openjdk-8.jdk/Contents/Home/
+    JAVA_HOME=/Library/Java/JavaVirtualMachines/openlogic-openjdk-8.jdk/Contents/Home/
+    export JAVA_HOME
 }
 
 jvm_21() {
-    export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
+    JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
+    export JAVA_HOME
 }
 
 # keep in sync with wezterm's sessionizer
