@@ -215,7 +215,40 @@ local setup_plugins = function()
 
 	require("mini.ai").setup({ n_lines = 500 })
 	require("mini.surround").setup()
-	require("mini.pick").setup()
+
+	local MiniPick = require("mini.pick")
+	MiniPick.setup({
+		mappings = {
+			qflist = {
+				char = "<c-q>",
+				func = function()
+					local matches = MiniPick.get_picker_matches().all
+					if matches == nil or next(matches) == nil then
+						print("No results to set to quickfix.")
+						return false
+					end
+					local qflist = {}
+					for _, match in ipairs(matches) do
+						local filename, lnum, col, text = string.match(match, "(.-)%z(%d+)%z(%d+)%z%s*(.+)")
+						table.insert(qflist, {
+							filename = filename or match,
+							lnum = tonumber(lnum) or 1,
+							col = tonumber(col) or 1,
+							text = text or "",
+						})
+					end
+					vim.fn.setqflist({}, "r", { title = "MiniPick results", items = qflist })
+					vim.defer_fn(function()
+						vim.cmd("copen")
+						if next(qflist) ~= nil then
+							vim.cmd("cfirst")
+						end
+					end, 100)
+					return true
+				end,
+			},
+		},
+	})
 
 	require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
 	vim.keymap.set("n", "<c-j>", "<cmd>HopChar1<cr>")
