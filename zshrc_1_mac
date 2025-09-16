@@ -51,7 +51,10 @@ jvm_21() {
 # keep in sync with wezterm's sessionizer
 gg-find() {
     local folders=(
-        "/Users/thiago.negri/projects"
+        "/Users/thiago.negri/projects/bc"
+        "/Users/thiago.negri/projects/ehg"
+        "/Users/thiago.negri/projects/tnegri"
+        "/Users/thiago.negri/projects/other"
         "/Users/thiago.negri/.config"
         "/Users/thiago.negri/.vim/pack/downloads/opt"
         "/Users/thiago.negri/.vim/pack/downloads/start"
