@@ -1,5 +1,5 @@
 local vim = vim -- Undefined global `vim`.
-local colorcolumn = "120" -- Declares as variable as it's used when toggling zen mode off as well.
+local colorcolumn = "121,122" -- Declares as variable as it's used when toggling zen mode off as well.
 
 vim.o.cursorline = true
 vim.o.colorcolumn = colorcolumn
@@ -123,7 +123,7 @@ vim.keymap.set("n", "<leader>sw", ":Pick grep<cr><c-r><c-w><cr>") -- Search Word
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	group = vim.api.nvim_create_augroup("filetype-gitcommit", { clear = true }),
 	pattern = { "*.git/COMMIT_EDITMSG" },
-	command = "set cc=72",
+	command = "set cc=73,74",
 })
 
 -- Highlight when yanking text
