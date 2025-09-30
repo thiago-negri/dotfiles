@@ -1,3 +1,10 @@
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
+
 PATH=$PATH:$HOME/.fzf/bin
 export PATH
 
@@ -23,9 +30,4 @@ export BAT_THEME
 
 # Aliases
 alias l="ls --color -lhAF"
-
-# fossil stuff
-FOSSIL_USER=tnegri
-export FOSSIL_USER
-alias fossildiff="fossil changes | awk '{print \$2}' | fzf --preview 'fossil diff {}'"
 

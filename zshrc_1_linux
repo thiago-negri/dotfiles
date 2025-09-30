@@ -7,8 +7,8 @@ PATH=$HOME/.local/bin:$PATH
 
 export PATH
 
-# rust
-. "$HOME/.cargo/env"
+XDEB_PKGROOT=$HOME/.config/xdeb
+export XDEB_PKGROOT
 
 # keep in sync with wezterm's sessionizer
 gg-find() {
