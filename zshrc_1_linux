@@ -16,6 +16,7 @@ gg-find() {
         "$HOME/.gg"
         "$HOME/projects"
         "$HOME/.config"
+        "$HOME/scripts"
     )
     find "${folders[@]}" -maxdepth 2 -mindepth 1 -type d -name .git -exec dirname '{}' \; | sort -u
 }
