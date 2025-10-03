@@ -1,0 +1,149 @@
+#!/usr/bin/env bash
+
+here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+kernel=$(uname)
+raw_github=https://raw.githubusercontent.com
+
+dir() {
+    local dst
+    dst="$1"
+    echo "$dst"
+    [ ! -d "$dst" ] && mkdir -p "$dst"
+}
+
+link() {
+    local src dst
+    src="$here/$1"
+    dst="$2"
+    if [ -f "$src" ]; then
+        echo "$dst"
+        ln -sf "$src" "$dst"
+    fi
+}
+
+if command -v curl >/dev/null; then
+    download() {
+        local src dst etag headers
+        src="$1"
+        dst="$2"
+        headers=""
+        echo "$dst"
+        echo "$dst.etag"
+        if [ -f "$dst" ] && [ -f "$dst.etag" ]; then
+            etag=$(cat "$dst.etag")
+            headers="-H 'If-None-Match: $etag'"
+        fi
+        curl -D .tmpheaders.txt -fsLo "$dst" "$src"
+        grep -i ETag .tmpheaders.txt | awk '{print $2}' | tr -d '\r' >"$dst.etag"
+        rm .tmpheaders.txt
+    }
+elif command -v wget >/dev/null; then
+    download() {
+        local src dst
+        src="$1"
+        dst="$2"
+        echo "$dst"
+        wget "$src" -O "$dst"
+    }
+fi
+
+gitclone() {
+    local remote dst git_result
+    remote="$1"
+    dst="$2"
+    echo "$dst"
+    if [ -d "$dst" ]; then
+        git_result=$(git -C "$dst" pull --ff-only)
+        if [ "Already up to date." = "$git_result" ]; then
+            return 1
+        else
+            return 0
+        fi
+    else
+        git clone --depth 1 "$remote" "$dst"
+        return 0
+    fi
+}
+
+
+# bash
+link ".bash_profile"                "$HOME/.bash_profile"
+link ".bash_profile.$kernel.sh"     "$HOME/.bash_profile.local.sh"
+link ".bashrc"                      "$HOME/.bashrc"
+link ".bashrc.$kernel.sh"           "$HOME/.bashrc.local.sh"
+
+
+# xorg
+if [ "$kernel" = "Linux" ]; then
+    link ".XCompose"    "$HOME/.XCompose"
+    link ".Xresources"  "$HOME/.Xresources"
+    link ".xinitrc"     "$HOME/.xinitrc"
+fi
+
+
+# wezterm
+dir "$HOME/.config/wezterm"
+link ".config/wezterm/sessionizer.lua"  "$HOME/.config/wezterm/sessionizer.lua"
+link ".config/wezterm/stylua.toml"      "$HOME/.config/wezterm/stylua.toml"
+link ".config/wezterm/wezterm.lua"      "$HOME/.config/wezterm/wezterm.lua"
+
+
+# nvim
+dir "$HOME/.config/nvim"
+link ".config/nvim/init.lua"       "$HOME/.config/nvim/init.lua"
+
+dir "$HOME/.config/nvim/colors"
+download "$raw_github/nordtheme/vim/refs/heads/main/colors/nord.vim"                    "$HOME/.config/nvim/colors/nord.vim"
+download "$raw_github/thiago-negri/vim-dark/refs/heads/main/colors/vim-dark.vim"        "$HOME/.config/nvim/colors/vim-dark.vim"
+download "$raw_github/tomasiser/vim-code-dark/refs/heads/master/colors/codedark.vim"    "$HOME/.config/nvim/colors/vim-code-dark.vim"
+
+dir "$HOME/.config/nvim/autoload"
+download "$raw_github/junegunn/vim-plug/master/plug.vim" "$HOME/.config/nvim/autoload/plug.vim"
+
+
+# vim
+if [ "$kernel" = "MINGW" ]; then
+    vim="$HOME/vimfiles"
+else
+    vim="$HOME/.vim"
+fi
+
+dir "$vim"
+link ".vim/.vimrc" "$vim/.vimrc"
+
+dir "$vim/colors"
+download "$raw_github/nordtheme/vim/refs/heads/main/colors/nord.vim"                    "$vim/colors/nord.vim"
+download "$raw_github/thiago-negri/vim-dark/refs/heads/main/colors/vim-dark.vim"        "$vim/colors/vim-dark.vim"
+download "$raw_github/tomasiser/vim-code-dark/refs/heads/master/colors/codedark.vim"    "$vim/colors/vim-code-dark.vim"
+
+dir "$vim/ftplugin"
+link ".vim/ftplugin/gitcommit.vim" "$vim/ftplugin/gitcommit.vim"
+
+
+# gg
+gitclone "git@github.com:thiago-negri/gg.git" "$HOME/.gg"
+
+
+# fzf
+gitclone "git@github.com:junegunn/fzf.git"    "$HOME/.fzf"
+if [ $? -eq 0 ]; then
+    "$HOME/.fzf/install" --key-bindings --completion --no-update-rc
+fi
+
+
+# dunst
+if [ "$kernel" = "Linux" ]; then
+    dir "$HOME/.config/dunst"
+    link ".config/dunst/dunstrc" "$HOME/.config/dunst/dunstrc"
+fi
+
+
+# herbstluftwm
+if [ "$kernel" = "Linux" ]; then
+    dir "$HOME/.config/herbstluftwm"
+    link ".config/herbstluftwm/autostart"   "$HOME/.config/herbstluftwm/autostart"
+    link ".config/herbstluftwm/panel.sh"    "$HOME/.config/herbstluftwm/panel.sh"
+fi
+
+
+echo "DONE"

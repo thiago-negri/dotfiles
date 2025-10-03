@@ -21,9 +21,9 @@ vim.o.guicursor = "a:block-nCursor"
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.o.showbreak = "↪ "
 vim.o.breakindent = true
-vim.o.undofile = true
-vim.o.swapfile = true
-vim.o.backup = true
+vim.o.undofile = false
+vim.o.swapfile = false
+vim.o.backup = false
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.laststatus = 2

@@ -1,15 +1,3 @@
-# Elixir & Erlang
-PATH=$HOME/.elixir-install/installs/otp/27.3.4/bin:$PATH
-PATH=$HOME/.elixir-install/installs/elixir/1.18.4-otp-27/bin:$PATH
-
-# pipx
-PATH=$HOME/.local/bin:$PATH
-
-export PATH
-
-XDEB_PKGROOT=$HOME/.config/xdeb
-export XDEB_PKGROOT
-
 # keep in sync with wezterm's sessionizer
 gg-find() {
     local folders=(

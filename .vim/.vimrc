@@ -171,3 +171,25 @@ nnoremap <F4> :echo 'hi<' . synIDattr(synID(line('.'), col('.'), 1), 'name') . '
             \       'trans<' . synIDattr(synID(line('.'), col('.'), 0),'name') . '> ' .
             \       'lo<' . synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name') . '>'<cr>
 
+" Load plugins
+call plug#begin()
+Plug 'easymotion/vim-easymotion'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
+call plug#end()
+
+let g:highlightedyank_highlight_duration = 100
+
+" Fuzzy finder -- fzf
+nnoremap <leader>sf :Files<cr>
+nnoremap <leader>sb :Buffers<cr>
+nnoremap <leader>sg :Rg<cr>
+nnoremap <leader>sw :Rg <c-r><c-w><cr>
+
+" Jump to line -- Easy Motion
+nnoremap <c-j> <plug>(easymotion-j)
+nnoremap <c-k> <plug>(easymotion-k)
