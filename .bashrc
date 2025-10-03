@@ -41,3 +41,5 @@ if command -v docker &>/dev/null; then
 fi
 
 [ -f "$HOME/.gg/gg.sh" ] && . "$HOME/.gg/gg.sh"
+
+PS1='\n\e[90m\u@\h:\w\e[0m\n\$ '
