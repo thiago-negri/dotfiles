@@ -116,6 +116,9 @@ download "$raw_github/nordtheme/vim/refs/heads/main/colors/nord.vim"            
 download "$raw_github/thiago-negri/vim-dark/refs/heads/main/colors/vim-dark.vim"        "$vim/colors/vim-dark.vim"
 download "$raw_github/tomasiser/vim-code-dark/refs/heads/master/colors/codedark.vim"    "$vim/colors/vim-code-dark.vim"
 
+dir "$vim/autoload"
+download "$raw_github/junegunn/vim-plug/master/plug.vim" "$vim/autoload/plug.vim"
+
 dir "$vim/ftplugin"
 link ".vim/ftplugin/gitcommit.vim" "$vim/ftplugin/gitcommit.vim"
 
@@ -127,7 +130,7 @@ gitclone "git@github.com:thiago-negri/gg.git" "$HOME/.gg"
 # fzf
 gitclone "git@github.com:junegunn/fzf.git"    "$HOME/.fzf"
 if [ $? -eq 0 ]; then
-    "$HOME/.fzf/install" --key-bindings --completion --no-update-rc
+    "$HOME/.fzf/install" --key-bindings --completion --no-update-rc --no-zsh --no-fish
 fi
 
 
