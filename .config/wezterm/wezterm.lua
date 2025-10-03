@@ -28,7 +28,8 @@ if isWindows then
         "zsh",
     }
 elseif isMac then
-    config.default_prog = { "/bin/zsh" }
+    -- config.default_prog = { "/bin/zsh" }
+    config.default_prog = { "/usr/local/bin/bash", "-l" }
     -- rarely I work on a single project while on the mac, so having the bar all time is easier
     hideTab = false
     -- The monitor I use for the Mac is darker, so a brighter background is preferred
@@ -230,5 +231,13 @@ wezterm.on("toggle-window-decoration", function(window)
     end
     window:set_config_overrides(overrides)
 end)
+
+if isMac then
+    config.hyperlink_rules = wezterm.default_hyperlink_rules()
+    table.insert(config.hyperlink_rules, {
+        regex = [[\b((PPSVS|EHOPS|BCS)-\d+)\b]],
+        format = "https://everydayhealth.atlassian.net/browse/$1",
+    })
+end
 
 return config
