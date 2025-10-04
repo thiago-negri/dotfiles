@@ -1,10 +1,16 @@
-# keep in sync with wezterm's sessionizer
 gg-find() {
     local folders=(
-        "$HOME/.gg"
-        "$HOME/projects"
-        "$HOME/.config"
-        "$HOME/scripts"
+        "$HOME"
     )
-    find "${folders[@]}" -maxdepth 2 -mindepth 1 -type d -name .git -exec dirname '{}' \; | sort -u
+    local ignores=(
+        "$HOME/.fzf/*"
+    )
+    find "${folders[@]}" \
+        -maxdepth 3 \
+        -mindepth 0 \
+        -not -path "${ignores[@]}" \
+        -type d \
+        -name .git \
+        -exec dirname '{}' \; | \
+        sort -u
 }

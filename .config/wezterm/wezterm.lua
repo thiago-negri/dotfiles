@@ -1,3 +1,5 @@
+-- C-S-L shows the debug overlay, logs will show up there
+
 local wezterm = require("wezterm")
 local sessionizer = require("sessionizer")
 
