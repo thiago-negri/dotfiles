@@ -10,7 +10,7 @@ local isMac = wezterm.target_triple == "x86_64-apple-darwin"
 local hideTab = true
 local backgroundColor = "#060606"
 local font_size_mac = 18
-local font_size = 14
+local font_size = 12
 
 -- Use ZSH
 if isWindows then

@@ -17,7 +17,7 @@ set incsearch                      " Show search results as I'm typing (incremen
 set ignorecase                     " Ignore letter cases when searching
 set smartcase                      " Unless there's at least one capital letter or \C, then consider case
 set belloff=all                    " Disable bell sounds
-set scrolloff=10                   " Number of lines to keep above/below cursor while scrolling
+set scrolloff=0                    " Number of lines to keep above/below cursor while scrolling
 set tabstop=8                      " Show actual tabs as 8 spaces
 set softtabstop=4                  " Use 4 spaces when typing <TAB> by default
 set shiftwidth=4                   " Default indentation level is 4 columns

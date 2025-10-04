@@ -35,7 +35,7 @@ if command -v curl >/dev/null; then
         fi
         curl -D .tmpheaders.txt -fsLo "$dst" "$src"
         grep -i ETag .tmpheaders.txt | awk '{print $2}' | tr -d '\r' >"$dst.etag"
-        rm .tmpheaders.txt
+        rm -f .tmpheaders.txt
     }
 elif command -v wget >/dev/null; then
     download() {
@@ -43,7 +43,7 @@ elif command -v wget >/dev/null; then
         src="$1"
         dst="$2"
         echo "$dst"
-        wget "$src" -O "$dst"
+        wget -q "$src" -O "$dst"
     }
 fi
 
