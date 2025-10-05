@@ -60,4 +60,4 @@ xset m 0 0
 $HOME/projects/utils/setup_monitors.sh
 
 # start herbstluftwm
-herbstluftwm --locked
+exec dbus-run-session herbstluftwm --locked
