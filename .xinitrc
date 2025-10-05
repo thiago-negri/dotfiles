@@ -59,9 +59,5 @@ xset m 0 0
 # setup monitor resolutions
 $HOME/projects/utils/setup_monitors.sh
 
-# start pipewire (for audio)
-pipewire &
-
 # start herbstluftwm
-exec dbus-run-session herbstluftwm --locked
-
+herbstluftwm --locked

@@ -190,8 +190,8 @@ if hc silent new_attr bool my_not_first_autostart ; then
     $HOME/projects/utils/exec_on_tag.sh 1 wezterm &
     $HOME/projects/utils/exec_on_tag.sh 2 firefox &
     $HOME/projects/utils/exec_on_tag.sh 3 thunderbird &
-    $HOME/projects/utils/exec_on_tag.sh 3 $HOME/projects/utils/whatsappweb.sh &
-    $HOME/projects/utils/exec_on_tag.sh 8 $HOME/projects/utils/camera.sh &
+    $HOME/projects/utils/exec_on_tag.sh 3 "$HOME/projects/utils/whatsappweb.sh" &
+    $HOME/projects/utils/exec_on_tag.sh 8 "$HOME/projects/utils/camera.sh" &
     $HOME/projects/utils/exec_on_tag.sh 9 input-leap &
     hc chain , focus_monitor 1 , use_index 7 , focus_monitor 0 , use_index 0
 fi

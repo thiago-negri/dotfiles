@@ -37,7 +37,7 @@ elseif isMac then
     -- The monitor I use for the Mac is darker, so a brighter background is preferred
     backgroundColor = "#101010"
 else
-    config.default_prog = { "/usr/bin/bash" }
+    config.default_prog = { "/usr/bin/bash", "-l" }
 end
 
 -- Show workspace name at left bottom
