@@ -11,7 +11,7 @@ local isWindows = wezterm.target_triple == "x86_64-pc-windows-msvc"
 local isMac = wezterm.target_triple == "x86_64-apple-darwin"
 local hideTab = true
 local backgroundColor = "#060606"
-local font_size_mac = 18
+local font_size_mac = 16
 local font_size = 12
 
 -- Use ZSH
@@ -30,13 +30,14 @@ if isWindows then
         "zsh",
     }
 elseif isMac then
-    -- config.default_prog = { "/bin/zsh" }
-    config.default_prog = { "/usr/local/bin/bash" }
+    -- need to use a login shell (-l) in mac because otherwise it never sources .bash_profile
+    config.default_prog = { "/usr/local/bin/bash", "-l" }
     -- rarely I work on a single project while on the mac, so having the bar all time is easier
     hideTab = false
     -- The monitor I use for the Mac is darker, so a brighter background is preferred
     backgroundColor = "#101010"
 else
+    -- on linux, login shell is executed on tty, no need to keep spawning multiple login shells
     config.default_prog = { "/usr/bin/bash" }
 end
 
