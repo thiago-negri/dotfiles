@@ -31,13 +31,13 @@ if isWindows then
     }
 elseif isMac then
     -- config.default_prog = { "/bin/zsh" }
-    config.default_prog = { "/usr/local/bin/bash", "-l" }
+    config.default_prog = { "/usr/local/bin/bash" }
     -- rarely I work on a single project while on the mac, so having the bar all time is easier
     hideTab = false
     -- The monitor I use for the Mac is darker, so a brighter background is preferred
     backgroundColor = "#101010"
 else
-    config.default_prog = { "/usr/bin/bash", "-l" }
+    config.default_prog = { "/usr/bin/bash" }
 end
 
 -- Show workspace name at left bottom
