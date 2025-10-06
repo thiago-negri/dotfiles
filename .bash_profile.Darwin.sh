@@ -6,6 +6,7 @@ export GRAILS_HOME=/usr/local/grails
 export PHANTOMJS_HOME=/usr/local/phantomjs
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
 
+PATH="$PATH:$HOME/.fzf/bin"
 PATH="$M2_HOME/bin:$PATH"
 PATH="$ANT_HOME/bin:$PATH"
 PATH="$GROOVY_HOME/bin:$PATH"

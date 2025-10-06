@@ -149,4 +149,11 @@ if [ "$kernel" = "Linux" ]; then
 fi
 
 
+# hammerspoon
+if [ "$kernel" = "Darwin" ]; then
+    dir "$HOME/.hammerspoon"
+    link ".hammerspoon/init.lua"    "$HOME/.hammerspoon/init.lua"
+fi
+
+
 echo "DONE"
