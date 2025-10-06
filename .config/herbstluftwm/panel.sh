@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+trap 'kill $(jobs -p)' TERM
+
 quote() {
 	local q="$(printf '%q ' "$@")"
 	printf '%s' "${q% }"
@@ -9,6 +11,10 @@ quote() {
 textwidth="textwidth"
 awk="awk"
 xkblayoutnotify="$HOME/projects/xkblayoutnotify/xkblayoutnotify"
+voldown="wpctl set-volume @DEFAULT_SINK@ 1%- -l 1.0"
+volup="wpctl set-volume @DEFAULT_SINK@ 1%+ -l 1.0"
+volnotify="$HOME/projects/utils/volnotify.sh"
+mute="wpctl set-mute @DEFAULT_SINK@ toggle"
 xkb_switch="xkb-switch"
 
 # if [[ -f /usr/lib/bash/sleep ]]; then
@@ -85,17 +91,16 @@ hc pad $monitor $padup $padright $paddown $padleft
         printf 'date\t^fg(#efefef)%(%A)T^fg(#909090), ^fg(#efefef)%(%d)T^fg(#909090)/%(%m/%Y)T ^fg(#efefef)%(%H:%M)T\n'
         sleep 5 || break
     done > >(uniq_linebuffered) &
-    datepid=$!
     $xkblayoutnotify &
-    xkblayoutnotifypid=$!
+    $volnotify &
     hc --idle
-    kill $xkblayoutnotifypid
-    kill $childpid
-} 2> /dev/null | {
+    kill $(jobs -p)
+} 2>/dev/null | {
     IFS=$'\t' read -ra tags <<< "$(hc tag_status $monitor)"
     visible=true
     date=""
     xkb_layout=""
+    volume="0"
     # windowtitle=""
     while true ; do
 
@@ -130,7 +135,13 @@ hc pad $monitor $padup $padright $paddown $padleft
         # echo -n "^bg()^fg() ${windowtitle//^/^^}"
         # small adjustments
         clickable_xkb_layout="^fg(#a0a0a0)^ca(1,$xkb_switch -n) $xkb_layout ^ca()"
-        right="$separator^bg()$clickable_xkb_layout$separator^bg() $date"
+        if [ "$volume" = "MUTED" ]; then
+            volcolor="#d77070"
+        else
+            volcolor="#a0a0a0"
+        fi
+        volume_bar="^fg($volcolor)^ca(1,$mute) $volume ^ca()"
+        right="$volume_bar$separator^bg()$clickable_xkb_layout$separator^bg() $date"
         right_text_only=$(echo -n "$right" | sed 's.\^[^(]*([^)]*)..g')
         # get width of right aligned text.. and add some space..
         width=$($textwidth "$font" "$right_text_only ")
@@ -146,7 +157,11 @@ hc pad $monitor $padup $padright $paddown $padleft
         # here.
 
         # wait for next event
-        IFS=$'\t' read -ra cmd || break
+        if ! IFS=$'\t' read -ra cmd; then
+            kill $(jobs -p)
+            break
+        fi
+
         # find out event origin
         case "${cmd[0]}" in
             ## custom events
@@ -162,11 +177,16 @@ hc pad $monitor $padup $padright $paddown $padleft
                 fi
                 ;;
 
+            vol)
+                volume="${cmd[1]}"
+                ;;
+
             ## events from "herbstclient --idle"
             tag*)
                 IFS=$'\t' read -ra tags <<< "$(hc tag_status $monitor)"
                 ;;
             quit_panel)
+                kill $(jobs -p)
                 exit
                 ;;
             togglehidepanel)
@@ -187,6 +207,7 @@ hc pad $monitor $padup $padright $paddown $padleft
                 fi
                 ;;
             reload)
+                kill $(jobs -p)
                 exit
                 ;;
             # focus_changed|window_title_changed)
@@ -200,5 +221,5 @@ hc pad $monitor $padup $padright $paddown $padleft
     # gets piped to dzen2.
 
 } | dzen2 -w $panel_width -x $x -y $y -fn "$font" -h $panel_height \
-    -e "button3=;button4=exec:$hc_quoted use_index -1;button5=exec:$hc_quoted use_index +1" \
+    -e "button3=;button4=exec:$volup;button5=exec:$voldown" \
     -ta l -bg "$bgcolor" -fg '#efefef'
