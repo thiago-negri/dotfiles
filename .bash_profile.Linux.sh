@@ -12,6 +12,8 @@ fi
 # slot startup sometimes because of a weird interaction with Xorg.
 # It's already fixed, but they did not release a new version yet. This
 # is a version built from their repo.
+# I should revert to the one managed by xbps when this is properly released.
+# https://github.com/wezterm/wezterm/issues/5884
 export TERMINAL="$HOME/projects/wezterm/target/release/wezterm"
 
 PATH="$PATH:$HOME/.fzf/bin"
