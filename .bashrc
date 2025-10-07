@@ -8,28 +8,28 @@ alias l="ls --color -lhAF"
 
 # Set up fzf key bindings and fuzzy completion.
 if command -v fzf &>/dev/null; then
-    # Somewhat copied from `fzf --bash` output, this is the only thing I actually use, and
-    # the entire `eval "$(fzf --bash)` is too slow.
-    __fzf_history__() {
-        local output script
-        script='BEGIN { getc; $/ = "\n\t"; $HISTCOUNT = $ENV{last_hist} + 1 } s/^[ *]//; s/\n/\n\t/gm; print $HISTCOUNT - $. . "\t$_" if !$seen{$_}++'
-        output=$(
-            set +o pipefail
-            builtin fc -lnr -2147483648 |
-              last_hist=$(HISTTIMEFORMAT='' builtin history 1) command perl -n -l0 -e "$script" |
-              fzf --height -40% --min-height 20+ --bind=ctrl-z:ignore \
-                -n2..,.. --scheme=history --bind=ctrl-r:toggle-sort \
-                --wrap-sign '"$'\t'"↳ ' +m --read0 --query "$READLINE_LINE"
-        ) || return
-        READLINE_LINE=$(command perl -pe 's/^\d*\t//' <<< "$output")
-        if [[ -z "$READLINE_POINT" ]]; then
-            echo "$READLINE_LINE"
-        else
-            READLINE_POINT=0x7fffffff
-        fi
-    }
-    bind -m emacs-standard -x '"\C-r": __fzf_history__'
-
+    # # Somewhat copied from `fzf --bash` output, this is the only thing I actually use, and
+    # # the entire `eval "$(fzf --bash)` is too slow.
+    # __fzf_history__() {
+    #     local output script
+    #     script='BEGIN { getc; $/ = "\n\t"; $HISTCOUNT = $ENV{last_hist} + 1 } s/^[ *]//; s/\n/\n\t/gm; print $HISTCOUNT - $. . "\t$_" if !$seen{$_}++'
+    #     output=$(
+    #         set +o pipefail
+    #         builtin fc -lnr -2147483648 |
+    #           last_hist=$(HISTTIMEFORMAT='' builtin history 1) command perl -n -l0 -e "$script" |
+    #           fzf --height -40% --min-height 20+ --bind=ctrl-z:ignore \
+    #             -n2..,.. --scheme=history --bind=ctrl-r:toggle-sort \
+    #             --wrap-sign '"$'\t'"↳ ' +m --read0 --query "$READLINE_LINE"
+    #     ) || return
+    #     READLINE_LINE=$(command perl -pe 's/^\d*\t//' <<< "$output")
+    #     if [[ -z "$READLINE_POINT" ]]; then
+    #         echo "$READLINE_LINE"
+    #     else
+    #         READLINE_POINT=0x7fffffff
+    #     fi
+    # }
+    # bind -m emacs-standard -x '"\C-r": __fzf_history__'
+    #
     # If I really want all the fzf bells and whistles...
     fzf_load() {
         eval "$(fzf --bash)"
