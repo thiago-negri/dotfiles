@@ -155,7 +155,8 @@ hc keybind $Mod-i jumpto urgent
 ###################################
 hc unrule -F
 hc rule focus=on
-hc rule floatplacement=smart
+# hc rule floatplacement=smart
+hc rule floatplacement=center
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
