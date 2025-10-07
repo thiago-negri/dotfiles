@@ -8,8 +8,8 @@ if [ -z "$DBUS_SESSION_BUS_ADDRESS$DID_EXEC_DBUS_RUN_SESSION" ]; then
     exec dbus-run-session -- bash -l
 fi
 
-# The current WezTerm release has an odd bug that makes it have a very
-# slot startup sometimes because of a weird interaction with Xorg.
+# The current WezTerm release (20240203) has an odd bug that makes it have a
+# very slot startup sometimes because of a weird interaction with Xorg.
 # It's already fixed, but they did not release a new version yet. This
 # is a version built from their repo.
 # I should revert to the one managed by xbps when this is properly released.
