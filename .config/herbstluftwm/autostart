@@ -53,7 +53,7 @@ Mod=Mod4   # Use the super key as the main modifier
 
 hc keybind $Mod-Shift-w spawn firefox
 hc keybind $Mod-Shift-s spawn flameshot gui
-hc keybind $Mod-y spawn dmenu_run -b -i -fn "fixed-18"
+hc keybind $Mod-d spawn dmenu_run -b -i -fn "fixed-18"
 hc keybind $Mod-Return spawn "${TERMINAL:-xterm}"
 
 #hc keybind $Mod-Shift-q quit
@@ -174,11 +174,12 @@ hc unlock
 ###################################
 # MONITORS & PANELS
 ###################################
-# hc set_monitors 1280x1024+0+0 1280x1024+1280+0
-hc detect_monitors
+hc set_monitors 2560x1440+1680+0 1680x1050+0+0
+## Sometimes my external monitor takes a while to connect, and that seems to cause issues for automatic detection
+# hc detect_monitors
 
 # start a panel on each monitor
-panel=~/.config/herbstluftwm/panel.sh
+panel="$HOME/.config/herbstluftwm/panel.sh"
 for monitor in $(hc list_monitors | cut -d: -f1) ; do
     "$panel" "$monitor" &
 done
