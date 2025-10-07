@@ -1,7 +1,5 @@
 #!/bin/sh
 
-export TERMINAL=wezterm
-
 prefix="/usr"
 exec_prefix="${prefix}"
 xrdb="xrdb"
@@ -57,7 +55,17 @@ setxkbmap -rules evdev -layout 'us,us' -variant ',intl' -option 'grp:alt_shift_t
 xset m 0 0
 
 # setup monitor resolutions
-$HOME/projects/utils/setup_monitors.sh
+"$HOME/projects/utils/setup_monitors.sh"
 
-# start herbstluftwm
-exec dbus-run-session herbstluftwm --locked
+# start my personal services
+runsvdir "$HOME/service/sv" &
+runsvdir_pid=$!
+
+# run herbstluftwm
+herbstluftwm --locked
+exit_code=$?
+
+# stop personal services
+kill -HUP $runsvdir_pid
+
+exit $exit_code
