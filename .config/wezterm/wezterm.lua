@@ -14,6 +14,9 @@ local backgroundColor = "#060606"
 local font_size_mac = 16
 local font_size = 12
 
+-- THIS IS INSANITY
+config.adjust_window_size_when_changing_font_size = false
+
 -- Use ZSH
 if isWindows then
     -- Windows specific config
@@ -150,19 +153,20 @@ config.keys = {
     { key = "j", mods = leader, action = act.ActivatePaneDirection("Down") },
     { key = "k", mods = leader, action = act.ActivatePaneDirection("Up") },
     { key = "l", mods = leader, action = act.ActivatePaneDirection("Right") },
+    -- I keep chain-pressing, so bind it with C- too :)
     { key = "h", mods = leader_ctrl, action = act.ActivatePaneDirection("Left") },
     { key = "j", mods = leader_ctrl, action = act.ActivatePaneDirection("Down") },
     { key = "k", mods = leader_ctrl, action = act.ActivatePaneDirection("Up") },
     { key = "l", mods = leader_ctrl, action = act.ActivatePaneDirection("Right") },
 
-    -- Resize panes, <>TS
-    { key = "<", mods = leader, action = act.AdjustPaneSize({ "Left", 5 }) },
-    { key = ">", mods = leader, action = act.AdjustPaneSize({ "Right", 5 }) },
-    { key = "T", mods = leader, action = act.AdjustPaneSize({ "Up", 5 }) },
-    { key = "S", mods = leader, action = act.AdjustPaneSize({ "Down", 5 }) },
+    -- Resize panes, .,ts
+    { key = ".", mods = leader, action = act.AdjustPaneSize({ "Left", 5 }) },
+    { key = ",", mods = leader, action = act.AdjustPaneSize({ "Right", 5 }) },
+    { key = "t", mods = leader, action = act.AdjustPaneSize({ "Up", 5 }) },
+    { key = "s", mods = leader, action = act.AdjustPaneSize({ "Down", 5 }) },
 
-    -- Zoom in/out (change font size), -=
-    { key = "=", mods = ctrl, action = act.IncreaseFontSize },
+    -- Zoom in/out (change font size), -+
+    { key = "+", mods = ctrl, action = act.IncreaseFontSize },
     { key = "-", mods = ctrl, action = act.DecreaseFontSize },
 
     -- Maximize a pane, M
