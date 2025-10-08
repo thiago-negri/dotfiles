@@ -175,14 +175,15 @@ hc unlock
 # MONITORS & PANELS
 ###################################
 hc set_monitors 2560x1440+1680+0 1680x1050+0+0
+panel="$HOME/.config/herbstluftwm/panel.sh"
+"$panel" 0 &
+"$panel" 1 &
+
 ## Sometimes my external monitor takes a while to connect, and that seems to cause issues for automatic detection
 # hc detect_monitors
-
-# start a panel on each monitor
-panel="$HOME/.config/herbstluftwm/panel.sh"
-for monitor in $(hc list_monitors | cut -d: -f1) ; do
-    "$panel" "$monitor" &
-done
+# for monitor in $(hc list_monitors | cut -d: -f1) ; do
+#     "$panel" "$monitor" &
+# done
 
 
 ###################################

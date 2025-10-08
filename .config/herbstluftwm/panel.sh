@@ -3,7 +3,7 @@
 # we start quite a few bg processes, clean them up when we die
 trap 'kill $(jobs -p) 2>/dev/null' INT TERM
 
-monitor=$1
+monitor="$1"
 
 ### dependencies, if missing this will not work as expected
 hc=herbstclient
@@ -16,6 +16,7 @@ mute='wpctl set-mute @DEFAULT_SINK@ toggle'
 volnotify="$HOME/projects/utils/volnotify.sh"
 xkb_switch=xkb-switch
 
+
 ### theme
 font='-*-fixed-medium-*-*-*-20-*-*-*-*-*-*-*'
 c0='#101010'
@@ -23,9 +24,26 @@ c1='#303030'
 c2='#606060'
 c3='#a0a0a0'
 c4='#e0e0e0'
+cr='#e06060'
 
 ### rect
-read -r mx my mw mh <<< $($hc monitor_rect "$monitor")
+# read -r mx my mw mh <<< $($hc monitor_rect "$monitor")
+case "$monitor" in
+    0)
+        mx=1680
+        mw=2560
+        mh=1440
+        ;;
+    1)
+        mx=0
+        mw=1680
+        mh=1050
+        ;;
+    *)
+        echo "unknown monitor $monitor" >&2
+        exit 1
+        ;;
+esac
 pw=$mw
 ph=24
 px=$mx
@@ -34,13 +52,13 @@ py=$(($mh - $ph))
 ### pad hlwm screen space to reserve space for the panel
 padup=0
 padright=0
-paddown=$(($ph + 0))
+paddown=$ph
 padleft=0
-$hc pad $monitor $padup $padright $paddown $padleft
+"$hc" pad $monitor $padup $padright $paddown $padleft
 
 # ignore repeated lines
 uniq_linebuffered() {
-  $awk '$0 != l { print ; l=$0 ; fflush(); }' "$@"
+  "$awk" '$0 != l { print ; l=$0 ; fflush(); }' "$@"
 }
 
 {
@@ -76,13 +94,13 @@ uniq_linebuffered() {
     done > >(uniq_linebuffered) &
 
     # keyboard layout
-    $xkblayoutnotify &
+    "$xkblayoutnotify" &
 
     # volume
-    $volnotify &
+    "$volnotify" &
 
     # hlwm events, this will block
-    $hc --idle
+    "$hc" --idle
 
     kill $(jobs -p)
 } 2>/dev/null | {
@@ -110,13 +128,13 @@ uniq_linebuffered() {
                     echo -n "^bg($c3)^fg($c0)"
                     ;;
                 '+') # shown in this monitor, but not focus
-                    echo -n "^bg($c1)^fg($c0)"
+                    echo -n "^bg($c1)^fg($c3)"
                     ;;
                 ':') # not shown, has windows
                     echo -n "^bg()^fg($c3)"
                     ;;
                 '!') # urgent
-                    echo -n "^bg()^fg($c3)"
+                    echo -n "^bg($cr)^fg($c0)"
                     ;;
                 *)
                     echo -n "^bg()^fg($c1)"
