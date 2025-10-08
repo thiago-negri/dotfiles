@@ -13,9 +13,7 @@ gg-find() {
         "$HOME/projects/ehg"
         "$HOME/projects/tnegri"
         "$HOME/projects/other"
-        "$HOME/.config"
-        "$HOME/.vim/pack/downloads/opt"
-        "$HOME/.vim/pack/downloads/start"
+        "$HOME/.gg"
     )
     find "${folders[@]}" -maxdepth 2 -mindepth 0 -type d -name .git -exec dirname '{}' \; | sort -u
 }
