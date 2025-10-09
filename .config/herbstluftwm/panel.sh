@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
+monitor="$1"
+
 # we start quite a few bg processes, clean them up when we die
 trap 'kill $(jobs -p) 2>/dev/null' INT TERM
-
-monitor="$1"
 
 ### dependencies, if missing this will not work as expected
 hc=herbstclient
@@ -15,7 +15,6 @@ volup='wpctl set-volume @DEFAULT_SINK@ 3%+ -l 1.0'
 mute='wpctl set-mute @DEFAULT_SINK@ toggle'
 volnotify="$HOME/projects/utils/volnotify.sh"
 xkb_switch=xkb-switch
-
 
 ### theme
 font='-*-fixed-medium-*-*-*-20-*-*-*-*-*-*-*'
@@ -172,6 +171,8 @@ uniq_linebuffered() {
             break
         fi
 
+        # echo "${cmd[*]}" >>"$HOME/panel_$monitor.log"
+
         # find out event origin
         case "${cmd[0]}" in
             ## custom events
@@ -188,7 +189,9 @@ uniq_linebuffered() {
                 ;;
 
             vol)
-                if [ "${cmd[1]}" = "MUTED" ]; then
+                if [ -z "${cmd[1]}" ]; then
+                    volume=" ^fg($c2)V ^fg($c3)????? "
+                elif [ "${cmd[1]}" = "MUTED" ]; then
                     volume=" ^fg($c2)V ^fg($c3)MUTED "
                 else
                     volfil=$(( ${cmd[1]} / 2 ))
