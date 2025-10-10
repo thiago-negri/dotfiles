@@ -45,7 +45,7 @@ case "$monitor" in
         ;;
 esac
 pw=$mw
-ph=24
+ph=19
 px=$mx
 py=$(($mh - $ph))
 
