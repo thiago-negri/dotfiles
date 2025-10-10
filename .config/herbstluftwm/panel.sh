@@ -7,7 +7,7 @@ trap 'kill $(jobs -p) 2>/dev/null' INT TERM
 
 ### dependencies, if missing this will not work as expected
 hc=herbstclient
-textwidth=textwidth
+textwidth="$HOME/projects/xftwidth/xftwidth"
 awk=awk
 xkblayoutnotify="$HOME/projects/xkblayoutnotify/xkblayoutnotify"
 voldown='wpctl set-volume @DEFAULT_SINK@ 3%- -l 1.0'
@@ -17,7 +17,8 @@ volnotify="$HOME/projects/utils/volnotify.sh"
 xkb_switch=xkb-switch
 
 ### theme
-font='-*-fixed-medium-*-*-*-20-*-*-*-*-*-*-*'
+# font='-*-fixed-medium-*-*-*-20-*-*-*-*-*-*-*'
+font='Comic Code:size=12'
 c0='#101010'
 c1='#303030'
 c2='#606060'
