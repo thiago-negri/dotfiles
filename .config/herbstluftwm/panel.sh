@@ -104,7 +104,7 @@ uniq_linebuffered() {
 
     kill $(jobs -p)
 } 2>/dev/null | {
-    separator="^bg()^fg($c1) | "
+    separator="^bg()^fg($c1)|"
 
     # starting values
     IFS=$'\t' read -ra tags <<< "$($hc tag_status $monitor)"
@@ -246,6 +246,7 @@ uniq_linebuffered() {
                 ;;
             focus_changed|window_title_changed)
                 windowtitle="${cmd[@]:2}"
+                windowtitle="${windowtitle:0:62}"
                 ;;
         esac
     done
