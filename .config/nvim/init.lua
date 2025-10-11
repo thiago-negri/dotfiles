@@ -96,6 +96,7 @@ My_Statusline = function()
 	return mode_text .. " %#StatuslineFile# %f %m%=" .. position_text .. "%#StatuslineFilePos#%p%% "
 end
 
+vim.keymap.set({ "n" }, "<leader>w", "<cmd>w<cr>") -- Write file
 vim.keymap.set({ "v", "n" }, "<leader>y", '"+y') -- System clipboard y
 vim.keymap.set({ "v", "n" }, "<leader>Y", '"+Y') -- System clipboard Y
 vim.keymap.set({ "v", "n" }, "<leader>p", '"+p') -- System clipboard p
