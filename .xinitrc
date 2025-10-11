@@ -61,6 +61,9 @@ xset m 0 0
 runsvdir "$HOME/service/sv" &
 runsvdir_pid=$!
 
+# start xscreensaver daemon
+xscreensaver --no-splash &
+
 # run herbstluftwm
 herbstluftwm --locked
 exit_code=$?
