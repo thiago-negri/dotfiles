@@ -156,7 +156,7 @@ uniq_linebuffered() {
         dzen_vol="^ca(1,$mute)$volume^ca()"
 
         # full right bar
-        right="$wlp$separator$enp$separator$dzen_vol$separator$dzen_xkblayout$separator$date"
+        right="$separator$wlp$separator$enp$separator$dzen_vol$separator$dzen_xkblayout$separator$date"
         right_text=$(echo -n "$right" | sed 's.\(\^[^(]*([^)]*)\)\|MUTED\|?????..g')
         # width of right aligned text
         width=$($textwidth "$font" "$right_text")

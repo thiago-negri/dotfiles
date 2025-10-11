@@ -5,6 +5,7 @@ shopt -qs histappend
 
 # Aliases
 alias l="ls --color -lhAF"
+alias ls="ls --color"
 
 # Set up fzf key bindings and fuzzy completion.
 if command -v fzf &>/dev/null; then
