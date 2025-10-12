@@ -4,7 +4,7 @@ HISTSIZE=10000
 shopt -qs histappend
 
 # Aliases
-alias l="ls --color -lhAF"
+alias l="ls --color -lhAF --group-directories-first"
 alias ls="ls --color"
 
 # Set up fzf key bindings and fuzzy completion.
