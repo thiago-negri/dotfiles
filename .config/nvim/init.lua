@@ -1,5 +1,6 @@
 local vim = vim -- Undefined global `vim`.
-local colorcolumn = "121,122" -- Declares as variable as it's used when toggling zen mode off as well.
+-- local colorcolumn = "121,122" -- Declares as variable as it's used when toggling zen mode off as well.
+local colorcolumn = "81,82" -- Declares as variable as it's used when toggling zen mode off as well.
 
 vim.o.cursorline = true
 vim.o.colorcolumn = colorcolumn
@@ -11,7 +12,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.inccommand = "split"
 vim.o.confirm = true
-vim.o.scrolloff = 0
+vim.o.scrolloff = 4
 vim.o.tabstop = 8
 vim.o.softtabstop = 2
 vim.o.shiftwidth = 2
@@ -193,6 +194,7 @@ Plug("nvim-treesitter/nvim-treesitter", {
 		vim.cmd("TSUpdate")
 	end,
 })
+Plug("shortcuts/no-neck-pain.nvim", { tag = "*" })
 -- LSP {{{
 Plug("mason-org/mason.nvim")
 Plug("mason-org/mason-lspconfig.nvim")
@@ -252,7 +254,7 @@ local setup_plugins = function()
 	})
 
 	require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
-	vim.keymap.set("n", "<c-j>", "<cmd>HopChar1<cr>")
+	vim.keymap.set("n", "<c-j>", "<cmd>HopChar1MW<cr>")
 
 	require("nvim-treesitter.configs").setup({
 		ensure_installed = {

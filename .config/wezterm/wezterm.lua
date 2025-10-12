@@ -74,7 +74,13 @@ wezterm.on("gui-attached", function()
     end
 end)
 
-config.font = wezterm.font_with_fallback({ "Comic Code", "JetBrains Mono" })
+config.font = wezterm.font_with_fallback({
+    "0xProto NL",
+    "0xProto",
+    "IoskeleyMono",
+    "Comic Code",
+    "JetBrains Mono",
+})
 
 if isMac then
     config.font_size = font_size_mac
