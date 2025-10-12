@@ -12,7 +12,7 @@ local isMac = wezterm.target_triple == "x86_64-apple-darwin"
 local hideTab = true
 local backgroundColor = "#060606"
 local font_size_mac = 16
-local font_size = 12
+local font_size = 14
 
 -- THIS IS INSANITY
 config.adjust_window_size_when_changing_font_size = false
@@ -33,14 +33,18 @@ if isWindows then
         "zsh",
     }
 elseif isMac then
-    -- need to use a login shell (-l) in mac because otherwise it never sources .bash_profile
+    -- need to use a login shell (-l) in mac because otherwise it never sources
+    -- .bash_profile
     config.default_prog = { "/usr/local/bin/bash", "-l" }
-    -- rarely I work on a single project while on the mac, so having the bar all time is easier
+    -- rarely I work on a single project while on the mac, so having the bar all
+    -- time is easier
     hideTab = false
-    -- The monitor I use for the Mac is darker, so a brighter background is preferred
+    -- The monitor I use for the Mac is darker, so a brighter background is
+    -- preferred
     backgroundColor = "#101010"
 else
-    -- on linux, login shell is executed on tty, no need to keep spawning multiple login shells
+    -- on linux, login shell is executed on tty, no need to keep spawning
+    -- multiple login shells
     config.default_prog = { "/usr/bin/bash" }
 end
 
@@ -143,16 +147,34 @@ end
 -- Keybindings
 config.keys = {
     -- Sessionizer / Workspaces
-    { key = "f", mods = leader, action = wezterm.action_callback(sessionizer.toggle) },
-    { key = "q", mods = leader, action = act.SwitchToWorkspace({ name = "default" }) },
+    {
+        key = "f",
+        mods = leader,
+        action = wezterm.action_callback(sessionizer.toggle),
+    },
+    {
+        key = "q",
+        mods = leader,
+        action = act.SwitchToWorkspace({ name = "default" }),
+    },
     {
         key = "w",
         mods = leader,
         action = wezterm.action_callback(function(win, pane)
-            win:perform_action(act.SwitchToWorkspace({ name = "projects", spawn = { cwd = project_root } }), pane)
+            win:perform_action(
+                act.SwitchToWorkspace({
+                    name = "projects",
+                    spawn = { cwd = project_root },
+                }),
+                pane
+            )
         end),
     },
-    { key = "e", mods = leader, action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
+    {
+        key = "e",
+        mods = leader,
+        action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }),
+    },
 
     -- Move between panes, HJKL
     { key = "h", mods = leader, action = act.ActivatePaneDirection("Left") },
@@ -160,10 +182,22 @@ config.keys = {
     { key = "k", mods = leader, action = act.ActivatePaneDirection("Up") },
     { key = "l", mods = leader, action = act.ActivatePaneDirection("Right") },
     -- I keep chain-pressing, so bind it with C- too :)
-    { key = "h", mods = leader_ctrl, action = act.ActivatePaneDirection("Left") },
-    { key = "j", mods = leader_ctrl, action = act.ActivatePaneDirection("Down") },
+    {
+        key = "h",
+        mods = leader_ctrl,
+        action = act.ActivatePaneDirection("Left"),
+    },
+    {
+        key = "j",
+        mods = leader_ctrl,
+        action = act.ActivatePaneDirection("Down"),
+    },
     { key = "k", mods = leader_ctrl, action = act.ActivatePaneDirection("Up") },
-    { key = "l", mods = leader_ctrl, action = act.ActivatePaneDirection("Right") },
+    {
+        key = "l",
+        mods = leader_ctrl,
+        action = act.ActivatePaneDirection("Right"),
+    },
 
     -- Resize panes, .,ts
     { key = ".", mods = leader, action = act.AdjustPaneSize({ "Left", 5 }) },
@@ -195,7 +229,11 @@ config.keys = {
 
     -- New tab, N
     { key = "n", mods = leader, action = act.SpawnTab("CurrentPaneDomain") },
-    { key = "n", mods = leader_ctrl, action = act.SpawnTab("CurrentPaneDomain") },
+    {
+        key = "n",
+        mods = leader_ctrl,
+        action = act.SpawnTab("CurrentPaneDomain"),
+    },
 
     -- Move current pane to a new tab, SHIFT-N
     {
@@ -210,12 +248,28 @@ config.keys = {
     { key = ";", mods = leader, action = act.EmitEvent("toggle-window-font") },
 
     -- Split tab, VS
-    { key = "v", mods = leader, action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-    { key = "s", mods = leader, action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-    { key = "t", mods = leader, action = act.SplitPane({ direction = "Down", size = { Cells = 10 } }) },
+    {
+        key = "v",
+        mods = leader,
+        action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+    },
+    {
+        key = "s",
+        mods = leader,
+        action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
+    },
+    {
+        key = "t",
+        mods = leader,
+        action = act.SplitPane({ direction = "Down", size = { Cells = 10 } }),
+    },
 
     -- Close pane, Q
-    { key = "q", mods = leader, action = act.CloseCurrentPane({ confirm = false }) },
+    {
+        key = "q",
+        mods = leader,
+        action = act.CloseCurrentPane({ confirm = false }),
+    },
 
     -- Enter VI mode, '
     { key = "'", mods = leader, action = act.ActivateCopyMode },
@@ -228,7 +282,7 @@ end)
 wezterm.on("toggle-window-font", function(window)
     local overrides = window:get_config_overrides() or {}
     if not overrides.font then
-        overrides.font = wezterm.font("CommitMono")
+        overrides.font = wezterm.font("Comic Code")
     else
         overrides.font = nil
     end
