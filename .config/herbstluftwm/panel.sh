@@ -15,10 +15,12 @@ volup='wpctl set-volume @DEFAULT_SINK@ 3%+ -l 1.0'
 mute='wpctl set-mute @DEFAULT_SINK@ toggle'
 volnotify="$HOME/projects/utils/volnotify.sh"
 xkb_switch=xkb-switch
+ysarys="$HOME/projects/ysarys/app_dist/ysarys"
+ysarys_db="$HOME/projects/ysarys/test.db"
 
 ### theme
 # font='-*-fixed-medium-*-*-*-20-*-*-*-*-*-*-*'
-font='Comic Code:size=12'
+font='0xProto:size=12'
 c0='#101010'
 c1='#303030'
 c2='#606060'
@@ -45,7 +47,7 @@ case "$monitor" in
         ;;
 esac
 pw=$mw
-ph=19
+ph=23 # font height + 2px to match dmenu height
 px=$mx
 py=$(($mh - $ph))
 
@@ -93,6 +95,13 @@ uniq_linebuffered() {
         sleep 5 || break
     done > >(uniq_linebuffered) &
 
+    # ysarys status, 5 minutes
+    while true ; do
+        read -r today tomorrow next_week <<< $("$ysarys" "$ysarys_db" status)
+        printf "ysarys\t$today\t$tomorrow\t$next_week\n"
+        sleep 300 || break
+    done > >(uniq_linebuffered) &
+
     # keyboard layout
     "$xkblayoutnotify" &
 
@@ -115,6 +124,9 @@ uniq_linebuffered() {
     enp=""
     wlp=""
     windowtitle=""
+    ysarys_now="?"
+    ysarys_tomorrow="?"
+    ysarys_next_week="?"
 
     while true ; do
 
@@ -155,8 +167,13 @@ uniq_linebuffered() {
         # clickable volume indicator
         dzen_vol="^ca(1,$mute)$volume^ca()"
 
+        # ysarys
+        ysarys_c="^fg($c3)"
+        [ $ysarys_now -ne 0 ] && ysarys_c="^fg($c0)^bg($cr)"
+        ysarys_group=" $ysarys_c $ysarys_now ^fg($c2)^bg() $ysarys_tomorrow ^fg($c1) $ysarys_next_week  "
+
         # full right bar
-        right="$separator$wlp$separator$enp$separator$dzen_vol$separator$dzen_xkblayout$separator$date"
+        right="$separator$wlp$separator$enp$separator$dzen_vol$separator$dzen_xkblayout$separator$ysarys_group$separator$date"
         right_text=$(echo -n "$right" | sed 's.\(\^[^(]*([^)]*)\)\|MUTED\|?????..g')
         # width of right aligned text
         width=$($textwidth "$font" "$right_text")
@@ -213,6 +230,12 @@ uniq_linebuffered() {
                     UP) wlp=" ^fg($c2)W ^fg($c3)${cmd[2]} ^fg($c2)${cmd[3]} ";;
                     * ) wlp=" ^fg($c2)W ^fg($c3)${cmd[1]} ";;
                 esac
+                ;;
+
+            ysarys)
+                ysarys_now="${cmd[1]}"
+                ysarys_tomorrow="${cmd[2]}"
+                ysarys_next_week="${cmd[3]}"
                 ;;
 
             ## events from "herbstclient --idle"

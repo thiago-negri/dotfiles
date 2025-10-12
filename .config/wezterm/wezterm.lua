@@ -10,9 +10,9 @@ local act = wezterm.action
 local isWindows = wezterm.target_triple == "x86_64-pc-windows-msvc"
 local isMac = wezterm.target_triple == "x86_64-apple-darwin"
 local hideTab = true
-local backgroundColor = "#060606"
+local backgroundColor = "#111111"
 local font_size_mac = 16
-local font_size = 14
+local font_size = 12
 
 -- THIS IS INSANITY
 config.adjust_window_size_when_changing_font_size = false
@@ -41,7 +41,7 @@ elseif isMac then
     hideTab = false
     -- The monitor I use for the Mac is darker, so a brighter background is
     -- preferred
-    backgroundColor = "#101010"
+    backgroundColor = "#131313"
 else
     -- on linux, login shell is executed on tty, no need to keep spawning
     -- multiple login shells

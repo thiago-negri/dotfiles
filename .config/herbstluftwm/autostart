@@ -53,7 +53,7 @@ Mod=Mod4   # Use the super key as the main modifier
 
 hc keybind $Mod-Shift-w spawn firefox
 hc keybind $Mod-Shift-s spawn flameshot gui
-hc keybind $Mod-d spawn dmenu_run -b -i -fn "Comic Code:size=12"
+hc keybind $Mod-d spawn dmenu_run -b -i -fn "0xProto:size=12"
 hc keybind $Mod-0 spawn xscreensaver-command --lock
 hc keybind $Mod-Return spawn "${TERMINAL:-xterm}"
 
