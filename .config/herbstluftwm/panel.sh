@@ -97,8 +97,8 @@ uniq_linebuffered() {
 
     # ysarys status, 5 minutes
     while true ; do
-        read -r today tomorrow next_week <<< $("$ysarys" "$ysarys_db" status)
-        printf "ysarys\t$today\t$tomorrow\t$next_week\n"
+        read -r tomorrow three_days <<< $("$ysarys" "$ysarys_db" status)
+        printf "ysarys\t$tomorrow\t$three_days\n"
         sleep 300 || break
     done > >(uniq_linebuffered) &
 
@@ -124,9 +124,8 @@ uniq_linebuffered() {
     enp=""
     wlp=""
     windowtitle=""
-    ysarys_now="?"
     ysarys_tomorrow="?"
-    ysarys_next_week="?"
+    ysarys_three_days="?"
 
     while true ; do
 
@@ -169,8 +168,8 @@ uniq_linebuffered() {
 
         # ysarys
         ysarys_c="^fg($c3)"
-        [ $ysarys_now -ne 0 ] && ysarys_c="^fg($c0)^bg($cr)"
-        ysarys_group=" $ysarys_c $ysarys_now ^fg($c2)^bg() $ysarys_tomorrow ^fg($c1) $ysarys_next_week  "
+        [ $ysarys_tomorrow -ne 0 ] && ysarys_c="^fg($c0)^bg($cr)"
+        ysarys_group=" $ysarys_c $ysarys_tomorrow ^fg($c2)^bg() $ysarys_three_days  "
 
         # full right bar
         right="$separator$wlp$separator$enp$separator$dzen_vol$separator$dzen_xkblayout$separator$ysarys_group$separator$date"
@@ -233,9 +232,8 @@ uniq_linebuffered() {
                 ;;
 
             ysarys)
-                ysarys_now="${cmd[1]}"
-                ysarys_tomorrow="${cmd[2]}"
-                ysarys_next_week="${cmd[3]}"
+                ysarys_tomorrow="${cmd[1]}"
+                ysarys_three_days="${cmd[2]}"
                 ;;
 
             ## events from "herbstclient --idle"
