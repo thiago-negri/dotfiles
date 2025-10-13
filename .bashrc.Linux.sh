@@ -1,3 +1,5 @@
+alias l="ls --color -lhAF --group-directories-first"
+
 gg-find() {
     local folders=(
         "$HOME"

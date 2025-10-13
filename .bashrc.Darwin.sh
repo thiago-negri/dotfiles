@@ -1,3 +1,6 @@
+# "--group-directories-first" is a GNU coreutils thing
+alias l="ls --color -lhAF"
+
 jvm_8() {
     export JAVA_HOME=/Library/Java/JavaVirtualMachines/openlogic-openjdk-8.jdk/Contents/Home/
 }
