@@ -46,6 +46,9 @@ if [ -f "$HOME/.nvm/nvm.sh" ]; then
         [ -f ./.nvmrc ] && nvm use $(head -n 1 ./.nvmrc)
         nvm "$@"
     }
+    nvm_load() {
+        nvm current
+    }
 fi
 
 # Make sure wezterm knows what the cwd is
