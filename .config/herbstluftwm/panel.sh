@@ -15,7 +15,7 @@ volup='wpctl set-volume @DEFAULT_SINK@ 3%+ -l 1.0'
 mute='wpctl set-mute @DEFAULT_SINK@ toggle'
 volnotify="$HOME/projects/utils/volnotify.sh"
 xkb_switch=xkb-switch
-ysarys="$HOME/projects/ysarys/app_dist/ysarys"
+ysarys="$HOME/projects/ysarys/dist/ysarys"
 ysarys_db="$HOME/projects/ysarys/test.db"
 
 ### theme
