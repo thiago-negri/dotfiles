@@ -380,9 +380,19 @@ local setup_plugins = function()
 			typescript = { "prettierd", "prettier", stop_after_first = true },
 		},
 	})
-	vim.keymap.set("n", "<leader>f", function()
-		conform.format({ async = true, lsp_format = "fallback" })
-	end)
+	vim.api.nvim_create_user_command("Format", function(args)
+		local opts = { async = true, lsp_format = "fallback" }
+		if args.range == 2 then
+			opts.range = {
+				start = { args.line1, 0 },
+				["end"] = { args.line2 + 1, 0 },
+			}
+		end
+		conform.format(opts)
+	end, { range = true })
+	-- vim.keymap.set("n", "<leader>f", function()
+	-- 	conform.format({ async = true, lsp_format = "fallback" })
+	-- end)
 end
 vim.api.nvim_create_autocmd("VimEnter", {
 	group = vim.api.nvim_create_augroup("plugins-setup", { clear = true }),
