@@ -1,0 +1,31 @@
+[Default Applications]
+x-scheme-handler/mailto=userapp-Thunderbird-XMKFD3.desktop
+message/rfc822=userapp-Thunderbird-XMKFD3.desktop
+x-scheme-handler/mid=userapp-Thunderbird-XMKFD3.desktop
+x-scheme-handler/http=userapp-Firefox-GUWGD3.desktop
+x-scheme-handler/https=userapp-Firefox-GUWGD3.desktop
+x-scheme-handler/chrome=userapp-Firefox-GUWGD3.desktop
+text/html=userapp-Firefox-GUWGD3.desktop
+application/x-extension-htm=userapp-Firefox-GUWGD3.desktop
+application/x-extension-html=userapp-Firefox-GUWGD3.desktop
+application/x-extension-shtml=userapp-Firefox-GUWGD3.desktop
+application/xhtml+xml=userapp-Firefox-GUWGD3.desktop
+application/x-extension-xhtml=userapp-Firefox-GUWGD3.desktop
+application/x-extension-xht=userapp-Firefox-GUWGD3.desktop
+application/zip=userapp-zathura-6OK4D3.desktop
+inode/directory=thunar.desktop
+
+[Added Associations]
+x-scheme-handler/mailto=userapp-Thunderbird-XMKFD3.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-XMKFD3.desktop;
+x-scheme-handler/http=userapp-Firefox-GUWGD3.desktop;
+x-scheme-handler/https=userapp-Firefox-GUWGD3.desktop;
+x-scheme-handler/chrome=userapp-Firefox-GUWGD3.desktop;
+text/html=userapp-Firefox-GUWGD3.desktop;
+application/x-extension-htm=userapp-Firefox-GUWGD3.desktop;
+application/x-extension-html=userapp-Firefox-GUWGD3.desktop;
+application/x-extension-shtml=userapp-Firefox-GUWGD3.desktop;
+application/xhtml+xml=userapp-Firefox-GUWGD3.desktop;
+application/x-extension-xhtml=userapp-Firefox-GUWGD3.desktop;
+application/x-extension-xht=userapp-Firefox-GUWGD3.desktop;
+application/zip=userapp-zathura-6OK4D3.desktop;

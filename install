@@ -66,6 +66,13 @@ gitclone() {
 }
 
 
+dir "$HOME/.config"
+
+
+# xdg-mime
+link ".config/mimeapps.list" "$HOME/.config/mimeapps.list"
+
+
 # bash
 link ".bash_profile"                "$HOME/.bash_profile"
 link ".bash_profile.$kernel.sh"     "$HOME/.bash_profile.local.sh"
