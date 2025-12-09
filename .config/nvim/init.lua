@@ -254,7 +254,7 @@ local setup_plugins = function()
 	})
 
 	require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
-	vim.keymap.set("n", "<c-j>", "<cmd>HopChar1MW<cr>")
+	vim.keymap.set("n", "<c-j>", "<cmd>HopPatternMW<cr>")
 
 	require("nvim-treesitter.configs").setup({
 		ensure_installed = {
