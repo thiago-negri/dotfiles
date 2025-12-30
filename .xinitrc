@@ -54,6 +54,9 @@ setxkbmap -rules evdev -layout 'us,us' -variant ',intl' -option 'grp:alt_shift_t
 # disable mouse acceleration
 xset m 0 0
 
+# let nvidia render to intel outputs
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
 # setup monitor resolutions
 "$HOME/projects/utils/setup_monitors.sh"
 
@@ -65,6 +68,7 @@ runsvdir_pid=$!
 xscreensaver --no-splash &
 
 # run herbstluftwm
+# xfce4-session
 herbstluftwm --locked
 exit_code=$?
 

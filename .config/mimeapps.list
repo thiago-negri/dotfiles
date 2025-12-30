@@ -29,3 +29,5 @@ application/xhtml+xml=userapp-Firefox-GUWGD3.desktop;
 application/x-extension-xhtml=userapp-Firefox-GUWGD3.desktop;
 application/x-extension-xht=userapp-Firefox-GUWGD3.desktop;
 application/zip=userapp-zathura-6OK4D3.desktop;
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
+text/x-log=org.xfce.mousepad.desktop;
