@@ -17,6 +17,7 @@ volnotify="$HOME/projects/utils/volnotify.sh"
 xkb_switch=xkb-switch
 ysarys="$HOME/projects/ysarys/dist/ysarys"
 ysarys_db="$HOME/projects/ysarys/test.db"
+battery_status="$HOME/projects/utils/battery_status.sh"
 
 ### theme
 # font='-*-fixed-medium-*-*-*-20-*-*-*-*-*-*-*'
@@ -102,6 +103,16 @@ uniq_linebuffered() {
         sleep 300 || break
     done > >(uniq_linebuffered) &
 
+    # battery status, 30 seconds
+    while true ; do
+        read -r bat <<< $("$battery_status")
+        printf "bat\t"
+        # $bat has a '%' that cause issues in printf
+        echo -n $bat
+        printf "\n"
+        sleep 30 || break
+    done > >(uniq_linebuffered) &
+
     # keyboard layout
     "$xkblayoutnotify" &
 
@@ -126,6 +137,7 @@ uniq_linebuffered() {
     windowtitle=""
     ysarys_tomorrow="?"
     ysarys_three_days="?"
+    read -r bat <<< $("$battery_status")
 
     while true ; do
 
@@ -166,13 +178,15 @@ uniq_linebuffered() {
         # clickable volume indicator
         dzen_vol="^ca(1,$mute)$volume^ca()"
 
+        bat_status=" ^fg($c3)$bat "
+
         # ysarys
         ysarys_c="^fg($c3)"
         [ $ysarys_tomorrow -ne 0 ] && ysarys_c="^fg($c0)^bg($cr)"
         ysarys_group=" $ysarys_c $ysarys_tomorrow ^fg($c2)^bg() $ysarys_three_days  "
 
         # full right bar
-        right="$separator$wlp$separator$enp$separator$dzen_vol$separator$dzen_xkblayout$separator$ysarys_group$separator$date"
+        right="$separator$wlp$separator$enp$separator$dzen_vol$separator$dzen_xkblayout$separator$ysarys_group$separator$bat_status$separator$date"
         right_text=$(echo -n "$right" | sed 's.\(\^[^(]*([^)]*)\)\|MUTED\|?????..g')
         # width of right aligned text
         width=$($textwidth "$font" "$right_text")
@@ -188,7 +202,7 @@ uniq_linebuffered() {
             break
         fi
 
-        # echo "${cmd[*]}" >>"$HOME/panel_$monitor.log"
+        echo "${cmd[*]}" >>"$HOME/panel_$monitor.log"
 
         # find out event origin
         case "${cmd[0]}" in
@@ -234,6 +248,10 @@ uniq_linebuffered() {
             ysarys)
                 ysarys_tomorrow="${cmd[1]}"
                 ysarys_three_days="${cmd[2]}"
+                ;;
+
+            bat)
+                bat="${cmd[1]}"
                 ;;
 
             ## events from "herbstclient --idle"
