@@ -302,7 +302,7 @@ end)
 if isMac then
     config.hyperlink_rules = wezterm.default_hyperlink_rules()
     table.insert(config.hyperlink_rules, {
-        regex = [[\b((PPSVS|EHOPS|BCS)-\d+)\b]],
+        regex = [[\b((PPSVS|EHOPS|BCS|ARC)-\d+)\b]],
         format = "https://everydayhealth.atlassian.net/browse/$1",
     })
 end
