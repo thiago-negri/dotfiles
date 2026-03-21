@@ -152,6 +152,16 @@ hc keybind $Mod-Shift-Tab   cycle_all -1
 hc keybind $Mod-c cycle
 hc keybind $Mod-i jumpto urgent
 
+# unminimize all
+hc keybind $Mod-Ctrl-m \
+   substitute FOCUS "tags.focus.name" \
+   foreach CLIENT clients. \
+     sprintf MINATT "%c.minimized" CLIENT \
+     sprintf TAGATT "%c.tag" CLIENT and \
+       , compare MINATT "=" "true" \
+       , compare TAGATT "=" FOCUS \
+       , set_attr MINATT false
+
 ###################################
 # RULES
 ###################################
