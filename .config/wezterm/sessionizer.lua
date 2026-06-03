@@ -6,12 +6,13 @@ local act = wezterm.action
 local M = {}
 
 -- local isWindows = wezterm.target_triple == "x86_64-pc-windows-msvc"
-local isMac = wezterm.target_triple == "x86_64-apple-darwin"
+-- local isMac = wezterm.target_triple == "x86_64-apple-darwin"
+local isMac = wezterm.target_triple == "aarch64-apple-darwin"
 
 -- Use gg's cache file to know all repositories in this machine
 local gg_cache_filepath
 if isMac then
-    gg_cache_filepath = "/Users/thiago.negri/.gg/.cache"
+    gg_cache_filepath = "/Users/tnegri/.gg/.cache"
 else
     gg_cache_filepath = "/home/tnegri/.gg/.cache"
 end

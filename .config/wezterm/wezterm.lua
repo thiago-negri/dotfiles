@@ -8,7 +8,8 @@ local config = wezterm.config_builder()
 local act = wezterm.action
 
 local isWindows = wezterm.target_triple == "x86_64-pc-windows-msvc"
-local isMac = wezterm.target_triple == "x86_64-apple-darwin"
+-- local isMac = wezterm.target_triple == "x86_64-apple-darwin"
+local isMac = wezterm.target_triple == "aarch64-apple-darwin"
 local hideTab = true
 local backgroundColor = "#111111"
 local font_size_mac = 16
@@ -35,7 +36,7 @@ if isWindows then
 elseif isMac then
     -- need to use a login shell (-l) in mac because otherwise it never sources
     -- .bash_profile
-    config.default_prog = { "/usr/local/bin/bash", "-l" }
+    config.default_prog = { "/opt/homebrew/bin/bash", "-l" }
     -- rarely I work on a single project while on the mac, so having the bar all
     -- time is easier
     hideTab = false
@@ -141,7 +142,7 @@ local project_root = "/home/tnegri/projects"
 if isWindows then
     project_root = "C:\\Projetos"
 elseif isMac then
-    project_root = "/Users/thiago.negri/projects"
+    project_root = "/Users/tnegri/projects"
 end
 
 -- Keybindings
