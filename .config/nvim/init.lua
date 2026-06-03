@@ -189,11 +189,11 @@ Plug("nvim-mini/mini.nvim")
 Plug("stevearc/conform.nvim")
 Plug("tpope/vim-sleuth")
 Plug("smoka7/hop.nvim")
-Plug("nvim-treesitter/nvim-treesitter", {
-	["do"] = function()
-		vim.cmd("TSUpdate")
-	end,
-})
+-- Plug("nvim-treesitter/nvim-treesitter", {
+-- 	["do"] = function()
+-- 		vim.cmd("TSUpdate")
+-- 	end,
+-- })
 Plug("shortcuts/no-neck-pain.nvim", { tag = "*" })
 -- LSP {{{
 Plug("mason-org/mason.nvim")
@@ -256,28 +256,28 @@ local setup_plugins = function()
 	require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
 	vim.keymap.set("n", "<c-j>", "<cmd>HopPatternMW<cr>")
 
-	require("nvim-treesitter.configs").setup({
-		ensure_installed = {
-			"bash",
-			"c",
-			"diff",
-			"html",
-			"lua",
-			"luadoc",
-			"markdown",
-			"markdown_inline",
-			"query",
-			"vim",
-			"vimdoc",
-			"typescript",
-		},
-		auto_install = true,
-		highlight = {
-			enable = true,
-			additional_vim_regex_highlighting = { "ruby" },
-		},
-		indent = { enable = true, disable = { "ruby" } },
-	})
+	-- require("nvim-treesitter.configs").setup({
+	-- 	ensure_installed = {
+	-- 		"bash",
+	-- 		"c",
+	-- 		"diff",
+	-- 		"html",
+	-- 		"lua",
+	-- 		"luadoc",
+	-- 		"markdown",
+	-- 		"markdown_inline",
+	-- 		"query",
+	-- 		"vim",
+	-- 		"vimdoc",
+	-- 		"typescript",
+	-- 	},
+	-- 	auto_install = true,
+	-- 	highlight = {
+	-- 		enable = true,
+	-- 		additional_vim_regex_highlighting = { "ruby" },
+	-- 	},
+	-- 	indent = { enable = true, disable = { "ruby" } },
+	-- })
 
 	-- LSP {{{
 	require("mason").setup()
