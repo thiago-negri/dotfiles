@@ -19,6 +19,9 @@ PATH="$PATH:$HOME/.docker/bin"
 PATH="$PATH:$HOME/.dotnet/tools"
 PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 
+# claude
+PATH="$PATH:$HOME/.local/bin"
+
 # homebrew install stuff to /usr/local, make sure it goes before /usr/bin to override system defaults (e.g. vim)
 PATH="/usr/local/bin:$PATH"
 
