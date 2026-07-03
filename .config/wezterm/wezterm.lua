@@ -80,10 +80,10 @@ wezterm.on("gui-attached", function()
 end)
 
 config.font = wezterm.font_with_fallback({
+    "Comic Code",
     "0xProto NL",
     "0xProto",
     "IoskeleyMono",
-    "Comic Code",
     "JetBrains Mono",
 })
 
@@ -283,7 +283,7 @@ end)
 wezterm.on("toggle-window-font", function(window)
     local overrides = window:get_config_overrides() or {}
     if not overrides.font then
-        overrides.font = wezterm.font("Comic Code")
+        overrides.font = wezterm.font("0xProto NL")
     else
         overrides.font = nil
     end
