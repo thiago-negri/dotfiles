@@ -3,7 +3,6 @@ alias l="ls --color -lhAF --group-directories-first"
 gg-find() {
     local folders=(
         "$HOME"
-        "$HOME/babycenter/git"
     )
     local ignores=(
         "$HOME/.fzf/*"
