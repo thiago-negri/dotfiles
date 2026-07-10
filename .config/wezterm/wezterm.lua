@@ -12,8 +12,8 @@ local isWindows = wezterm.target_triple == "x86_64-pc-windows-msvc"
 local isMac = wezterm.target_triple == "aarch64-apple-darwin"
 local hideTab = true
 local backgroundColor = "#111111"
-local font_size_mac = 16
-local font_size = 12
+local font_size_mac = 20
+local font_size = 18
 
 -- THIS IS INSANITY
 config.adjust_window_size_when_changing_font_size = false
@@ -80,6 +80,7 @@ wezterm.on("gui-attached", function()
 end)
 
 config.font = wezterm.font_with_fallback({
+    "Iosevka",
     "Comic Code",
     "0xProto NL",
     "0xProto",

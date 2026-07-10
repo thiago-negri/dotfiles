@@ -49,7 +49,9 @@ fi
 ####
 
 # Set keyboard layouts: us, us(intl). alt+shift to switch
-setxkbmap -rules evdev -layout 'us,us' -variant ',intl' -option 'grp:alt_shift_toggle'
+# alt-shift conflicts with emacs keybinds, sadge
+# setxkbmap -rules evdev -layout 'us,us' -variant ',intl' -option 'grp:alt_shift_toggle'
+setxkbmap -rules evdev -layout 'us,us' -variant ',intl'
 
 # disable mouse acceleration
 xset m 0 0
