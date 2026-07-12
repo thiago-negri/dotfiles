@@ -46,7 +46,7 @@ elseif isMac then
 else
     -- on linux, login shell is executed on tty, no need to keep spawning
     -- multiple login shells
-    config.default_prog = { "/usr/bin/bash" }
+    config.default_prog = { "/run/current-system/profile/bin/bash" }
 end
 
 -- Show workspace name at left bottom

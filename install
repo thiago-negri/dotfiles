@@ -70,7 +70,7 @@ dir "$HOME/.config"
 
 
 # xdg-mime
-link ".config/mimeapps.list" "$HOME/.config/mimeapps.list"
+#link ".config/mimeapps.list" "$HOME/.config/mimeapps.list"
 
 
 # bash
@@ -83,10 +83,13 @@ link ".bashrc.$kernel.sh"           "$HOME/.bashrc.local.sh"
 # xorg
 if [ "$kernel" = "Linux" ]; then
     link ".XCompose"    "$HOME/.XCompose"
-    link ".Xresources"  "$HOME/.Xresources"
-    link ".xinitrc"     "$HOME/.xinitrc"
+    # link ".Xresources"  "$HOME/.Xresources"
+    # link ".xinitrc"     "$HOME/.xinitrc"
 fi
 
+# guix
+dir "$HOME/.config/guix"
+link ".config/guix/channels.scm" "$HOME/.config/guix/channels.scm"
 
 # wezterm
 dir "$HOME/.config/wezterm"
@@ -109,25 +112,25 @@ download "$raw_github/junegunn/vim-plug/master/plug.vim" "$HOME/.config/nvim/aut
 
 
 # vim
-if [ "$kernel" = "MINGW" ]; then
-    vim="$HOME/vimfiles"
-else
-    vim="$HOME/.vim"
-fi
-
-dir "$vim"
-link ".vim/.vimrc" "$vim/.vimrc"
-
-dir "$vim/colors"
-download "$raw_github/nordtheme/vim/refs/heads/main/colors/nord.vim"                    "$vim/colors/nord.vim"
-download "$raw_github/thiago-negri/vim-dark/refs/heads/main/colors/vim-dark.vim"        "$vim/colors/vim-dark.vim"
-download "$raw_github/tomasiser/vim-code-dark/refs/heads/master/colors/codedark.vim"    "$vim/colors/vim-code-dark.vim"
-
-dir "$vim/autoload"
-download "$raw_github/junegunn/vim-plug/master/plug.vim" "$vim/autoload/plug.vim"
-
-dir "$vim/ftplugin"
-link ".vim/ftplugin/gitcommit.vim" "$vim/ftplugin/gitcommit.vim"
+# if [ "$kernel" = "MINGW" ]; then
+#     vim="$HOME/vimfiles"
+# else
+#     vim="$HOME/.vim"
+# fi
+#
+# dir "$vim"
+# link ".vim/.vimrc" "$vim/.vimrc"
+#
+# dir "$vim/colors"
+# download "$raw_github/nordtheme/vim/refs/heads/main/colors/nord.vim"                    "$vim/colors/nord.vim"
+# download "$raw_github/thiago-negri/vim-dark/refs/heads/main/colors/vim-dark.vim"        "$vim/colors/vim-dark.vim"
+# download "$raw_github/tomasiser/vim-code-dark/refs/heads/master/colors/codedark.vim"    "$vim/colors/vim-code-dark.vim"
+#
+# dir "$vim/autoload"
+# download "$raw_github/junegunn/vim-plug/master/plug.vim" "$vim/autoload/plug.vim"
+#
+# dir "$vim/ftplugin"
+# link ".vim/ftplugin/gitcommit.vim" "$vim/ftplugin/gitcommit.vim"
 
 
 # gg
@@ -135,17 +138,17 @@ gitclone "git@github.com:thiago-negri/gg.git" "$HOME/.gg"
 
 
 # fzf
-gitclone "git@github.com:junegunn/fzf.git"    "$HOME/.fzf"
-if [ $? -eq 0 ]; then
-    "$HOME/.fzf/install" --key-bindings --completion --no-update-rc --no-zsh --no-fish
-fi
+# gitclone "git@github.com:junegunn/fzf.git"    "$HOME/.fzf"
+# if [ $? -eq 0 ]; then
+#     "$HOME/.fzf/install" --key-bindings --completion --no-update-rc --no-zsh --no-fish
+# fi
 
 
 # dunst
-if [ "$kernel" = "Linux" ]; then
-    dir "$HOME/.config/dunst"
-    link ".config/dunst/dunstrc" "$HOME/.config/dunst/dunstrc"
-fi
+# if [ "$kernel" = "Linux" ]; then
+#     dir "$HOME/.config/dunst"
+#     link ".config/dunst/dunstrc" "$HOME/.config/dunst/dunstrc"
+# fi
 
 
 # herbstluftwm

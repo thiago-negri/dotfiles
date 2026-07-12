@@ -4,11 +4,25 @@ hc() {
     herbstclient "$@"
 }
 
+# ability to lock screen
+xss-lock -- slock &
+
+# keyboard layouts
+setxkbmap -rules evdev -layout 'us,us' -variant ',intl'
+
+# disable mouse acceleration
+xset m 0 0
+
+# monitors
+xrandr --auto
+"$HOME/projects/utils/setup_monitors.sh"
+
+#####
 hc emit_hook reload
 
 # restore wallpaper
 xsetroot -solid '#000000'
-~/.fehbg &
+xwallpaper --center "$HOME/wall/guix.jpg"
 
 ###################################
 # THEME
@@ -51,13 +65,14 @@ hc keyunbind --all
 #Mod=Mod1   # Use alt as the main modifier
 Mod=Mod4   # Use the super key as the main modifier
 
-hc keybind $Mod-Shift-w spawn firefox
+# hc keybind $Mod-Shift-w spawn firefox
+hc keybind $Mod-Shift-w spawn icecat
 hc keybind $Mod-Shift-s spawn flameshot gui
 hc keybind $Mod-e spawn Thunar
 hc keybind $Mod-v spawn pavucontrol
-hc keybind $Mod-d spawn dmenu_run -b -i -fn "0xProto:size=12"
-hc keybind $Mod-0 spawn xscreensaver-command --lock
-hc keybind $Mod-Return spawn "${TERMINAL:-xterm}"
+hc keybind $Mod-d spawn dmenu_run -b -i -fn "Iosevka:size=14"
+hc keybind $Mod-0 spawn slock
+hc keybind $Mod-Return spawn wezterm
 
 #hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
@@ -204,11 +219,11 @@ panel="$HOME/.config/herbstluftwm/panel.sh"
 ###################################
 if hc silent new_attr bool my_not_first_autostart ; then
     "$HOME/projects/utils/exec_on_tag.sh" 1 wezterm &
-    "$HOME/projects/utils/exec_on_tag.sh" 2 firefox &
-    "$HOME/projects/utils/exec_on_tag.sh" 3 thunderbird &
-    "$HOME/projects/utils/exec_on_tag.sh" 3 "$HOME/projects/utils/whatsappweb.sh" &
-    "$HOME/projects/utils/exec_steam_on_tag.sh" 4 &
+    "$HOME/projects/utils/exec_on_tag.sh" 2 icecat &
+    "$HOME/projects/utils/exec_on_tag.sh" 3 icedove &
+    # "$HOME/projects/utils/exec_on_tag.sh" 3 "$HOME/projects/utils/whatsappweb.sh" &
+    # "$HOME/projects/utils/exec_steam_on_tag.sh" 4 &
     "$HOME/projects/utils/exec_on_tag.sh" 8 "$HOME/projects/utils/camera.sh" &
-    "$HOME/projects/utils/exec_on_tag.sh" 9 "$HOME/projects/utils/picknrun.sh" &
+    # "$HOME/projects/utils/exec_on_tag.sh" 9 "$HOME/projects/utils/picknrun.sh" &
     hc chain , focus_monitor 1 , use_index 7 , focus_monitor 0 , use_index 0
 fi

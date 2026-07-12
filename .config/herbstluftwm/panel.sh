@@ -7,12 +7,12 @@ trap 'kill $(jobs -p) 2>/dev/null' INT TERM
 
 ### dependencies, if missing this will not work as expected
 hc=herbstclient
-textwidth="$HOME/projects/xftwidth/xftwidth"
+textwidth="xftwidth"
 awk=awk
 xkblayoutnotify="$HOME/projects/xkblayoutnotify/xkblayoutnotify"
-voldown='wpctl set-volume @DEFAULT_SINK@ 3%- -l 1.0'
-volup='wpctl set-volume @DEFAULT_SINK@ 3%+ -l 1.0'
-mute='wpctl set-mute @DEFAULT_SINK@ toggle'
+voldown='pactl set-sink-volume @DEFAULT_SINK@ -3%'
+volup='pactl set-sink-volume @DEFAULT_SINK@ +3%'
+mute='pactl set-sink-mute @DEFAULT_SINK@ toggle'
 volnotify="$HOME/projects/utils/volnotify.sh"
 xkb_switch=xkb-switch
 ysarys="$HOME/projects/ysarys/dist/ysarys"
@@ -21,7 +21,7 @@ battery_status="$HOME/projects/utils/battery_status.sh"
 
 ### theme
 # font='-*-fixed-medium-*-*-*-20-*-*-*-*-*-*-*'
-font='0xProto:size=12'
+font='Iosevka:size=16'
 c0='#101010'
 c1='#303030'
 c2='#606060'
@@ -182,7 +182,7 @@ uniq_linebuffered() {
 
         # ysarys
         ysarys_c="^fg($c3)"
-        [ $ysarys_tomorrow -ne 0 ] && ysarys_c="^fg($c0)^bg($cr)"
+        [ "$ysarys_tomorrow" != "0" ] && ysarys_c="^fg($c0)^bg($cr)"
         ysarys_group=" $ysarys_c $ysarys_tomorrow ^fg($c2)^bg() $ysarys_three_days  "
 
         # full right bar
